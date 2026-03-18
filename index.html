@@ -153,6 +153,8 @@ body{
 /* ── ANIMATIONS ── */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 /* アニメーションなし — 横スワイプLPはコンテンツ常時表示が自然 */
+/* ── HERO VIDEO ── */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;z-index:0;pointer-events:none}
 
 /* ━━━━━━━━━━━━━━━━━━━━
    S1 — COVER (DARK)
@@ -194,13 +196,13 @@ body{
 .stats-ey{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:18px;font-family:'DM Sans',sans-serif}
 .stats-ey::before{content:'✦  ';color:var(--pk)}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.st-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px 16px}
-.st-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:.04em;line-height:1;margin-bottom:3px}
+.st-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px 16px;backdrop-filter:blur(8px)}
+.st-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,3.4rem);letter-spacing:.04em;line-height:1;margin-bottom:3px}
 .st-num.gd{color:var(--gold)}
 .st-num.pk{color:var(--pk2)}
 .st-lbl{font-size:.64rem;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;line-height:1.4}
 /* UGC Ticker */
-.ugc-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;position:relative;height:62px;overflow:hidden}
+.ugc-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;position:relative;height:72px;overflow:hidden}
 .ugc-c{position:absolute;inset:0;padding:12px 14px;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
 .ugc-c.on{opacity:1;transform:none}
 .ugc-row{display:flex;align-items:center;gap:7px;margin-bottom:4px}
@@ -221,7 +223,7 @@ body{
 .prob-h2{font-weight:900;font-size:clamp(1.7rem,5vw,2.8rem);line-height:1.15;color:var(--ink);margin-bottom:24px}
 .prob-h2 em{font-style:normal;background:linear-gradient(135deg,var(--pk),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .prob-cards{display:flex;flex-direction:column;gap:10px}
-.pc{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid rgba(0,0,0,.07);border-radius:14px;background:#fff;transition:border-color .2s}
+.pc{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border:1px solid rgba(0,0,0,.08);border-radius:16px;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:border-color .2s,box-shadow .2s}
 .pc:hover{border-color:rgba(255,31,106,.3)}
 .pc-n{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--pk),var(--pk2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:.62rem;font-weight:900;flex-shrink:0;font-family:'DM Sans',sans-serif}
 .pc h3{font-weight:800;font-size:.88rem;margin-bottom:2px;color:var(--ink)}
@@ -255,11 +257,11 @@ body{
    S5/6/7 — HOW 1/2/3 (DARK)
 ━━━━━━━━━━━━━━━━━━━━ */
 .s-how{background:var(--ink2)}
-.how-step{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,18vw,14rem);color:rgba(255,255,255,.06);line-height:1;margin-bottom:-1rem;letter-spacing:.04em}
+.how-step{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,18vw,14rem);color:rgba(255,255,255,.08);line-height:1;margin-bottom:-1rem;letter-spacing:.04em}
 .how-ey{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;font-family:'DM Sans',sans-serif}
 .how-h2{font-weight:900;font-size:clamp(1.7rem,5vw,2.8rem);color:#fff;line-height:1.15;margin-bottom:16px}
 .how-h2 em{font-style:normal;color:var(--pk2)}
-.how-body{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;font-family:'DM Sans',sans-serif;margin-bottom:20px}
+.how-body{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.85;max-width:520px;font-family:'DM Sans',sans-serif;margin-bottom:20px}
 .how-body strong{color:#fff}
 .how-tag{display:inline-block;background:rgba(255,31,106,.12);border:1px solid rgba(255,31,106,.25);color:var(--pk2);font-size:.68rem;font-weight:700;padding:5px 14px;border-radius:100px;letter-spacing:.08em;font-family:'DM Sans',sans-serif}
 .how-accent{position:absolute;bottom:0;right:0;width:48%;opacity:.07;pointer-events:none;z-index:0}
@@ -271,16 +273,16 @@ body{
 .s-results::before{content:'';position:absolute;inset:0;background:url('https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800') center/cover;opacity:.05;pointer-events:none;z-index:0}
 .res-ey{font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--pk);text-transform:uppercase;margin-bottom:16px;font-family:'DM Sans',sans-serif}
 .res-ey::before{content:'✦  '}
-.res-case{background:var(--ink);border-radius:20px;padding:22px 20px;color:#fff;margin-bottom:14px}
+.res-case{background:var(--ink);border-radius:20px;padding:22px 20px;color:#fff;margin-bottom:14px;border:1px solid rgba(255,31,106,.2);box-shadow:0 8px 32px rgba(0,0,0,.3)}
 .rc-tag{font-size:.56rem;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;font-family:'DM Sans',sans-serif}
 .rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
 .rci{background:rgba(255,255,255,.06);border-radius:10px;padding:11px 12px}
-.rci-n{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#fff;letter-spacing:.04em;line-height:1;margin-bottom:2px}
+.rci-n{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:.04em;line-height:1;margin-bottom:2px}
 .rci-l{font-size:.58rem;color:rgba(255,255,255,.38);font-family:'DM Sans',sans-serif}
 .rc-q{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.78;font-style:italic;font-family:'DM Sans',sans-serif}
 .res-nums{display:flex;gap:10px}
-.rn-box{flex:1;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:14px 12px;text-align:center}
-.rn-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:.04em;background:linear-gradient(135deg,var(--pk),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.rn-box{flex:1;border:1.5px solid rgba(0,0,0,.1);border-radius:16px;padding:16px 12px;text-align:center;background:rgba(0,0,0,.04)}
+.rn-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,3.4rem);letter-spacing:.04em;background:linear-gradient(135deg,var(--pk),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
 .rn-lbl{font-size:.62rem;color:var(--muted);font-family:'DM Sans',sans-serif;margin-top:3px}
 
 /* ━━━━━━━━━━━━━━━━━━━━
@@ -294,7 +296,7 @@ body{
 .feat-h2{font-weight:900;font-size:clamp(1.6rem,4.5vw,2.6rem);color:#fff;margin-bottom:20px}
 .feat-h2 em{font-style:normal;color:var(--pk2)}
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fg{padding:16px;border:1px solid rgba(255,255,255,.07);border-radius:14px;background:rgba(255,255,255,.04);transition:border-color .2s}
+.fg{padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.06);backdrop-filter:blur(8px);transition:border-color .2s,background .2s}
 .fg:hover{border-color:rgba(255,31,106,.3)}
 .fg-badge{display:inline-block;font-size:.55rem;font-weight:800;letter-spacing:.1em;color:var(--pk);background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.2);padding:2px 9px;border-radius:100px;margin-bottom:8px;text-transform:uppercase;font-family:'DM Sans',sans-serif}
 .fg h3{font-weight:800;font-size:.85rem;color:#fff;margin-bottom:5px}
@@ -421,8 +423,12 @@ body{
 
 <!-- ■ S1: COVER -->
 <section class="slide s-cover active" id="s0">
+  <!-- Hero video background -->
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="https://www.pexels.com/download/video/3373736/" type="video/mp4">
+  </video>
   <div class="glow-pk"></div>
-  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.05"></div>
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.18"></div>
   <div class="bgt" style="bottom:-8vw;left:-2vw">KUCHIKOMI</div>
   <div class="sc">
     <div class="cover-tag">UGC口コミ施策 × AI × 月額定額</div>
@@ -465,6 +471,7 @@ body{
 
 <!-- ■ S3: PROBLEM -->
 <section class="slide s-problem" id="s2">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3373736/pexels-photo-3373736.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.08;filter:grayscale(30%)"></div>
   <div class="bgt" style="bottom:-5vw;right:-3vw">PROBLEM</div>
   <div class="sc">
     <div class="prob-ey" data-a data-d="1">よくある課題</div>
@@ -479,6 +486,7 @@ body{
 
 <!-- ■ S4: COST -->
 <section class="slide s-cost" id="s3">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5632398/pexels-photo-5632398.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.12"></div>
   <div class="bgt" style="bottom:-4vw;right:-3vw">¥600K</div>
   <div class="sc">
     <div class="cost-ey" data-a data-d="1">Cost Breakdown</div>
@@ -537,7 +545,7 @@ body{
 
 <!-- ■ S8: RESULTS -->
 <section class="slide s-results" id="s7">
-  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3762875/pexels-photo-3762875.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.1"></div>
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3762875/pexels-photo-3762875.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.22"></div>
   <div class="sc">
     <div class="res-ey" data-a data-d="1">Case Study</div>
     <div class="res-case" data-a data-d="2">
@@ -559,6 +567,7 @@ body{
 
 <!-- ■ S9: FEATURES -->
 <section class="slide s-feat" id="s8">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.1;filter:grayscale(50%)"></div>
   <div class="glow-pk"></div>
   <div class="sc">
     <div class="feat-ey" data-a data-d="1">Features</div>
@@ -574,6 +583,7 @@ body{
 
 <!-- ■ S10: VOICES -->
 <section class="slide s-voices" id="s9">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5698851/pexels-photo-5698851.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.06;filter:grayscale(20%)"></div>
   <div class="bgt" style="bottom:-5vw;right:-3vw;color:rgba(0,0,0,.04)">VOICE</div>
   <div class="sc">
     <div class="voice-ey" data-a data-d="1">Voices</div>
@@ -603,6 +613,7 @@ body{
 
 <!-- ■ S11: PRICING STARTER -->
 <section class="slide s-price-starter" id="s10">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3762879/pexels-photo-3762879.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.12"></div>
   <div class="bgt" style="font-size:clamp(6rem,22vw,18rem);bottom:-5vw;right:-3vw;color:rgba(255,255,255,.025)">01</div>
   <div class="sc">
     <div class="price-plan-num">PLAN 01 / 03 — STARTER</div>
@@ -623,6 +634,7 @@ body{
 
 <!-- ■ S12: PRICING GROWTH -->
 <section class="slide s-price-growth" id="s11">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3762875/pexels-photo-3762875.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.15"></div>
   <div class="bgt" style="font-size:clamp(6rem,22vw,18rem);bottom:-5vw;right:-3vw;color:rgba(255,255,255,.06)">02</div>
   <div class="sc">
     <div class="price-plan-num">PLAN 02 / 03 — GROWTH</div>
@@ -645,6 +657,7 @@ body{
 
 <!-- ■ S13: PRICING SCALE -->
 <section class="slide s-price-scale" id="s12">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.14"></div>
   <div class="bgt" style="font-size:clamp(6rem,22vw,18rem);bottom:-5vw;right:-3vw;color:rgba(255,208,0,.05)">03</div>
   <div class="sc">
     <div class="price-plan-num">PLAN 03 / 03 — SCALE</div>
@@ -666,6 +679,7 @@ body{
 
 <!-- ■ S14: CTA -->
 <section class="slide s-cta" id="s13">
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.18"></div>
   <div class="cta-bgt">KUCHIKOMI</div>
   <div class="cta-in sc" style="text-align:center">
     <div style="font-size:.62rem;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:16px;font-family:'DM Sans',sans-serif" data-a data-d="1">✦ Contact</div>
