@@ -483,6 +483,37 @@ body{
 .pcar-btn-hot{background:linear-gradient(135deg,var(--pk),var(--pk2));border:none;box-shadow:0 4px 18px rgba(255,31,106,.4)}
 .pcar-btn-gold{background:linear-gradient(135deg,var(--gold),#ffb700);border:none;color:#000;box-shadow:0 4px 18px rgba(255,208,0,.35)}
 .pcar-note{text-align:center;font-size:.62rem;color:rgba(255,255,255,.2);font-family:'DM Sans',sans-serif;padding:0 20px}
+
+/* ── HOW ALL (3ステップ統合スライド) ── */
+.s-how-all{background:var(--ink)}
+.how-all-ey{font-size:.58rem;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:8px;font-family:'DM Sans',sans-serif}
+.how-all-ey::before{content:'✦  ';color:var(--pk)}
+.how-all-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.6rem,6.5vw,2.4rem);line-height:1.15;letter-spacing:.04em;margin-bottom:16px;color:#fff}
+.how-all-h2 em{color:var(--pk);font-style:normal}
+
+.how-steps-list{display:flex;flex-direction:column;gap:12px}
+
+.hs-card{
+  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  padding:16px 14px;
+  backdrop-filter:blur(8px);
+}
+.hs-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.2rem;line-height:1;
+  color:var(--pk);letter-spacing:.04em;
+  flex-shrink:0;width:36px;text-align:center;
+  opacity:.85;
+}
+.hs-body{flex:1}
+.hs-label{font-size:.56rem;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:4px;font-family:'DM Sans',sans-serif}
+.hs-title{font-size:.9rem;font-weight:800;color:#fff;line-height:1.3;margin-bottom:5px}
+.hs-title em{color:var(--pk);font-style:normal}
+.hs-desc{font-size:.76rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:8px;font-family:'DM Sans',sans-serif}
+.hs-tag{display:inline-block;font-size:.62rem;font-weight:700;color:var(--pk2);background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.2);border-radius:100px;padding:3px 10px;font-family:'DM Sans',sans-serif}
 </style>
 </head>
 <body>
@@ -597,39 +628,41 @@ body{
   </div>
 </section>
 
-<!-- ■ S5: HOW 01 -->
-<section class="slide s-how" id="s4">
-  <div class="how-img" style="background-image:url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800')"></div>
+<!-- ■ S5: HOW (3ステップ統合) -->
+<section class="slide s-how-all" id="s4">
+  <div class="how-img" style="background-image:url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.14"></div>
   <div class="sc">
-    <div class="how-step" data-a data-d="1">STEP 01</div>
-    <div class="how-ey" data-a data-d="1">AI PRE-TEST</div>
-    <h2 class="how-h2" data-a data-d="2">AIプリテストで<br><em>勝ちコンセプト</em>を特定</h2>
-    <p class="how-body" data-a data-d="3">クリエイターに依頼する前に、AIで<strong>5パターンのコンテンツを自動生成</strong>。GVA専用テストアカウントで7日間配信し、視聴完了率・保存率を計測。<strong>勘ではなくデータで「当たる前提」を作る</strong>業界初のアプローチ。</p>
-    <span class="how-tag" data-a data-d="4">✦ 全プランに標準搭載</span>
-  </div>
-</section>
-
-<!-- ■ S6: HOW 02 -->
-<section class="slide s-how" id="s5">
-  <div class="how-img" style="background-image:url('https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=800')"></div>
-  <div class="sc">
-    <div class="how-step" data-a data-d="1">STEP 02</div>
-    <div class="how-ey" data-a data-d="1">CREATOR MATCH</div>
-    <h2 class="how-h2" data-a data-d="2">勝ちコンセプトで<br><em>最適クリエイター</em>を選定</h2>
-    <p class="how-body" data-a data-d="3">テスト結果をもとに<strong>500名の実績DBから最適クリエイターをアサイン</strong>。景表法チェック（#PR表記・ブランドコンテンツツール確認）もシステムが自動化。法的リスクをゼロにします。</p>
-    <span class="how-tag" data-a data-d="4">✦ 景表法チェック 完全自動化</span>
-  </div>
-</section>
-
-<!-- ■ S7: HOW 03 -->
-<section class="slide s-how" id="s6">
-  <div class="how-img" style="background-image:url('https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800')"></div>
-  <div class="sc">
-    <div class="how-step" data-a data-d="1">STEP 03</div>
-    <div class="how-ey" data-a data-d="1">ROI PROOF</div>
-    <h2 class="how-h2" data-a data-d="2">GA4直結で<br><em>実売上</em>を毎月証明</h2>
-    <p class="how-body" data-a data-d="3">クリエイターの投稿にユニークUTMリンクを付与。GA4でUGC経由のセッション・CV・売上を自動集計。<strong>EMVではなく実売上で毎月レポート提出</strong>。社内稟議に使える数字を出し続けます。</p>
-    <span class="how-tag" data-a data-d="4">✦ 毎月ROIレポート提出</span>
+    <div class="how-all-ey">How it works</div>
+    <h2 class="how-all-h2">売れる口コミは<br><em>3ステップ</em>で設計する。</h2>
+    <div class="how-steps-list">
+      <div class="hs-card">
+        <div class="hs-num">01</div>
+        <div class="hs-body">
+          <div class="hs-label">AI PRE-TEST</div>
+          <div class="hs-title">AIプリテストで<em>勝ちコンセプト</em>を特定</div>
+          <div class="hs-desc">公開前にAIで5パターンをテスト。データで「当たる前提」を作る。</div>
+          <span class="hs-tag">✦ 全プランに標準搭載</span>
+        </div>
+      </div>
+      <div class="hs-card">
+        <div class="hs-num">02</div>
+        <div class="hs-body">
+          <div class="hs-label">CREATOR MATCH</div>
+          <div class="hs-title">勝ちコンセプトで<em>最適クリエイター</em>を選定</div>
+          <div class="hs-desc">500名の実績DBからアサイン。景表法チェックも自動化。</div>
+          <span class="hs-tag">✦ 景表法チェック 完全自動化</span>
+        </div>
+      </div>
+      <div class="hs-card">
+        <div class="hs-num">03</div>
+        <div class="hs-body">
+          <div class="hs-label">ROI PROOF</div>
+          <div class="hs-title">GA4直結で<em>実売上</em>を毎月証明</div>
+          <div class="hs-desc">UTMリンクでUGC経由の実購買を自動集計。毎月レポート提出。</div>
+          <span class="hs-tag">✦ 毎月ROIレポート提出</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
