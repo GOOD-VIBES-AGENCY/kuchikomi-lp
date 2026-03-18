@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KUCHIKOMI — データで口コミを、資産にする。</title>
+  <meta name="description" content="AIプリテスト × 500名クリエイターDB × GA4直結ROI計測。月額継続型UGC口コミ施策の新標準。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --lime: #C8F135;
+      --lime-dim: #a8d020;
+      --white: #F5F5F0;
+      --gray: #888;
+      --gray-dark: #1a1a1a;
+      --gray-mid: #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,241,53,0.08);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--lime);
+    }
+    .logo span { color: var(--white); }
+    nav a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--white); }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-cta {
+      background: var(--lime);
+      color: var(--black) !important;
+      padding: 10px 24px;
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+    }
+    .nav-cta:hover { background: var(--lime-dim); color: var(--black) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 140px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 70% 40%, rgba(200,241,53,0.06) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(200,241,53,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(200,241,53,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 1px;
+      background: var(--lime);
+      vertical-align: middle;
+      margin-right: 12px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--lime);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 540px;
+      margin-bottom: 56px;
+      line-height: 1.8;
+      position: relative;
+    }
+    .hero-sub strong { color: var(--white); font-weight: 500; }
+    .hero-ctas { display: flex; gap: 16px; align-items: center; position: relative; }
+    .btn-primary {
+      background: var(--lime);
+      color: var(--black);
+      padding: 16px 36px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--lime-dim); transform: translateY(-1px); }
+    .btn-secondary {
+      color: var(--gray);
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-secondary:hover { color: var(--white); }
+    .hero-stats {
+      display: flex; gap: 64px;
+      margin-top: 96px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.8rem;
+      color: var(--lime);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--gray); margin-top: 4px; letter-spacing: 0.05em; }
+
+    /* SECTION BASE */
+    section { padding: 120px 48px; }
+    .section-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    h2 em { font-style: normal; color: var(--lime); }
+
+    /* PROBLEM */
+    .problem { background: var(--gray-dark); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .problem-lead {
+      font-size: 1.15rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-top: 16px;
+    }
+    .problem-lead strong { color: var(--white); }
+    .problems-list { display: flex; flex-direction: column; gap: 24px; margin-top: 16px; }
+    .problem-item {
+      padding: 28px 32px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .problem-item:hover {
+      border-color: rgba(200,241,53,0.2);
+      background: rgba(200,241,53,0.02);
+    }
+    .problem-item h3 {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+    .problem-item p { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+
+    /* HOW IT WORKS */
+    .how { background: var(--black); }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-top: 64px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .step {
+      background: var(--black);
+      padding: 48px 40px;
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 5rem;
+      color: rgba(200,241,53,0.08);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .step-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+    .step p { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+    .step-tag {
+      display: inline-block;
+      background: rgba(200,241,53,0.12);
+      color: var(--lime);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    /* FEATURES */
+    .features { background: var(--gray-dark); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .feature-card {
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      background: var(--black);
+      transition: border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--lime);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-card:hover { border-color: rgba(200,241,53,0.15); }
+    .feature-icon { font-size: 2rem; margin-bottom: 20px; }
+    .feature-card h3 {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--white);
+    }
+    .feature-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+    .feature-badge {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--black);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    /* RESULTS */
+    .results { background: var(--black); }
+    .results-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .results-numbers { display: flex; flex-direction: column; gap: 40px; }
+    .result-item { display: flex; align-items: baseline; gap: 16px; }
+    .result-num {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 4rem;
+      color: var(--lime);
+      line-height: 1;
+    }
+    .result-detail { flex: 1; }
+    .result-detail h4 { font-weight: 600; font-size: 1rem; color: var(--white); margin-bottom: 4px; }
+    .result-detail p { font-size: 0.82rem; color: var(--gray); }
+    .results-quote {
+      background: var(--gray-dark);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 3px solid var(--lime);
+      padding: 48px;
+      border-radius: 4px;
+    }
+    .results-quote blockquote {
+      font-size: 1.05rem;
+      color: var(--white);
+      line-height: 1.8;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .quote-source { font-size: 0.8rem; color: var(--gray); }
+
+    /* PRICING */
+    .pricing { background: var(--gray-dark); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .price-card {
+      padding: 48px 36px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      background: var(--black);
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.popular {
+      border-color: var(--lime);
+      background: rgba(200,241,53,0.04);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--lime);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 4px 16px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .price-plan {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .price-amount {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.8rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-amount span { font-size: 1rem; font-family: 'Outfit', sans-serif; font-weight: 400; color: var(--gray); }
+    .price-imp {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+    .price-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 28px;
+    }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+    .price-features li {
+      font-size: 0.88rem;
+      color: var(--gray);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .price-features li::before {
+      content: '✓';
+      color: var(--lime);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .price-cta {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      border: 1px solid rgba(200,241,53,0.3);
+      color: var(--lime);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .price-cta:hover, .price-card.popular .price-cta {
+      background: var(--lime);
+      color: var(--black);
+      border-color: var(--lime);
+    }
+    .price-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 32px;
+    }
+
+    /* FAQ */
+    .faq { background: var(--black); }
+    .faq-list { max-width: 720px; margin-top: 64px; }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Outfit', sans-serif;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--lime); }
+    .faq-icon {
+      width: 24px; height: 24px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      color: var(--lime);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.8;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s, padding 0.4s;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 28px; }
+
+    /* CTA FINAL */
+    .cta-final {
+      background: var(--lime);
+      padding: 100px 48px;
+      text-align: center;
+    }
+    .cta-final h2 {
+      color: var(--black);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+    .cta-final p {
+      color: rgba(0,0,0,0.6);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 16px auto 48px;
+    }
+    .btn-dark {
+      display: inline-block;
+      background: var(--black);
+      color: var(--lime);
+      padding: 18px 48px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #1a1a1a; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-size: 0.82rem; color: var(--gray); }
+
+    /* FADE-IN ANIMATION */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero { padding: 120px 24px 64px; }
+      .hero-stats { gap: 32px; flex-wrap: wrap; }
+      .problem-grid, .results-inner { grid-template-columns: 1fr; gap: 40px; }
+      .how-steps { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">KUCHI<span>KOMI</span></div>
+  <div class="nav-links">
+    <a href="#how">仕組み</a>
+    <a href="#features">機能</a>
+    <a href="#results">実績</a>
+    <a href="#pricing">料金</a>
+  </div>
+  <a href="#contact" class="nav-cta">無料相談する</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">UGC口コミ施策の新標準</div>
+  <h1>口コミを<em>データ</em>で<br>資産にする。</h1>
+  <p class="hero-sub">
+    AIプリテストで勝ちコンセプトを特定し、<strong>500名の実績クリエイター</strong>が投稿。<br>
+    GA4直結でUGC経由の<strong>実売上を証明</strong>する月額継続型サービス。
+  </p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-primary">無料で相談する →</a>
+    <a href="#how" class="btn-secondary">仕組みを見る ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num" data-count="573623">0</div>
+      <div class="stat-label">月次インプレッション（実績）</div>
+    </div>
+    <div>
+      <div class="stat-num" data-count="2.7" data-suffix="x">0</div>
+      <div class="stat-label">フォロワー比インプレッション倍率</div>
+    </div>
+    <div>
+      <div class="stat-num" data-count="500">0</div>
+      <div class="stat-label">実績付きクリエイター数</div>
+    </div>
+    <div>
+      <div class="stat-num" data-count="87" data-suffix="%">0</div>
+      <div class="stat-label">PR真正性スコア精度</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="fade-up">
+    <div class="section-tag">Problem</div>
+    <div class="problem-grid">
+      <div>
+        <h2>UGC施策が<br>続かない<em>理由</em></h2>
+        <p class="problem-lead">
+          インフルエンサーより口コミが売れる時代へ。しかし多くのブランドが「単発」「勘頼み」「効果不明」の3つの壁で止まっている。
+        </p>
+      </div>
+      <div class="problems-list">
+        <div class="problem-item">
+          <h3>① 費用対効果が読めない</h3>
+          <p>投稿数や再生数は分かるが「それで売れたのか」が証明できない。毎回の説明に追われ、次の予算が取れない。</p>
+        </div>
+        <div class="problem-item">
+          <h3>② 勘でコンテンツを選んでいる</h3>
+          <p>「このクリエイターなら伸びそう」「このネタが刺さりそう」は経験則。バズるかどうかは公開するまで分からない。</p>
+        </div>
+        <div class="problem-item">
+          <h3>③ 単発で口コミが途切れる</h3>
+          <p>キャンペーンが終わると認知がリセットされる。毎回ゼロから積み上げるため、口コミが「資産」にならない。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="fade-up">
+    <div class="section-tag">How It Works</div>
+    <h2>データが選ぶ、<em>勝ちパターン</em>。</h2>
+  </div>
+  <div class="how-steps fade-up">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-tag">AI Pre-Test</div>
+      <div class="step-icon">🤖</div>
+      <h3>AIプリテスト</h3>
+      <p>Creatifyで5パターンのコンテンツを自動生成。GVA専用テストアカウントで7日間配信し、視聴完了率・保存率・プロフィール訪問率を計測。</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-tag">Creator Matching</div>
+      <div class="step-icon">👥</div>
+      <h3>最適クリエイターをアサイン</h3>
+      <p>勝ちコンセプトを確認してから、500名の実績DBより「このカテゴリで伸びる」クリエイターを選定。景表法チェックも自動で完了。</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-tag">ROI Proof</div>
+      <div class="step-icon">📊</div>
+      <h3>ROIを数字で証明</h3>
+      <p>ユニークUTMリンクでUGC経由の流入・CV・売上をGA4で自動集計。「この口コミで売上が◯%上がった」を毎月レポート。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="fade-up">
+    <div class="section-tag">Features</div>
+    <h2>他の代理店に<em>ないもの</em>、<br>全部入っている。</h2>
+  </div>
+  <div class="features-grid fade-up">
+    <div class="feature-card">
+      <div class="feature-badge">業界初</div>
+      <div class="feature-icon">🎯</div>
+      <h3>AIプリテスト標準搭載</h3>
+      <p>クリエイターに依頼する前にコンセプトをAIでテスト。「勘」から「データ」へ。全プラン標準で提供。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-badge">差別化</div>
+      <div class="feature-icon">⚖️</div>
+      <h3>景表法チェック自動化</h3>
+      <p>#PR表記の確認はもちろん、InstagramブランドコンテンツツールON・TikTok広告トグルONもシステムが自動確認。法的リスクをゼロに。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <h3>GA4直結ROIダッシュボード</h3>
+      <p>EMV（広告換算値）ではなく、GA4で計測したUGC経由の実売上を表示。「本当に売れたか」を毎月証明する。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏆</div>
+      <h3>クリエイターランキング自動更新</h3>
+      <p>売上貢献率・エンゲ率・完遂率でGold/Silver/Bronzeを自動判定。上位クリエイターが自律的に質を上げる仕組み。</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="fade-up">
+    <div class="section-tag">Results</div>
+    <h2>数字が証明する、<em>実力</em>。</h2>
+  </div>
+  <div class="results-inner fade-up">
+    <div class="results-numbers">
+      <div class="result-item">
+        <div class="result-num">573<span style="font-size:2rem">K</span></div>
+        <div class="result-detail">
+          <h4>月次UGCインプレッション</h4>
+          <p>コスメ系クライアント。全施策インプレッションの59%をUGCが占める。</p>
+        </div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">2.7<span style="font-size:2rem">x</span></div>
+        <div class="result-detail">
+          <h4>フォロワー比インプレッション倍率</h4>
+          <p>フォロワー48,000人のクリエイターが130,000インプレッション獲得。</p>
+        </div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">59<span style="font-size:2rem">%</span></div>
+        <div class="result-detail">
+          <h4>UGCが全施策に占めるimp比率</h4>
+          <p>公式TikTok・公式Instagramを抑えてUGCが最大のインパクト源。</p>
+        </div>
+      </div>
+    </div>
+    <div class="results-quote">
+      <blockquote>
+        "他社製品も含めた自然なルーティーン形式で商品を取り入れており、過度な広告感を抑えた構成。視聴者にとってリアリティのあるコンテンツとして受け入れられやすく、視聴維持率やエンゲージメントの向上につながり、再生数の伸長に寄与した。"
+      </blockquote>
+      <div class="quote-source">— KUCHIKOMIクライアント施策レポートより</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="fade-up">
+    <div class="section-tag">Pricing</div>
+    <h2>月額定額。<em>口コミが途切れない</em>。</h2>
+  </div>
+  <div class="pricing-grid fade-up">
+    <div class="price-card">
+      <div class="price-plan">Starter</div>
+      <div class="price-amount">¥350,000<span>/月</span></div>
+      <div class="price-imp">クリエイター50名 / 50万imp保証</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>50名クリエイターアサイン</li>
+        <li>Instagram / X / TikTok 対応</li>
+        <li>AIプリテスト（5パターン）</li>
+        <li>景表法チェック自動化</li>
+        <li>ROIダッシュボード</li>
+        <li>月次レポーティング</li>
+      </ul>
+      <a href="#contact" class="price-cta">相談する</a>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">POPULAR</div>
+      <div class="price-plan">Growth</div>
+      <div class="price-amount">¥550,000<span>/月</span></div>
+      <div class="price-imp">クリエイター100名 / 120万imp保証</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>100名クリエイターアサイン</li>
+        <li>Instagram / X / TikTok 対応</li>
+        <li>AIプリテスト（10パターン）</li>
+        <li>景表法チェック自動化</li>
+        <li>ROIダッシュボード + GA4連携</li>
+        <li>媒体比率の月次調整</li>
+        <li>クリエイターランキング管理</li>
+      </ul>
+      <a href="#contact" class="price-cta">相談する</a>
+    </div>
+    <div class="price-card">
+      <div class="price-plan">Scale</div>
+      <div class="price-amount">¥850,000<span>/月</span></div>
+      <div class="price-imp">クリエイター150名 / 250万imp保証</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li>150名クリエイターアサイン</li>
+        <li>Instagram / X / TikTok 対応</li>
+        <li>AIプリテスト（無制限）</li>
+        <li>景表法チェック自動化</li>
+        <li>ROIダッシュボード + GA4連携</li>
+        <li>専任ディレクター担当</li>
+        <li>クリエイターランキング + AI改善</li>
+        <li>競合クリエイター独占オプション</li>
+      </ul>
+      <a href="#contact" class="price-cta">相談する</a>
+    </div>
+  </div>
+  <p class="price-note">※最低契約期間6ヶ月。商品ギフティングコストは別途ご負担ください。<br>年額前払いで12%OFF。保証未達の場合は翌月クレジット補填。</p>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="fade-up">
+    <div class="section-tag">FAQ</div>
+    <h2>よくある<em>質問</em></h2>
+  </div>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <button class="faq-q">AIプリテストとは何ですか？<span class="faq-icon">+</span></button>
+      <div class="faq-a">AIで5〜10パターンのコンテンツを自動生成し、GVAが管理する専用テストアカウントで7日間配信します。視聴完了率・保存率・プロフィール訪問率を計測し、最も成果の出やすいコンセプトを特定してからリアルクリエイターに依頼します。勘ではなくデータで選ぶため、ROIのブレが大幅に減少します。</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">景表法（ステマ規制）への対応は？<span class="faq-icon">+</span></button>
+      <div class="faq-a">#PR表記の確認はもちろん、InstagramのブランドコンテンツツールのON確認、TikTokの広告コンテンツトグルのON確認もシステムに組み込んでいます。投稿前スクショをOCRで自動チェックするため、法的リスクをゼロにします。</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">ROIはどうやって証明しますか？<span class="faq-icon">+</span></button>
+      <div class="faq-a">クリエイターの投稿にユニークUTMリンクを付与し、GA4でUGC経由のセッション・CV・売上を自動集計します。「広告換算値（EMV）」ではなく実際の購買データで証明するため、クライアントが納得できる数字を提供できます。</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">最低契約期間はなぜ6ヶ月ですか？<span class="faq-icon">+</span></button>
+      <div class="faq-a">UGC口コミは1〜2ヶ月では効果が安定しません。3ヶ月で成果が出始め、6ヶ月で口コミが資産として積み上がります。単発では毎回ゼロからになるため、継続してこそKUCHIKOMIの価値が発揮されます。</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">商品はどのくらい用意すればいいですか？<span class="faq-icon">+</span></button>
+      <div class="faq-a">アサイン人数分＋予備5〜10%をご準備ください。GVAが住所リストをまとめてお送りしますので、発送はクライアント様にお願いしています。</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">現在の単発施策から乗り換えできますか？<span class="faq-icon">+</span></button>
+      <div class="faq-a">はい。現在の単発費用を月換算するとほぼ同等の費用でKUCHIKOMIに移行できるケースがほとんどです。まずは無料相談でご状況をお聞かせください。</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="contact">
+  <h2>まず、相談してみてください。</h2>
+  <p>30分のオンライン相談。費用・コンテンツ・クリエイター選定まで、何でも聞いてください。</p>
+  <a href="mailto:contact@goodvibesagency.jp" class="btn-dark">無料相談を予約する →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo" style="font-size:1rem;">KUCHI<span>KOMI</span> <span style="font-family:'Outfit',sans-serif; font-weight:300; color:var(--gray); font-size:0.8rem; margin-left:8px;">by GOOD VIBES AGENCY</span></div>
+  <p>© 2026 GOOD VIBES AGENCY. All rights reserved.</p>
+</footer>
+
+<script>
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // FADE-IN
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // COUNT-UP
+  function countUp(el) {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const isDecimal = target % 1 !== 0;
+    const duration = 1800;
+    const start = performance.now();
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = target * ease;
+      if (target >= 1000) {
+        el.textContent = Math.round(current).toLocaleString() + suffix;
+      } else if (isDecimal) {
+        el.textContent = current.toFixed(1) + suffix;
+      } else {
+        el.textContent = Math.round(current) + suffix;
+      }
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+
+  const statObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.target.dataset.count) {
+        countUp(e.target);
+        statObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => statObserver.observe(el));
+</script>
+</body>
+</html>
