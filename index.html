@@ -144,7 +144,8 @@ body{
 }
 /* PC: スライド幅を最大480pxに制限して中央寄せ */
 @media(min-width:769px){
-  .sc{max-width:680px;}
+  .sc{max-width:560px;}
+  .cover-h1{font-size:clamp(2.2rem,5.5vw,3.2rem);}
 }
 .sc{
   width:100%;
@@ -457,6 +458,7 @@ body{
 <!-- ■ S2: STATS -->
 <section class="slide s-stats" id="s1">
   <div class="glow-pk"></div>
+  <div class="bgt" style="font-size:clamp(6rem,20vw,16rem);bottom:-5vw;right:-3vw;color:rgba(255,208,0,.04)">RESULTS</div>
   <div class="sc">
     <div class="stats-ey" data-a data-d="1">直近キャンペーン実績</div>
     <div class="stats-grid">
