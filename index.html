@@ -434,11 +434,11 @@ body{
 
 .pcar-wrap{
   display:flex;gap:14px;
-  overflow-x:scroll;overflow-y:hidden;
+  overflow-x:scroll;overflow-y:visible;
   scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
   scrollbar-width:none;
-  padding:0 20px 16px;
+  padding:20px 20px 16px;
   -webkit-overflow-scrolling:touch;
 }
 .pcar-wrap::-webkit-scrollbar{display:none}
@@ -458,12 +458,14 @@ body{
 .pcar-hot{
   background:linear-gradient(160deg,rgba(255,31,106,.18) 0%,rgba(155,18,69,.12) 100%);
   border-color:rgba(255,31,106,.35);
+  padding-top:14px;
 }
 .pcar-badge{
-  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  display:inline-block;
   background:var(--gold);color:#000;
   font-size:.6rem;font-weight:900;padding:4px 16px;border-radius:100px;
   font-family:'DM Sans',sans-serif;letter-spacing:.08em;white-space:nowrap;
+  margin-bottom:8px;
 }
 .pcar-tier{font-size:.72rem;font-weight:800;letter-spacing:.16em;color:var(--pk2);text-transform:uppercase;margin-bottom:8px;font-family:'DM Sans',sans-serif}
 .pcar-hot .pcar-tier{color:var(--pk)}
