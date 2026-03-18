@@ -80,24 +80,21 @@
     /* HERO */
     #hero-section {
       min-height: 100vh;
-      padding: 120px 48px 72px;
+      padding: 100px 48px 80px;
       background: var(--white);
       position: relative;
       overflow: hidden;
+      display: flex; align-items: center;
     }
-    /* 背景デコ */
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; width: 100%;
+    }
     #hero-section::before {
       content: '';
-      position: absolute; top: -120px; right: -120px;
-      width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,52,122,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    #hero-section::after {
-      content: '';
-      position: absolute; bottom: -80px; left: -80px;
-      width: 400px; height: 400px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,184,48,0.1) 0%, transparent 70%);
+      position: absolute; top: -160px; right: -160px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,52,122,0.07) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero-tag {
@@ -111,11 +108,10 @@
     .hero h1 {
       font-family: 'M PLUS Rounded 1c', sans-serif;
       font-weight: 900;
-      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      font-size: clamp(2.6rem, 5vw, 4.4rem);
       line-height: 1.18;
       color: var(--ink);
       margin-bottom: 24px;
-      max-width: 780px;
     }
     .hero h1 em {
       font-style: normal;
@@ -124,15 +120,16 @@
       background-clip: text;
     }
     .hero-sub {
-      font-size: 1.05rem; font-weight: 400; color: var(--ink2);
-      max-width: 520px; line-height: 1.9; margin-bottom: 40px;
+      font-size: 1.02rem; font-weight: 400; color: var(--ink2);
+      line-height: 1.9; margin-bottom: 36px;
     }
     .hero-sub strong { color: var(--pink); font-weight: 700; }
-    .hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 72px; }
+    .hero-ctas { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 0; }
+    .cta-note { font-size: 0.72rem; color: var(--muted); width: 100%; margin-top: 10px; }
     .btn-pink {
       background: linear-gradient(135deg, var(--pink), var(--pink2));
-      color: #fff; padding: 16px 36px;
-      font-size: 0.92rem; font-weight: 700;
+      color: #fff; padding: 16px 32px;
+      font-size: 0.9rem; font-weight: 700;
       text-decoration: none; border-radius: 100px;
       box-shadow: 0 4px 20px rgba(232,52,122,0.35);
       transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
@@ -141,27 +138,61 @@
     .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,52,122,0.45); }
     .btn-ghost {
       border: 2px solid var(--pink); color: var(--pink);
-      padding: 14px 28px; font-size: 0.92rem; font-weight: 700;
+      padding: 14px 24px; font-size: 0.9rem; font-weight: 700;
       text-decoration: none; border-radius: 100px;
       transition: background 0.2s, color 0.2s; display: inline-block;
     }
     .btn-ghost:hover { background: var(--pink-light); }
-    .cta-note { font-size: 0.72rem; color: var(--muted); width: 100%; margin-top: 8px; }
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0; border-top: 1px solid var(--border-gray);
-      padding-top: 44px;
+
+    /* HERO RIGHT CARD */
+    .hero-visual {
+      background: linear-gradient(160deg, var(--pink) 0%, #C0206A 60%, #8B1549 100%);
+      border-radius: 28px;
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
     }
-    .h-stat { padding: 0 32px 0 0; }
-    .h-stat + .h-stat { padding-left: 32px; border-left: 1px solid var(--border-gray); }
-    .h-num {
+    .hero-visual::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: rgba(255,184,48,0.15); pointer-events: none;
+    }
+    .hero-visual::after {
+      content: '';
+      position: absolute; bottom: -40px; left: -40px;
+      width: 160px; height: 160px; border-radius: 50%;
+      background: rgba(255,255,255,0.06); pointer-events: none;
+    }
+    .hv-label {
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hv-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .hv-stat {
+      background: rgba(255,255,255,0.12); border-radius: 16px;
+      padding: 18px 16px;
+      backdrop-filter: blur(4px);
+    }
+    .hv-num {
       font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900;
-      font-size: 2.6rem; line-height: 1;
-      background: linear-gradient(135deg, var(--pink), var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 1.9rem; color: #fff; line-height: 1; margin-bottom: 4px;
     }
-    .h-label { font-size: 0.74rem; color: var(--muted); margin-top: 6px; line-height: 1.55; }
+    .hv-num.gold { color: var(--gold); }
+    .hv-desc { font-size: 0.68rem; color: rgba(255,255,255,0.62); line-height: 1.45; }
+    .hv-cta-row {
+      background: rgba(255,255,255,0.1); border-radius: 14px;
+      padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+    }
+    .hv-cta-text { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.9); }
+    .hv-cta-btn {
+      background: var(--gold); color: var(--ink);
+      font-size: 0.72rem; font-weight: 800; padding: 8px 16px; border-radius: 100px;
+      text-decoration: none; white-space: nowrap; transition: transform 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .hv-cta-btn:hover { transform: scale(1.04); }
 
     /* TRUSTED */
     .trusted { padding: 32px 48px; background: var(--pink-bg); border-bottom: 1px solid var(--border); }
@@ -431,10 +462,9 @@
       nav { padding: 0 18px; }
       .nav-links { display: none; }
       section, .cta-final { padding: 68px 20px; }
-      #hero-section { padding: 110px 20px 56px; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-      .h-stat + .h-stat { padding-left: 0; border-left: none; }
-      .h-stat { padding-right: 0; }
+      #hero-section { padding: 90px 20px 56px; align-items: flex-start; }
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hv-stats { grid-template-columns: repeat(2, 1fr); }
       .prob-wrap, .res-wrap, .cost-grid { grid-template-columns: 1fr; gap: 28px; }
       .how-cards, .feat-grid, .price-grid, .voice-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
@@ -473,22 +503,47 @@
 
 <!-- HERO -->
 <section id="hero-section">
-  <div class="hero-tag">アパレル・コスメ D2C ブランドのための UGC口コミ施策</div>
-  <h1>バズらせるより、<br><em>売れる口コミ</em>を<br>設計する。</h1>
-  <p class="hero-sub">
-    月額で、573K imp 分の「買いたくなる文脈」を、<br>
-    <strong>設計・運用・改善まで全部おまかせ。</strong>
-  </p>
-  <div class="hero-ctas">
-    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pink">自社の口コミ現状を30分で診断する ✦</a>
-    <a href="#" class="btn-ghost" onclick="alert('準備中です。上のボタンからご相談ください。'); return false;">資料を受け取る（PDF）</a>
-    <div class="cta-note">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</div>
-  </div>
-  <div class="hero-stats">
-    <div class="h-stat"><div class="h-num" data-count="573623">0</div><div class="h-label">月次UGCインプレッション<br>（実績）</div></div>
-    <div class="h-stat"><div class="h-num" data-count="2.7" data-suffix="倍">0</div><div class="h-label">フォロワー比<br>インプレッション倍率</div></div>
-    <div class="h-stat"><div class="h-num" data-count="500">0</div><div class="h-label">実績付き<br>クリエイター数</div></div>
-    <div class="h-stat"><div class="h-num" data-count="59" data-suffix="%">0</div><div class="h-label">全施策中の<br>UGC imp 占有率</div></div>
+  <div class="hero-inner">
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-tag">アパレル・コスメ D2C ブランドのための UGC口コミ施策</div>
+      <h1>バズらせるより、<br><em>売れる口コミ</em>を<br>設計する。</h1>
+      <p class="hero-sub">
+        月額で、573K imp 分の「買いたくなる文脈」を、<br>
+        <strong>設計・運用・改善まで全部おまかせ。</strong>
+      </p>
+      <div class="hero-ctas">
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pink">自社の口コミを30分で診断する ✦</a>
+        <a href="#" class="btn-ghost" onclick="alert('準備中です。上のボタンからご相談ください。'); return false;">資料を受け取る</a>
+        <div class="cta-note">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</div>
+      </div>
+    </div>
+    <!-- RIGHT: VISUAL CARD -->
+    <div class="hero-visual">
+      <div class="hv-label">✦ 直近キャンペーン実績</div>
+      <div class="hv-stats">
+        <div class="hv-stat">
+          <div class="hv-num gold" data-count="573623">0</div>
+          <div class="hv-desc">月次UGC<br>インプレッション</div>
+        </div>
+        <div class="hv-stat">
+          <div class="hv-num" data-count="101" data-suffix="本">0</div>
+          <div class="hv-desc">1ヶ月の<br>UGC投稿数</div>
+        </div>
+        <div class="hv-stat">
+          <div class="hv-num gold" data-count="2.7" data-suffix="x">0</div>
+          <div class="hv-desc">フォロワー比<br>imp 倍率</div>
+        </div>
+        <div class="hv-stat">
+          <div class="hv-num" data-count="500" data-suffix="名">0</div>
+          <div class="hv-desc">実績付き<br>クリエイター</div>
+        </div>
+      </div>
+      <div class="hv-cta-row">
+        <span class="hv-cta-text">💗 まず30分、相談してみる</span>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="hv-cta-btn">無料相談 →</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -737,13 +792,14 @@
   </div>
   <div class="cost-grid">
     <div class="cost-box fade">
-      <div class="cost-lbl-head">社内運用コスト（月額換算）</div>
-      <div class="cost-row"><span class="cost-k">クリエイター選定・交渉</span><span class="cost-v">¥80,000〜</span></div>
-      <div class="cost-row"><span class="cost-k">投稿ディレクション・確認</span><span class="cost-v">¥120,000〜</span></div>
-      <div class="cost-row"><span class="cost-k">景表法確認・法務対応</span><span class="cost-v">¥30,000〜</span></div>
-      <div class="cost-row"><span class="cost-k">効果測定・レポート作成</span><span class="cost-v">¥50,000〜</span></div>
-      <div class="cost-row"><span class="cost-k">ツール・システム費用</span><span class="cost-v">¥20,000〜</span></div>
-      <div class="cost-total"><span class="cost-tl">合計（人件費含む）</span><span class="cost-tn">¥300,000〜</span></div>
+      <div class="cost-lbl-head">社内で運用した場合のコスト（月額換算）</div>
+      <div class="cost-row"><span class="cost-k">担当者人件費（月給換算）</span><span class="cost-v">¥300,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">クリエイター選定・交渉工数</span><span class="cost-v">¥80,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">投稿ディレクション・確認工数</span><span class="cost-v">¥70,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">景表法確認・法務相談費</span><span class="cost-v">¥50,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">効果測定・レポート作成工数</span><span class="cost-v">¥60,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">分析ツール・システム費用</span><span class="cost-v">¥40,000〜</span></div>
+      <div class="cost-total"><span class="cost-tl">合計（担当者1名分の人件費含む）</span><span class="cost-tn">¥600,000〜</span></div>
     </div>
     <div class="cost-box pop fade">
       <div class="cost-lbl-head pk">KUCHIKOMI Starter プラン</div>
