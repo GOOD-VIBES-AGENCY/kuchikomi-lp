@@ -514,6 +514,62 @@ body{
 .hs-title em{color:var(--pk);font-style:normal}
 .hs-desc{font-size:.76rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:8px;font-family:'DM Sans',sans-serif}
 .hs-tag{display:inline-block;font-size:.62rem;font-weight:700;color:var(--pk2);background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.2);border-radius:100px;padding:3px 10px;font-family:'DM Sans',sans-serif}
+
+/* ── HOW CAROUSEL ── */
+.hcar-wrap{
+  display:flex;gap:14px;
+  overflow-x:scroll;overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding:4px 20px 16px;
+  -webkit-overflow-scrolling:touch;
+  margin:0 -24px;
+}
+.hcar-wrap::-webkit-scrollbar{display:none}
+.hcar{
+  flex-shrink:0;width:78vw;
+  scroll-snap-align:start;scroll-snap-stop:always;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:20px 18px;
+  backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;
+}
+.hcar-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;line-height:1;color:var(--pk);
+  letter-spacing:.04em;margin-bottom:6px;opacity:.9;
+}
+.hcar-label{font-size:.58rem;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:6px;font-family:'DM Sans',sans-serif}
+.hcar-title{font-size:1rem;font-weight:800;color:#fff;line-height:1.3;margin-bottom:10px}
+.hcar-title em{color:var(--pk);font-style:normal}
+.hcar-desc{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6;font-family:'DM Sans',sans-serif;flex:1;margin-bottom:14px}
+.hcar-tag{display:inline-block;font-size:.62rem;font-weight:700;color:var(--pk2);background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.2);border-radius:100px;padding:4px 12px;font-family:'DM Sans',sans-serif}
+
+/* ── FEAT CAROUSEL ── */
+.fcar-wrap{
+  display:flex;gap:14px;
+  overflow-x:scroll;overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  scrollbar-width:none;
+  padding:4px 20px 16px;
+  -webkit-overflow-scrolling:touch;
+  margin:0 -24px;
+}
+.fcar-wrap::-webkit-scrollbar{display:none}
+.fcar{
+  flex-shrink:0;width:78vw;
+  scroll-snap-align:start;scroll-snap-stop:always;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:20px 18px;
+  backdrop-filter:blur(8px);
+}
+.fcar-badge{display:inline-block;font-size:.62rem;font-weight:700;color:var(--pk2);background:rgba(255,31,106,.12);border:1px solid rgba(255,31,106,.25);border-radius:100px;padding:4px 12px;font-family:'DM Sans',sans-serif;margin-bottom:10px}
+.fcar-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:10px}
+.fcar-desc{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6;font-family:'DM Sans',sans-serif}
 </style>
 </head>
 <body>
@@ -629,38 +685,32 @@ body{
 </section>
 
 <!-- ■ S5: HOW (3ステップ統合) -->
-<section class="slide s-how-all" id="s4">
+<section class="slide s-how-all" id="s4" style="align-items:flex-start">
   <div class="how-img" style="background-image:url('https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.14"></div>
   <div class="sc">
     <div class="how-all-ey">How it works</div>
     <h2 class="how-all-h2">売れる口コミは<br><em>3ステップ</em>で設計する。</h2>
-    <div class="how-steps-list">
-      <div class="hs-card">
-        <div class="hs-num">01</div>
-        <div class="hs-body">
-          <div class="hs-label">AI PRE-TEST</div>
-          <div class="hs-title">AIプリテストで<em>勝ちコンセプト</em>を特定</div>
-          <div class="hs-desc">公開前にAIで5パターンをテスト。データで「当たる前提」を作る。</div>
-          <span class="hs-tag">✦ 全プランに標準搭載</span>
-        </div>
+    <div class="hcar-wrap">
+      <div class="hcar">
+        <div class="hcar-num">01</div>
+        <div class="hcar-label">AI PRE-TEST</div>
+        <div class="hcar-title">AIプリテストで<em>勝ちコンセプト</em>を特定</div>
+        <div class="hcar-desc">クリエイターに依頼する前にAIで5パターン自動生成。GVA専用テストアカウントで7日間配信し、視聴完了率・保存率を計測。<strong>勘ではなくデータで「当たる前提」を作る</strong>業界初のアプローチ。</div>
+        <span class="hcar-tag">✦ 全プランに標準搭載</span>
       </div>
-      <div class="hs-card">
-        <div class="hs-num">02</div>
-        <div class="hs-body">
-          <div class="hs-label">CREATOR MATCH</div>
-          <div class="hs-title">勝ちコンセプトで<em>最適クリエイター</em>を選定</div>
-          <div class="hs-desc">500名の実績DBからアサイン。景表法チェックも自動化。</div>
-          <span class="hs-tag">✦ 景表法チェック 完全自動化</span>
-        </div>
+      <div class="hcar">
+        <div class="hcar-num">02</div>
+        <div class="hcar-label">CREATOR MATCH</div>
+        <div class="hcar-title">勝ちコンセプトで<em>最適クリエイター</em>を選定</div>
+        <div class="hcar-desc">テスト結果をもとに<strong>500名の実績DBから最適クリエイターをアサイン</strong>。景表法チェック（#PR表記・ブランドコンテンツツール確認）もシステムが自動化。法的リスクゼロ。</div>
+        <span class="hcar-tag">✦ 景表法チェック 完全自動化</span>
       </div>
-      <div class="hs-card">
-        <div class="hs-num">03</div>
-        <div class="hs-body">
-          <div class="hs-label">ROI PROOF</div>
-          <div class="hs-title">GA4直結で<em>実売上</em>を毎月証明</div>
-          <div class="hs-desc">UTMリンクでUGC経由の実購買を自動集計。毎月レポート提出。</div>
-          <span class="hs-tag">✦ 毎月ROIレポート提出</span>
-        </div>
+      <div class="hcar">
+        <div class="hcar-num">03</div>
+        <div class="hcar-label">ROI PROOF</div>
+        <div class="hcar-title">GA4直結で<em>実売上</em>を毎月証明</div>
+        <div class="hcar-desc">クリエイター投稿にユニークUTMリンクを付与。GA4でUGC経由のセッション・CV・売上を自動集計。<strong>EMVではなく実売上で毎月レポート提出</strong>。社内稟議に使える数字を出し続けます。</div>
+        <span class="hcar-tag">✦ 毎月ROIレポート提出</span>
       </div>
     </div>
   </div>
@@ -695,11 +745,27 @@ body{
   <div class="sc">
     <div class="feat-ey" data-a data-d="1">Features</div>
     <h2 class="feat-h2" data-a data-d="2">他の代理店に<em>ないもの</em>、全部入り。</h2>
-    <div class="feat-grid">
-      <div class="fg" data-a data-d="2"><div class="fg-badge">✦ 業界初</div><h3>AIプリテスト</h3><p>公開前にコンセプトを7日間テスト。ROIのブレを大幅削減。</p></div>
-      <div class="fg" data-a data-d="3"><div class="fg-badge">✦ 法務</div><h3>景表法自動化</h3><p>#PR表記・ブランドコンテンツ・広告トグルをシステムが確認。</p></div>
-      <div class="fg" data-a data-d="4"><div class="fg-badge">✦ ROI</div><h3>実売上証明</h3><p>GA4直結でUGC経由の実購買データを毎月レポート。</p></div>
-      <div class="fg" data-a data-d="5"><div class="fg-badge">✦ 品質</div><h3>ランキング管理</h3><p>Gold/Silver/Bronzeで自動判定。品質が自律的に上昇。</p></div>
+    <div class="fcar-wrap">
+      <div class="fcar">
+        <div class="fcar-badge">✦ 業界初</div>
+        <div class="fcar-title">AIプリテスト</div>
+        <div class="fcar-desc">クリエイターに依頼する前に、AIで5パターンのコンテンツを自動生成。GVA専用アカウントで7日間配信して視聴完了率・保存率を計測。公開前に「当たる前提」を作る業界初のアプローチ。</div>
+      </div>
+      <div class="fcar">
+        <div class="fcar-badge">✦ 法務</div>
+        <div class="fcar-title">景表法自動化</div>
+        <div class="fcar-desc">#PR表記・ブランドコンテンツツール・広告トグルをシステムが自動確認。担当者の手動チェックをゼロにし、法的リスクを完全排除。</div>
+      </div>
+      <div class="fcar">
+        <div class="fcar-badge">✦ ROI</div>
+        <div class="fcar-title">実売上証明</div>
+        <div class="fcar-desc">GA4直結でUGC経由のセッション・CV・売上を自動集計。EMVではなく実購買データで毎月レポートを提出。社内稟議に使える数字を継続的に提供。</div>
+      </div>
+      <div class="fcar">
+        <div class="fcar-badge">✦ 品質</div>
+        <div class="fcar-title">ランキング管理</div>
+        <div class="fcar-desc">クリエイターをGold/Silver/Bronzeで自動ランキング。パフォーマンスが高いクリエイターが自動的に優先アサインされ、品質が自律的に上昇し続ける。</div>
+      </div>
     </div>
   </div>
 </section>
