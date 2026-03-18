@@ -76,15 +76,16 @@ body{
 /* ── PC ARROW NAV ── */
 .arrow-btn{
   position:fixed;top:50%;transform:translateY(-50%);
-  z-index:500;width:44px;height:44px;border-radius:50%;
-  background:rgba(255,255,255,.1);backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.15);
+  z-index:200;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.08);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12);
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:background .2s;color:#fff;font-size:1rem;
+  cursor:pointer;transition:background .2s,opacity .2s;color:#fff;font-size:1rem;
+  pointer-events:auto;
 }
 .arrow-btn:hover{background:rgba(255,31,106,.4)}
-#btn-prev{left:14px}
-#btn-next{right:14px}
+#btn-prev{left:8px}
+#btn-next{right:8px}
 @media(max-width:768px){.arrow-btn{display:none}}
 
 /* ── BOTTOM CTA (常時固定) ── */
@@ -126,7 +127,11 @@ body{
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
 }
-.sc{width:100%;padding:52px 28px 80px;position:relative;z-index:2}
+/* PC: スライド幅を最大480pxに制限して中央寄せ */
+@media(min-width:769px){
+  .sc{max-width:680px;}
+}
+.sc{width:100%;max-width:560px;margin:0 auto;padding:52px 28px 80px;position:relative;z-index:2}
 
 /* BG accent glow */
 .glow-pk{position:absolute;border-radius:50%;pointer-events:none;z-index:1}
@@ -140,13 +145,7 @@ body{
 
 /* ── ANIMATIONS ── */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-/* フェードのみ — 横スワイプLPに自然 */
-[data-a]{opacity:0;transition:opacity .28s ease}
-.slide.active [data-a]{opacity:1}
-.slide.active [data-a][data-d="2"]{transition-delay:.06s}
-.slide.active [data-a][data-d="3"]{transition-delay:.12s}
-.slide.active [data-a][data-d="4"]{transition-delay:.18s}
-.slide.active [data-a][data-d="5"]{transition-delay:.24s}
+/* アニメーションなし — 横スワイプLPはコンテンツ常時表示が自然 */
 
 /* ━━━━━━━━━━━━━━━━━━━━
    S1 — COVER (DARK)
@@ -159,22 +158,25 @@ body{
   display:inline-flex;align-items:center;gap:7px;
   border:1px solid rgba(255,255,255,.14);
   color:rgba(255,255,255,.5);
-  font-size:.66rem;font-weight:500;letter-spacing:.16em;
-  padding:5px 14px;border-radius:100px;margin-bottom:24px;
+  font-size:.62rem;font-weight:500;letter-spacing:.16em;
+  padding:5px 14px;border-radius:100px;margin-bottom:20px;
   font-family:'DM Sans',sans-serif;text-transform:uppercase;
 }
 .cover-tag::before{content:'✦';color:var(--pk)}
-.cover h1{font-weight:900;font-size:clamp(3.2rem,9vw,6.5rem);line-height:1.08;margin-bottom:22px}
-.cover-small{display:block;font-size:.5em;color:rgba(255,255,255,.5);font-weight:500;margin-bottom:.05em}
+.cover-h1{font-weight:900;font-size:clamp(2.8rem,8vw,5.5rem);line-height:1.08;margin-bottom:16px}
+.cover-small{display:block;font-size:.46em;color:rgba(255,255,255,.45);font-weight:500;margin-bottom:.08em}
 .cover-em{background:linear-gradient(135deg,var(--pk),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.cover-sub{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.82;margin-bottom:30px;font-family:'DM Sans',sans-serif;max-width:480px}
+.cover-sub{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.78;margin-bottom:20px;font-family:'DM Sans',sans-serif;max-width:480px}
 .cover-sub strong{color:#fff}
-.cover-ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.btn-pk{background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;padding:14px 28px;font-size:.86rem;font-weight:700;text-decoration:none;border-radius:100px;box-shadow:0 4px 20px rgba(255,31,106,.4);font-family:'DM Sans',sans-serif;transition:transform .2s}
+/* 3つの実績数字 */
+.cover-nums{display:flex;gap:10px;margin-bottom:22px}
+.cnum{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 8px;text-align:center}
+.cn-v{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.04em;color:var(--pk2);line-height:1}
+.cn-l{display:block;font-size:.58rem;color:rgba(255,255,255,.35);font-family:'DM Sans',sans-serif;margin-top:2px}
+.cover-ctas{display:flex;flex-direction:column;gap:8px}
+.btn-pk{display:block;text-align:center;background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;padding:14px 24px;font-size:.88rem;font-weight:700;text-decoration:none;border-radius:100px;box-shadow:0 4px 20px rgba(255,31,106,.4);font-family:'DM Sans',sans-serif;transition:transform .2s}
 .btn-pk:hover{transform:translateY(-2px)}
-.btn-gw{border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);padding:12px 22px;font-size:.86rem;font-weight:500;text-decoration:none;border-radius:100px;font-family:'DM Sans',sans-serif;transition:border-color .2s}
-.btn-gw:hover{border-color:#fff;color:#fff}
-.cover-note{font-size:.64rem;color:rgba(255,255,255,.28);width:100%;margin-top:6px;font-family:'DM Sans',sans-serif}
+.cover-note{font-size:.6rem;color:rgba(255,255,255,.25);font-family:'DM Sans',sans-serif;margin-top:2px;line-height:1.6}
 
 /* ━━━━━━━━━━━━━━━━━━━━
    S2 — STATS (DARK, numbers)
@@ -411,15 +413,19 @@ body{
   <div class="glow-pk"></div>
   <div class="bgt" style="bottom:-8vw;left:-2vw">KUCHIKOMI</div>
   <div class="sc">
-    <div class="cover-tag" data-a data-d="1">UGC口コミ施策 × AI × 月額定額</div>
-    <h1 class="cover-h1" data-a data-d="2">
+    <div class="cover-tag">UGC口コミ施策 × AI × 月額定額</div>
+    <h1 class="cover-h1">
       <span class="cover-small">バズらせるより、</span>
       <span class="cover-em">売れる口コミ</span><br>を設計する。
     </h1>
-    <p class="cover-sub" data-a data-d="3">月額で、573K imp分の「買いたくなる文脈」を、<br><strong>設計・運用・改善まで全部おまかせ。</strong></p>
-    <div class="cover-ctas" data-a data-d="4">
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pk">30分・無料診断を予約する ✦</a>
-      <a href="#" class="btn-gw" onclick="alert('準備中です。');return false;">資料を受け取る</a>
+    <p class="cover-sub">月額で、573K imp分の「買いたくなる文脈」を、<br><strong>設計・運用・改善まで全部おまかせ。</strong></p>
+    <div class="cover-nums">
+      <div class="cnum"><span class="cn-v">573K</span><span class="cn-l">imp/月</span></div>
+      <div class="cnum"><span class="cn-v">500名</span><span class="cn-l">実績DB</span></div>
+      <div class="cnum"><span class="cn-v">2.7x</span><span class="cn-l">ROI倍率</span></div>
+    </div>
+    <div class="cover-ctas">
+      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pk">30分・無料診断 ✦</a>
       <div class="cover-note">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</div>
     </div>
   </div>
@@ -650,10 +656,9 @@ function setActive(idx){
 
 // アクティブスライドを確定して反映
 function activateSlide(idx){
-  if(idx===curIdx)return;
-  slides[idx].classList.add('active');
   setActive(idx);
-  if(idx===1){
+  if(idx===1&&!slides[1]._counted){
+    slides[1]._counted=true;
     document.querySelectorAll('[data-count]').forEach(el=>{if(!el._done){el._done=true;countUp(el);}});
   }
 }
@@ -697,6 +702,8 @@ swiper.addEventListener('wheel',e=>{
 
 // INIT
 setActive(0);
+// 念のため全スライドのactiveクラスを初期状態でリセット（S1のみkeep）
+// アニメーションがないので不要だが将来のため記録
 
 // ── COUNT UP ──
 function countUp(el){
