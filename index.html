@@ -82,12 +82,14 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   overflow:hidden;
   position:relative;z-index:2;
 }
-/* コンテンツ内部: space-between で上下均等に広げる */
+/* コンテンツ内部: flex-start、auto marginでグループ分割 */
 .sc-inner{
   flex:1;
   display:flex;flex-direction:column;
-  justify-content:space-between;
+  justify-content:flex-start;
 }
+/* 上グループの最後の要素にauto margin → 下グループが自動的に下へ */
+.sc-push{margin-top:auto}
 
 /* 共通 */
 .eyebrow{font-size:var(--fs-xs);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;font-family:'DM Sans',sans-serif}
@@ -300,7 +302,7 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
         <em>売れる口コミ</em><br>を設計する。
       </h1>
       <p class="cover-sub">口コミから<strong>実購買につながる仕組み</strong>を、<br>設計・運用・ROI証明まで月額一括でおまかせ。</p>
-      <div class="nums-grid">
+      <div class="nums-grid sc-push">
         <div class="num-card"><span class="num-v">573K</span><span class="num-l">購買層リーチ/月</span></div>
         <div class="num-card"><span class="num-v">500名</span><span class="num-l">実績クリエイターDB</span></div>
         <div class="num-card"><span class="num-v">2.7倍</span><span class="num-l">広告比<br>実購買転換</span></div>
@@ -319,7 +321,7 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
     <div class="sc-inner">
       <div class="eyebrow" style="color:var(--pk)">✦ よくある課題</div>
       <h2 class="h2" style="color:var(--ink)">UGC施策が<br><em>続かない</em>理由</h2>
-      <div class="prob-cards">
+      <div class="prob-cards sc-push">
         <div class="pc"><div class="pc-n">01</div><div><h3>費用対効果が説明できない</h3><p>投稿数はわかる。でも「それで売れたか」が証明できず、次の予算が取れない。</p></div></div>
         <div class="pc"><div class="pc-n">02</div><div><h3>何が売れる投稿になるか誰もわからない</h3><p>経験と勘でクリエイターを選ぶ。再現性がない。</p></div></div>
         <div class="pc"><div class="pc-n">03</div><div><h3>競合の口コミが365日積み上がる</h3><p>自社は月1回の単発投稿で戦っている。認知がリセットされ続ける。</p></div></div>
@@ -340,7 +342,7 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
       <div class="cost-row"><span class="ck">景表法確認・効果測定・レポート</span><span class="cv">¥110,000〜</span></div>
       <div class="cost-row"><span class="ck">分析ツール・システム費</span><span class="cv">¥40,000〜</span></div>
       <div class="cost-total"><span class="ctl">合計（担当者1名含む想定）</span><span class="ctn">¥600,000〜</span></div>
-      <div class="vs-bar"><div class="vs-line"></div>VS KUCHIKOMI<div class="vs-line"></div></div>
+      <div class="vs-bar sc-push"><div class="vs-line"></div>VS KUCHIKOMI<div class="vs-line"></div></div>
       <div class="cost-kk"><span class="ck-lbl">Starterプラン（全工程込み）</span><span class="ck-price">¥350,000</span></div>
       <div class="ck-save">💗 社内比 ¥250,000/月 削減</div>
       <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="cost-micro-btn">¥250,000 削減できるか確認する →</a>
@@ -442,7 +444,7 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
         </div>
         <p class="rc-q">「自然なルーティーン形式で商品を組み込み、視聴維持率が向上。公式アカウントを超えるリーチを獲得。」</p>
       </div>
-      <div class="res-nums">
+      <div class="res-nums sc-push">
         <div class="rn-box"><div class="rn-big">500名</div><div class="rn-lbl">実購買データ付き<br>クリエイター</div></div>
         <div class="rn-box"><div class="rn-big" style="color:var(--pk)">先行</div><div class="rn-lbl">導入ブランド<br>募集中</div></div>
       </div>
@@ -476,7 +478,7 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
           <div class="vc-after">「景表法の対応が全部自動。<strong>確認作業がまるごとなくなった。</strong>」</div>
         </div>
       </div>
-      <table class="cmp-table">
+      <table class="cmp-table sc-push">
         <thead><tr><th>比較</th><th>代理店</th><th>PF</th><th class="hl">KUCHIKOMI</th></tr></thead>
         <tbody>
           <tr><td>AIテスト</td><td><span class="ix">✕</span></td><td><span class="ix">✕</span></td><td class="chl"><span class="iy">✓</span></td></tr>
