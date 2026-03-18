@@ -5,399 +5,495 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>KUCHIKOMI | 売れる口コミを、設計する。</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --pk:#ff1f6a;
-  --pk2:rgba(255,31,106,.12);
-  --bg:#060606;
-  --bg2:#0f0f0f;
-  --bg3:#1a1a1a;
-  --tx:#ffffff;
-  --tx2:rgba(255,255,255,.6);
-  --tx3:rgba(255,255,255,.3);
-  --bd:rgba(255,255,255,.08);
-  --max:1200px;
-  --px:clamp(20px,5vw,80px);
+  --pk-dim:rgba(255,31,106,.14);
+  --bg:#080808;
+  --bg2:#101010;
+  --bg3:#181818;
+  --tx:#f8f8f8;
+  --tx2:rgba(248,248,248,.62);
+  --tx3:rgba(248,248,248,.28);
+  --bd:rgba(255,255,255,.07);
+  --bd2:rgba(255,255,255,.14);
+  --max:1160px;
+  --px:clamp(22px,5.5vw,88px);
+  --gap:clamp(72px,12vw,152px);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg);
-  color:var(--tx);
+  background:var(--bg);color:var(--tx);
   font-family:'DM Sans','Noto Sans JP',sans-serif;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
+  letter-spacing:.025em;
+}
+img{display:block;max-width:100%}
+
+/* ── GRID OVERLAY ── */
+.grid-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(var(--bd) 1px,transparent 1px),
+    linear-gradient(90deg,var(--bd) 1px,transparent 1px);
+  background-size:72px 72px;
+  opacity:.35;
 }
 
 /* ── NAV ── */
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  height:64px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(20px,4vw,60px);
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:62px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,4vw,64px);
+  background:rgba(8,8,8,.9);
+  backdrop-filter:blur(18px);
   border-bottom:1px solid var(--bd);
-  background:rgba(6,6,6,.88);
-  backdrop-filter:blur(14px);
 }
 .nav-logo{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.6rem;letter-spacing:.08em;
-  color:var(--tx);text-decoration:none;
+  font-family:'Bebas Neue',sans-serif;font-size:1.55rem;
+  letter-spacing:.1em;color:var(--tx);text-decoration:none;
 }
 .nav-logo span{color:var(--pk)}
-.nav-right{display:flex;align-items:center;gap:20px}
-.nav-tag{font-size:.72rem;color:var(--tx2);letter-spacing:.06em;font-weight:500}
+.nav-r{display:flex;align-items:center;gap:18px}
+.nav-sub{font-size:.68rem;color:var(--tx3);letter-spacing:.12em;font-weight:500}
 .btn-nav{
   display:inline-flex;align-items:center;gap:6px;
-  background:var(--pk);color:#fff;font-weight:700;font-size:.8rem;
-  padding:9px 20px;border-radius:5px;text-decoration:none;
-  letter-spacing:.04em;transition:opacity .2s, box-shadow .2s;white-space:nowrap;
+  background:var(--pk);color:#fff;font-weight:700;font-size:.78rem;
+  padding:9px 22px;border-radius:5px;text-decoration:none;
+  letter-spacing:.06em;white-space:nowrap;
+  transition:box-shadow .25s,opacity .2s;
 }
-.btn-nav:hover{opacity:.88;box-shadow:0 0 24px rgba(255,31,106,.4)}
+.btn-nav:hover{box-shadow:0 0 28px rgba(255,31,106,.45);opacity:.9}
 
 /* ── HERO ── */
 .hero{
-  min-height:100svh;padding-top:64px;
-  display:flex;flex-direction:column;justify-content:center;
+  min-height:100svh;padding-top:62px;
+  display:flex;align-items:center;
   position:relative;overflow:hidden;
 }
 .hero-glow{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 70% at 65% 35%,rgba(255,31,106,.18) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hero-grain{
-  position:absolute;inset:0;opacity:.045;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:200px;pointer-events:none;
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 60% at 70% 30%,rgba(255,31,106,.2) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 40% at 10% 80%,rgba(255,31,106,.07) 0%,transparent 70%);
 }
 .hero-inner{
-  position:relative;z-index:1;
-  max-width:var(--max);margin:0 auto;width:100%;
-  padding:clamp(60px,8vh,120px) var(--px) clamp(48px,6vh,96px);
+  position:relative;z-index:1;width:100%;
+  max-width:var(--max);margin:0 auto;
+  padding:clamp(56px,8vh,112px) var(--px);
 }
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--pk);font-weight:700;margin-bottom:28px;
+.hero-ey{
+  display:inline-flex;align-items:center;gap:12px;
+  font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--pk);font-weight:700;margin-bottom:32px;
 }
-.hero-eyebrow::before{
-  content:'';width:28px;height:2px;
-  background:var(--pk);border-radius:1px;
-}
+.hero-ey::before{content:'';width:32px;height:2px;background:var(--pk);border-radius:1px}
+
 .hero-h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4.2rem,12vw,10.5rem);
-  line-height:.9;letter-spacing:.02em;
+  font-size:clamp(3rem,9.5vw,9rem);
+  line-height:1.0;letter-spacing:.06em;
   margin-bottom:clamp(28px,4vw,52px);
 }
-.hero-h1 em{font-style:normal;color:var(--pk)}
-.hero-desc{
-  font-size:clamp(.88rem,1.3vw,1.05rem);color:var(--tx2);
-  max-width:540px;line-height:1.75;
-  margin-bottom:clamp(32px,5vw,56px);
+.hero-h1 .outline{
+  -webkit-text-stroke:2px var(--pk);
+  color:transparent;
+  display:block;
 }
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:clamp(48px,8vw,80px)}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:8px;
+.hero-h1 .solid{display:block}
+
+.hero-desc{
+  font-size:clamp(.9rem,1.5vw,1.08rem);
+  color:var(--tx2);max-width:560px;
+  line-height:1.88;letter-spacing:.04em;
+  margin-bottom:clamp(36px,5vw,60px);
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:clamp(52px,8vw,88px)}
+.btn-pk{
+  display:inline-flex;align-items:center;gap:9px;
   background:var(--pk);color:#fff;font-weight:700;
-  font-size:.92rem;padding:15px 34px;border-radius:7px;
-  text-decoration:none;letter-spacing:.04em;
+  font-size:.92rem;padding:16px 36px;border-radius:7px;
+  text-decoration:none;letter-spacing:.06em;
   transition:box-shadow .25s,opacity .2s;
 }
-.btn-primary:hover{box-shadow:0 0 40px rgba(255,31,106,.45);opacity:.92}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid var(--bd);color:var(--tx2);
-  font-weight:500;font-size:.92rem;padding:15px 28px;
-  border-radius:7px;text-decoration:none;
+.btn-pk:hover{box-shadow:0 0 44px rgba(255,31,106,.5);opacity:.92}
+.btn-ol{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--bd2);color:var(--tx2);
+  font-weight:500;font-size:.92rem;padding:16px 30px;
+  border-radius:7px;text-decoration:none;letter-spacing:.04em;
   transition:border-color .2s,color .2s;
 }
-.btn-ghost:hover{border-color:var(--pk);color:var(--pk)}
+.btn-ol:hover{border-color:var(--pk);color:var(--pk)}
+
 .hero-stats{
   display:flex;flex-wrap:wrap;
-  border-top:1px solid var(--bd);padding-top:36px;gap:0;
+  gap:0;border-top:1px solid var(--bd);padding-top:36px;
 }
-.h-stat{flex:1;min-width:120px;padding-right:36px;margin-right:36px;border-right:1px solid var(--bd)}
-.h-stat:last-child{border-right:none;margin-right:0;padding-right:0}
-.h-stat-n{
+.h-st{flex:1;min-width:110px;padding-right:32px;margin-right:32px;border-right:1px solid var(--bd)}
+.h-st:last-child{border-right:none;margin-right:0;padding-right:0}
+.h-st-n{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.2rem,4.5vw,3.8rem);
-  color:var(--pk);letter-spacing:.04em;line-height:1;
+  font-size:clamp(2.2rem,5vw,3.8rem);
+  color:var(--pk);letter-spacing:.05em;line-height:1;
 }
-.h-stat-l{font-size:.7rem;color:var(--tx2);margin-top:5px;letter-spacing:.04em}
+.h-st-l{font-size:.68rem;color:var(--tx2);margin-top:7px;letter-spacing:.08em;line-height:1.5}
 
 /* ── MARQUEE ── */
-.mq-wrap{
+.mq{
   overflow:hidden;
   border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);
-  background:var(--bg2);padding:14px 0;
+  background:var(--bg2);padding:13px 0;position:relative;z-index:1;
 }
-.mq-track{display:flex;width:max-content;animation:mq 22s linear infinite}
+.mq-track{display:flex;width:max-content;animation:marquee 24s linear infinite}
 .mq-item{
-  display:flex;align-items:center;gap:8px;
-  font-size:.74rem;font-weight:600;letter-spacing:.1em;
+  display:flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:600;letter-spacing:.14em;
   text-transform:uppercase;color:var(--tx2);
-  white-space:nowrap;padding:0 28px;
+  white-space:nowrap;padding:0 32px;
 }
-.mq-dot{width:5px;height:5px;border-radius:50%;background:var(--pk);flex-shrink:0}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-dot{width:4px;height:4px;border-radius:50%;background:var(--pk);flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ── Section base ── */
-.section{padding:clamp(72px,11vw,148px) 0}
+.sec{padding:var(--gap) 0;position:relative;z-index:1}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--px)}
 .sec-ey{
-  display:flex;align-items:center;gap:12px;
-  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--pk);font-weight:700;margin-bottom:22px;
+  display:flex;align-items:center;gap:14px;
+  font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--pk);font-weight:700;margin-bottom:24px;
 }
-.sec-ey::after{content:'';flex:1;height:1px;background:var(--pk);opacity:.25}
+.sec-ey::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,31,106,.4),transparent)}
 .sec-h2{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.8rem,7vw,6rem);
-  line-height:.93;letter-spacing:.02em;
-  margin-bottom:clamp(44px,7vw,88px);
+  font-size:clamp(2.8rem,7.5vw,6.5rem);
+  line-height:.95;letter-spacing:.05em;
+  margin-bottom:clamp(48px,7vw,96px);
 }
 
 /* ── PROBLEM ── */
-.prob-sec{background:var(--bg2)}
-.prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px}
+.prob-bg{background:var(--bg2)}
+.prob-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:2px}
 .prob-card{
-  background:var(--bg3);padding:clamp(28px,4vw,52px);
-  position:relative;overflow:hidden;transition:background .3s;
+  background:var(--bg3);padding:clamp(30px,4vw,56px);
+  position:relative;overflow:hidden;
+  transition:background .35s;cursor:default;
 }
-.prob-card::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  height:3px;background:var(--pk);
-  transform:scaleX(0);transform-origin:left;transition:transform .4s;
+.prob-card::before{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:3px;
+  background:var(--pk);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
 }
-.prob-card:hover::after{transform:scaleX(1)}
-.prob-card:hover{background:#202020}
+.prob-card:hover::before{transform:scaleX(1)}
+.prob-card:hover{background:#1e1e1e}
 .prob-n{
-  font-family:'Bebas Neue',sans-serif;font-size:5rem;
-  color:rgba(255,31,106,.1);line-height:1;margin-bottom:16px;
+  font-family:'Bebas Neue',sans-serif;font-size:5.5rem;
+  color:rgba(255,31,106,.09);line-height:1;
+  margin-bottom:18px;letter-spacing:.04em;
 }
-.prob-title{font-size:clamp(1rem,1.8vw,1.15rem);font-weight:700;margin-bottom:10px;line-height:1.4}
-.prob-body{font-size:.85rem;color:var(--tx2);line-height:1.75}
+.prob-ttl{
+  font-size:clamp(.95rem,1.8vw,1.1rem);font-weight:700;
+  margin-bottom:12px;line-height:1.5;letter-spacing:.04em;
+}
+.prob-body{font-size:.84rem;color:var(--tx2);line-height:1.88;letter-spacing:.04em}
 
 /* ── HOW ── */
-.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px clamp(40px,6vw,80px)}
-.how-step{display:flex;flex-direction:column;gap:16px}
-.how-sn{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.14em;color:var(--pk)}
-.how-icon{
-  width:54px;height:54px;border:1px solid rgba(255,31,106,.4);
-  border-radius:13px;display:flex;align-items:center;justify-content:center;
-  font-size:1.4rem;background:rgba(255,31,106,.06);
+.how-wrap{position:relative}
+.how-line{
+  display:none;
 }
-.how-title{font-size:clamp(1.05rem,1.9vw,1.25rem);font-weight:700;line-height:1.35}
-.how-title em{font-style:normal;color:var(--pk)}
-.how-body{font-size:.86rem;color:var(--tx2);line-height:1.78}
+@media(min-width:900px){
+  .how-line{
+    display:block;position:absolute;
+    top:80px;left:calc(var(--px) + 24px);right:calc(var(--px) + 24px);
+    height:1px;background:linear-gradient(90deg,var(--pk),rgba(255,31,106,.2));
+    z-index:0;
+  }
+}
+.how-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:clamp(44px,6vw,64px);
+  position:relative;z-index:1;
+}
+.how-step{display:flex;flex-direction:column;gap:18px}
+.how-sn{
+  font-family:'Bebas Neue',sans-serif;font-size:.9rem;
+  letter-spacing:.2em;color:var(--pk);
+}
+.how-icon-wrap{
+  width:56px;height:56px;
+  border:1px solid rgba(255,31,106,.35);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;
+  background:rgba(255,31,106,.07);
+}
+.how-ttl{
+  font-size:clamp(1.05rem,2vw,1.22rem);font-weight:700;
+  line-height:1.45;letter-spacing:.04em;
+}
+.how-ttl em{font-style:normal;color:var(--pk)}
+.how-body{font-size:.85rem;color:var(--tx2);line-height:1.88;letter-spacing:.04em}
 .how-tag{
   display:inline-flex;align-items:center;gap:5px;
-  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--pk);font-weight:600;
-  border:1px solid rgba(255,31,106,.3);padding:4px 12px;
-  border-radius:100px;width:fit-content;
+  font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--pk);font-weight:700;
+  border:1px solid rgba(255,31,106,.3);
+  padding:5px 13px;border-radius:100px;width:fit-content;
 }
 
 /* ── RESULTS ── */
-.res-sec{background:var(--bg2);position:relative;overflow:hidden}
-.res-bg-text{
+.res-bg{background:var(--bg2)}
+.res-bgtext{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
   font-family:'Bebas Neue',sans-serif;
   font-size:clamp(8rem,22vw,18rem);
-  color:rgba(255,255,255,.02);
-  white-space:nowrap;pointer-events:none;letter-spacing:.05em;user-select:none;
+  color:rgba(255,255,255,.018);
+  white-space:nowrap;pointer-events:none;
+  letter-spacing:.05em;user-select:none;
 }
-.res-layout{
+.res-lay{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(40px,6vw,80px);align-items:start;
+  gap:clamp(44px,7vw,88px);align-items:start;
   position:relative;z-index:1;
 }
-@media(max-width:768px){.res-layout{grid-template-columns:1fr}}
+@media(max-width:760px){.res-lay{grid-template-columns:1fr}}
 .res-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.3);
-  color:var(--pk);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.28);
+  color:var(--pk);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
   font-weight:700;padding:5px 14px;border-radius:5px;margin-bottom:22px;
 }
-.res-ct{font-size:clamp(1.15rem,2.3vw,1.5rem);font-weight:700;line-height:1.3;margin-bottom:28px}
-.res-nums{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
-.r-nc{background:var(--bg3);border:1px solid var(--bd);border-radius:13px;padding:20px}
+.res-ttl{
+  font-size:clamp(1.15rem,2.5vw,1.55rem);font-weight:700;
+  line-height:1.45;letter-spacing:.05em;margin-bottom:32px;
+}
+.res-nums{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px}
+.r-card{
+  background:var(--bg3);border:1px solid var(--bd);
+  border-radius:14px;padding:20px;
+}
 .r-num{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem,4.5vw,3rem);
-  color:var(--pk);line-height:1;
+  font-size:clamp(1.9rem,4vw,2.8rem);
+  color:var(--pk);line-height:1;letter-spacing:.04em;
 }
-.r-lbl{font-size:.7rem;color:var(--tx2);margin-top:5px}
-.res-desc{font-size:.88rem;color:var(--tx2);line-height:1.78}
+.r-lbl{font-size:.68rem;color:var(--tx2);margin-top:6px;letter-spacing:.06em;line-height:1.5}
+.res-desc{font-size:.87rem;color:var(--tx2);line-height:1.88;letter-spacing:.04em}
+
 .res-panel{
   background:var(--bg3);border:1px solid var(--bd);
-  border-radius:16px;padding:clamp(24px,3.5vw,40px);
+  border-radius:18px;padding:clamp(24px,3.5vw,40px);
 }
-.panel-hd{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tx2);margin-bottom:20px;font-weight:700}
-.stat-row{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--bd);gap:12px}
+.panel-hd{
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--tx2);margin-bottom:20px;font-weight:700;
+}
+.stat-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 0;border-bottom:1px solid var(--bd);gap:12px;
+}
 .stat-row:last-child{border-bottom:none}
-.stat-name{font-size:.82rem;color:var(--tx2);flex:1}
-.stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--tx);letter-spacing:.04em;white-space:nowrap}
-.stat-val.pk{color:var(--pk)}
-.bar-w{width:90px;height:4px;background:var(--bd);border-radius:2px;overflow:hidden;flex-shrink:0}
-.bar-f{height:100%;background:var(--pk);border-radius:2px}
+.stat-nm{font-size:.8rem;color:var(--tx2);flex:1;letter-spacing:.04em}
+.stat-v{
+  font-family:'Bebas Neue',sans-serif;font-size:1.45rem;
+  color:var(--tx);letter-spacing:.05em;white-space:nowrap;
+}
+.stat-v.pk{color:var(--pk)}
+.bw{width:88px;height:4px;background:var(--bd);border-radius:2px;overflow:hidden;flex-shrink:0}
+.bf{height:100%;background:var(--pk);border-radius:2px;transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.bf.on{transform:scaleX(1)}
 
 /* ── VOICES ── */
-.voc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.voc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:18px}
 .voc-card{
   background:var(--bg2);border:1px solid var(--bd);
-  border-radius:16px;padding:clamp(24px,3vw,36px);
-  display:flex;flex-direction:column;gap:16px;
-  transition:border-color .3s,transform .3s;
+  border-radius:18px;padding:clamp(24px,3vw,38px);
+  display:flex;flex-direction:column;gap:18px;
+  transition:border-color .3s,transform .35s;
 }
-.voc-card:hover{border-color:rgba(255,31,106,.3);transform:translateY(-3px)}
-.voc-qi{
-  font-family:'Bebas Neue',sans-serif;font-size:3.5rem;
-  color:var(--pk);line-height:.75;opacity:.45;
+.voc-card:hover{border-color:rgba(255,31,106,.35);transform:translateY(-4px)}
+.voc-q{
+  font-family:'Bebas Neue',sans-serif;font-size:3.8rem;
+  color:var(--pk);line-height:.75;opacity:.4;letter-spacing:0;
 }
-.voc-text{font-size:.88rem;line-height:1.78;color:var(--tx);flex:1}
+.voc-text{
+  font-size:.87rem;line-height:1.88;color:var(--tx);
+  flex:1;letter-spacing:.04em;
+}
 .voc-meta{
-  display:flex;align-items:center;gap:12px;
-  padding-top:16px;border-top:1px solid var(--bd);
+  display:flex;align-items:center;gap:13px;
+  padding-top:18px;border-top:1px solid var(--bd);
 }
 .voc-av{
-  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
   background:linear-gradient(135deg,var(--pk),#6c002a);
   display:flex;align-items:center;justify-content:center;
   font-weight:700;font-size:.9rem;
 }
-.voc-name{font-size:.82rem;font-weight:700}
-.voc-co{font-size:.7rem;color:var(--tx2);margin-top:2px}
+.voc-nm{font-size:.8rem;font-weight:700;letter-spacing:.04em}
+.voc-co{font-size:.68rem;color:var(--tx2);margin-top:3px;letter-spacing:.04em}
 
 /* ── PRICING ── */
-.pricing-sec{background:var(--bg2)}
+.pricing-bg{background:var(--bg2)}
 .pricing-grid{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:0;border:1px solid var(--bd);border-radius:18px;overflow:hidden;
+  gap:0;border:1px solid var(--bd);border-radius:20px;overflow:hidden;
 }
-@media(max-width:900px){.pricing-grid{grid-template-columns:1fr}}
+@media(max-width:880px){.pricing-grid{grid-template-columns:1fr}}
 .plan-card{
-  background:var(--bg3);padding:clamp(28px,3.5vw,48px);
+  background:var(--bg3);
+  padding:clamp(30px,4vw,52px);
   display:flex;flex-direction:column;
   border-right:1px solid var(--bd);
   position:relative;
 }
 .plan-card:last-child{border-right:none}
-.plan-card.ft{background:#140609;border-right:1px solid rgba(255,31,106,.25);border-left:1px solid rgba(255,31,106,.25)}
-@media(max-width:900px){
+.plan-card.ft{
+  background:#120508;
+  border-right:1px solid rgba(255,31,106,.22);
+  border-left:1px solid rgba(255,31,106,.22);
+  box-shadow:inset 0 0 80px rgba(255,31,106,.06);
+}
+@media(max-width:880px){
   .plan-card{border-right:none;border-bottom:1px solid var(--bd)}
   .plan-card:last-child{border-bottom:none}
   .plan-card.ft{border-left:none;border-right:none;border-top:1px solid rgba(255,31,106,.3);border-bottom:1px solid rgba(255,31,106,.3)}
 }
 .plan-pop{
-  position:absolute;top:-1px;left:50%;
-  transform:translateX(-50%);
+  position:absolute;top:-1px;left:50%;transform:translateX(-50%);
   background:var(--pk);color:#fff;
-  font-size:.62rem;font-weight:700;letter-spacing:.1em;
-  padding:4px 14px;border-radius:0 0 8px 8px;white-space:nowrap;
+  font-size:.6rem;font-weight:700;letter-spacing:.12em;
+  padding:4px 16px;border-radius:0 0 9px 9px;white-space:nowrap;
 }
-.plan-tier{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tx2);font-weight:700;margin-bottom:12px}
+.plan-tier{
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tx2);font-weight:700;margin-bottom:14px;
+}
 .plan-price{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.5rem,4.5vw,3.4rem);
-  line-height:1;letter-spacing:.02em;margin-bottom:4px;
+  font-size:clamp(2.6rem,4.8vw,3.6rem);
+  line-height:1;letter-spacing:.03em;margin-bottom:5px;
 }
-.plan-price sub{font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:500;color:var(--tx2);vertical-align:baseline;margin-left:3px}
-.plan-reach{font-size:.73rem;color:var(--tx2);margin-bottom:24px;line-height:1.4}
-.plan-div{height:1px;background:var(--bd);margin-bottom:24px}
-.plan-feats{display:flex;flex-direction:column;gap:10px;flex:1;margin-bottom:28px}
-.plan-feat{display:flex;align-items:flex-start;gap:9px;font-size:.81rem;color:var(--tx2);line-height:1.4}
-.plan-feat::before{content:'✓';color:var(--pk);font-weight:700;font-size:.81rem;flex-shrink:0;margin-top:1px}
+.plan-price sub{
+  font-family:'DM Sans',sans-serif;font-size:.68rem;
+  font-weight:500;color:var(--tx2);vertical-align:baseline;margin-left:3px;
+}
+.plan-reach{font-size:.72rem;color:var(--tx2);margin-bottom:26px;line-height:1.55;letter-spacing:.04em}
+.plan-div{height:1px;background:var(--bd);margin-bottom:26px}
+.plan-feats{display:flex;flex-direction:column;gap:11px;flex:1;margin-bottom:30px}
+.pfl{display:flex;align-items:flex-start;gap:10px;font-size:.8rem;color:var(--tx2);line-height:1.55;letter-spacing:.04em}
+.pfl::before{content:'✓';color:var(--pk);font-weight:700;flex-shrink:0;margin-top:1px}
 .plan-btn{
   display:block;text-align:center;
   background:transparent;border:1px solid var(--bd);
-  color:var(--tx2);font-weight:600;font-size:.84rem;
-  padding:13px 20px;border-radius:8px;text-decoration:none;
+  color:var(--tx2);font-weight:600;font-size:.83rem;
+  padding:14px;border-radius:9px;text-decoration:none;
+  letter-spacing:.06em;
   transition:border-color .2s,color .2s,background .2s;
 }
 .plan-btn:hover{border-color:var(--pk);color:var(--pk)}
 .plan-card.ft .plan-btn{background:var(--pk);border-color:var(--pk);color:#fff}
-.plan-card.ft .plan-btn:hover{opacity:.85}
-.plan-note{font-size:.66rem;color:var(--tx3);text-align:center;margin-top:10px;line-height:1.6}
+.plan-card.ft .plan-btn:hover{box-shadow:0 0 28px rgba(255,31,106,.4);opacity:.92}
+.plan-note{
+  font-size:.64rem;color:var(--tx3);text-align:center;
+  margin-top:11px;line-height:1.7;letter-spacing:.04em;
+}
 
-/* ── CTA ── */
+/* ── FINAL CTA ── */
 .cta-sec{
-  padding:clamp(88px,14vw,172px) 0;
+  padding:clamp(96px,16vw,180px) 0;
   position:relative;overflow:hidden;
-  background:var(--bg);
 }
 .cta-glow{
-  position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(255,31,106,.17) 0%,transparent 70%);
-  pointer-events:none;
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(255,31,106,.17) 0%,transparent 65%);
 }
 .cta-inner{
   position:relative;z-index:1;text-align:center;
-  max-width:820px;margin:0 auto;padding:0 var(--px);
+  max-width:840px;margin:0 auto;padding:0 var(--px);
 }
 .cta-badge{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.3);
-  color:var(--pk);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
-  font-weight:700;padding:6px 18px;border-radius:100px;margin-bottom:30px;
+  background:rgba(255,31,106,.1);border:1px solid rgba(255,31,106,.28);
+  color:var(--pk);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;padding:6px 20px;border-radius:100px;margin-bottom:32px;
 }
 .cta-h2{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3rem,9vw,7rem);
-  line-height:.92;letter-spacing:.02em;margin-bottom:24px;
+  font-size:clamp(3.2rem,9vw,7.2rem);
+  line-height:.95;letter-spacing:.05em;margin-bottom:26px;
 }
-.cta-p{font-size:clamp(.88rem,1.4vw,1rem);color:var(--tx2);line-height:1.78;margin-bottom:44px}
-.cta-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.cta-p{
+  font-size:clamp(.88rem,1.4vw,1.02rem);color:var(--tx2);
+  line-height:1.88;letter-spacing:.05em;margin-bottom:48px;
+}
+.cta-btns{display:flex;flex-wrap:wrap;gap:13px;justify-content:center}
 .btn-big{
-  display:inline-flex;align-items:center;gap:10px;
+  display:inline-flex;align-items:center;gap:11px;
   background:var(--pk);color:#fff;font-weight:700;
-  font-size:1rem;padding:18px 48px;border-radius:8px;
-  text-decoration:none;transition:box-shadow .25s,opacity .2s;letter-spacing:.04em;
+  font-size:1rem;padding:19px 52px;border-radius:9px;
+  text-decoration:none;letter-spacing:.06em;
+  transition:box-shadow .25s,opacity .2s;
 }
-.btn-big:hover{box-shadow:0 0 64px rgba(255,31,106,.5);opacity:.92}
-.cta-fn{font-size:.7rem;color:var(--tx3);margin-top:22px;letter-spacing:.04em}
+.btn-big:hover{box-shadow:0 0 72px rgba(255,31,106,.55);opacity:.92}
+.cta-fn{font-size:.7rem;color:var(--tx3);margin-top:24px;letter-spacing:.07em}
 
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--bd);
-  padding:30px clamp(20px,5vw,80px);
+  padding:28px clamp(20px,5vw,88px);
   display:flex;flex-wrap:wrap;align-items:center;
   justify-content:space-between;gap:16px;
-  background:var(--bg);
+  position:relative;z-index:1;
 }
-.f-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.08em;color:var(--tx2)}
-.f-copy{font-size:.67rem;color:var(--tx3)}
+.f-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;color:var(--tx2)}
+.f-copy{font-size:.66rem;color:var(--tx3);letter-spacing:.05em}
 .f-links{display:flex;gap:20px}
-.f-links a{font-size:.7rem;color:var(--tx3);text-decoration:none;transition:color .2s}
+.f-links a{font-size:.68rem;color:var(--tx3);text-decoration:none;letter-spacing:.06em;transition:color .2s}
 .f-links a:hover{color:var(--tx2)}
 
-/* ── Scroll reveal ── */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease}
-.reveal.on{opacity:1;transform:translateY(0)}
-.d1{transition-delay:.1s}
-.d2{transition-delay:.2s}
-.d3{transition-delay:.3s}
-.d4{transition-delay:.4s}
+/* ── SCROLL REVEAL ── */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
-/* ── Mobile ── */
-@media(max-width:640px){
-  .nav-tag{display:none}
-  .hero-stats{gap:20px}
-  .h-stat{border-right:none;margin-right:0;padding-right:0;min-width:100px}
-  .res-nums{grid-template-columns:1fr 1fr}
+/* ── PAGE LOAD ANIMATION ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero-ey{animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .2s both}
+.hero-h1{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .35s both}
+.hero-desc{animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .5s both}
+.hero-ctas{animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .65s both}
+.hero-stats{animation:fadeUp .8s cubic-bezier(.16,1,.3,1) .78s both}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  .nav-sub{display:none}
+  .h-st{border-right:none;margin-right:0;padding-right:0;min-width:90px}
+  .hero-stats{gap:18px}
 }
 </style>
 </head>
 <body>
 
+<div class="grid-bg"></div>
+
 <!-- ── NAV ── -->
 <nav>
   <a href="#" class="nav-logo">KUCHI<span>KOMI</span></a>
-  <div class="nav-right">
-    <span class="nav-tag">by GOOD VIBES AGENCY</span>
+  <div class="nav-r">
+    <span class="nav-sub">by GOOD VIBES AGENCY</span>
     <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-nav">無料診断を予約 →</a>
   </div>
 </nav>
@@ -405,38 +501,37 @@ footer{
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-glow"></div>
-  <div class="hero-grain"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">口コミから実購買まで、一気通貫</div>
+    <div class="hero-ey">口コミから実購買まで、一気通貫</div>
     <h1 class="hero-h1">
-      バズらせるより、<br>
-      <em>売れる口コミを</em><br>
-      設計する。
+      <span class="solid">バズらせるより、</span>
+      <span class="outline">売れる口コミを</span>
+      <span class="solid">設計する。</span>
     </h1>
     <p class="hero-desc">口コミから実購買につながる仕組みを、設計・運用・ROI証明まで月額一括でおまかせ。AIによるコンセプトテストと500名の実績クリエイターで、始めた月から動く施策を構築します。</p>
     <div class="hero-ctas">
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-primary">30分・無料診断を予約する →</a>
-      <a href="#" onclick="alert('準備中です'); return false;" class="btn-ghost">資料を受け取る ↓</a>
+      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pk">30分・無料診断を予約する →</a>
+      <a href="#" onclick="alert('準備中です'); return false;" class="btn-ol">資料を受け取る ↓</a>
     </div>
     <div class="hero-stats">
-      <div class="h-stat">
-        <div class="h-stat-n" data-count="573">0</div>
-        <div class="h-stat-l">購買層リーチ K / 月</div>
+      <div class="h-st">
+        <div class="h-st-n" data-count="573">0</div>
+        <div class="h-st-l">購買層リーチ K / 月</div>
       </div>
-      <div class="h-stat">
-        <div class="h-stat-n" data-count="500">0</div>
-        <div class="h-stat-l">実績クリエイター 名</div>
+      <div class="h-st">
+        <div class="h-st-n" data-count="500">0</div>
+        <div class="h-st-l">実績クリエイター 名</div>
       </div>
-      <div class="h-stat">
-        <div class="h-stat-n">2.7x</div>
-        <div class="h-stat-l">広告比 実購買転換</div>
+      <div class="h-st">
+        <div class="h-st-n">2.7x</div>
+        <div class="h-st-l">広告比 実購買転換</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── MARQUEE ── -->
-<div class="mq-wrap">
+<div class="mq">
   <div class="mq-track">
     <span class="mq-item"><span class="mq-dot"></span>AI コンセプトテスト</span>
     <span class="mq-item"><span class="mq-dot"></span>クリエイターマッチング</span>
@@ -458,24 +553,24 @@ footer{
 </div>
 
 <!-- ── PROBLEM ── -->
-<section class="section prob-sec">
+<section class="sec prob-bg">
   <div class="wrap">
     <div class="sec-ey">よくある課題</div>
     <h2 class="sec-h2">UGC施策が<br>続かない理由</h2>
     <div class="prob-grid">
-      <div class="prob-card reveal">
+      <div class="prob-card rv">
         <div class="prob-n">01</div>
-        <h3 class="prob-title">費用対効果が説明できない</h3>
+        <h3 class="prob-ttl">費用対効果が説明できない</h3>
         <p class="prob-body">投稿数はわかる。でも「それで売れたか」が証明できず、次の予算が取れない。ROIの証拠がないまま施策が終わる。</p>
       </div>
-      <div class="prob-card reveal d1">
+      <div class="prob-card rv d1">
         <div class="prob-n">02</div>
-        <h3 class="prob-title">何が売れる投稿になるか誰もわからない</h3>
-        <p class="prob-body">経験と勘でクリエイターを選ぶ。再現性がない。ブランドのトンマナも担保できない。ヒット投稿が偶然になる。</p>
+        <h3 class="prob-ttl">何が売れる投稿になるか誰もわからない</h3>
+        <p class="prob-body">経験と勘でクリエイターを選ぶ。再現性がない。ヒット投稿が偶然になり、ブランドのトンマナも担保できない。</p>
       </div>
-      <div class="prob-card reveal d2">
+      <div class="prob-card rv d2">
         <div class="prob-n">03</div>
-        <h3 class="prob-title">競合の口コミが365日積み上がる</h3>
+        <h3 class="prob-ttl">競合の口コミが365日積み上がる</h3>
         <p class="prob-body">自社は月1回の単発投稿で戦っている。認知がリセットされ続け、競合との差が広がる一方になる。</p>
       </div>
     </div>
@@ -483,135 +578,96 @@ footer{
 </section>
 
 <!-- ── HOW IT WORKS ── -->
-<section class="section">
+<section class="sec">
   <div class="wrap">
     <div class="sec-ey">サービスの仕組み</div>
     <h2 class="sec-h2">How It Works</h2>
-    <div class="how-grid">
-      <div class="how-step reveal">
-        <div class="how-sn">STEP 01</div>
-        <div class="how-icon">🔬</div>
-        <h3 class="how-title">AIプリテストで<br><em>勝ちコンセプトを特定</em></h3>
-        <p class="how-body">AIが5パターンのコンセプトを自動生成し、7日間配信テスト。87%視聴完了率など数値でコンセプトを決定。勘ではなくデータで「当たる前提」を作ります。</p>
-        <div class="how-tag">✦ 全プラン標準搭載 — 業界初</div>
-      </div>
-      <div class="how-step reveal d1">
-        <div class="how-sn">STEP 02</div>
-        <div class="how-icon">🎯</div>
-        <h3 class="how-title">購買層に刺さる<br><em>クリエイターをマッチング</em></h3>
-        <p class="how-body">500名のデータベースから、フォロワー属性・購買行動・投稿パターンを分析してマッチング。フォロワー数より「購買につながるか」を重視します。</p>
-        <div class="how-tag">✦ 購買データ連動</div>
-      </div>
-      <div class="how-step reveal d2">
-        <div class="how-sn">STEP 03</div>
-        <div class="how-icon">📊</div>
-        <h3 class="how-title">GA4連携で<br><em>ROIを毎月証明</em></h3>
-        <p class="how-body">GA4との連携で口コミ経由の実売上を可視化。毎月ROIレポートを提出し、次月の改善施策まで提案。「感覚」の施策が「証拠」ある投資になります。</p>
-        <div class="how-tag">✦ 毎月レポーティング</div>
+    <div class="how-wrap">
+      <div class="how-grid">
+        <div class="how-step rv">
+          <div class="how-sn">STEP 01</div>
+          <div class="how-icon-wrap">🔬</div>
+          <h3 class="how-ttl">AIプリテストで<br><em>勝ちコンセプトを特定</em></h3>
+          <p class="how-body">AIが5パターンのコンセプトを自動生成し、7日間配信テスト。87%視聴完了率など数値でコンセプトを決定。勘ではなくデータで「当たる前提」を作ります。</p>
+          <div class="how-tag">✦ 全プラン標準搭載 — 業界初</div>
+        </div>
+        <div class="how-step rv d1">
+          <div class="how-sn">STEP 02</div>
+          <div class="how-icon-wrap">🎯</div>
+          <h3 class="how-ttl">購買層に刺さる<br><em>クリエイターをマッチング</em></h3>
+          <p class="how-body">500名のデータベースから、フォロワー属性・購買行動・投稿パターンを分析してマッチング。フォロワー数より「購買につながるか」を重視します。</p>
+          <div class="how-tag">✦ 購買データ連動</div>
+        </div>
+        <div class="how-step rv d2">
+          <div class="how-sn">STEP 03</div>
+          <div class="how-icon-wrap">📊</div>
+          <h3 class="how-ttl">GA4連携で<br><em>ROIを毎月証明</em></h3>
+          <p class="how-body">GA4との連携で口コミ経由の実売上を可視化。毎月ROIレポートを提出し、次月の改善施策まで提案。「感覚」の施策が「証拠」ある投資になります。</p>
+          <div class="how-tag">✦ 毎月レポーティング</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── RESULTS ── -->
-<section class="section res-sec">
-  <div class="res-bg-text">RESULTS</div>
+<section class="sec res-bg" style="overflow:hidden;position:relative">
+  <div class="res-bgtext">RESULTS</div>
   <div class="wrap">
     <div class="sec-ey">導入実績</div>
     <h2 class="sec-h2">口コミが<br>実売上を動かした</h2>
-    <div class="res-layout">
+    <div class="res-lay">
       <div>
         <div class="res-badge">✦ Case Study</div>
-        <h3 class="res-ct reveal">フィービー様<br>アパレルブランド × KUCHIKOMI<br>導入6ヶ月後の成果</h3>
-        <div class="res-nums reveal d1">
-          <div class="r-nc">
-            <div class="r-num">573K</div>
-            <div class="r-lbl">インプレッション / 月</div>
-          </div>
-          <div class="r-nc">
-            <div class="r-num">101本</div>
-            <div class="r-lbl">UGC制作本数</div>
-          </div>
-          <div class="r-nc">
-            <div class="r-num">59%</div>
-            <div class="r-lbl">IMP占有率</div>
-          </div>
-          <div class="r-nc">
-            <div class="r-num">2.7x</div>
-            <div class="r-lbl">広告比 実購買転換率</div>
-          </div>
+        <h3 class="res-ttl rv">フィービー様<br>アパレルブランド × KUCHIKOMI<br>導入6ヶ月後の成果</h3>
+        <div class="res-nums rv d1">
+          <div class="r-card"><div class="r-num">573K</div><div class="r-lbl">インプレッション / 月</div></div>
+          <div class="r-card"><div class="r-num">101本</div><div class="r-lbl">UGC制作本数</div></div>
+          <div class="r-card"><div class="r-num">59%</div><div class="r-lbl">IMP占有率</div></div>
+          <div class="r-card"><div class="r-num">2.7x</div><div class="r-lbl">広告比 実購買転換率</div></div>
         </div>
-        <p class="res-desc reveal d2">「始めた月から動く施策」という約束通り、初月から購買層への認知が拡大。6ヶ月でブランドのInstagramシェア率が業界1位に。</p>
+        <p class="res-desc rv d2">「始めた月から動く施策」という約束通り、初月から購買層への認知が拡大。6ヶ月でブランドのInstagramシェア率が業界1位に。</p>
       </div>
-      <div class="res-panel reveal d2">
+      <div class="res-panel rv d2">
         <div class="panel-hd">Performance Breakdown</div>
-        <div class="stat-row">
-          <div class="stat-name">月間リーチ</div>
-          <div class="stat-val pk">573K</div>
-          <div class="bar-w"><div class="bar-f" style="width:85%"></div></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-name">UGC本数</div>
-          <div class="stat-val">101</div>
-          <div class="bar-w"><div class="bar-f" style="width:72%"></div></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-name">IMP占有率</div>
-          <div class="stat-val pk">59%</div>
-          <div class="bar-w"><div class="bar-f" style="width:59%"></div></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-name">購買転換（広告比）</div>
-          <div class="stat-val pk">2.7x</div>
-          <div class="bar-w"><div class="bar-f" style="width:100%"></div></div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-name">フォロワー比リーチ率</div>
-          <div class="stat-val">2.7x</div>
-          <div class="bar-w"><div class="bar-f" style="width:67%"></div></div>
-        </div>
+        <div class="stat-row"><div class="stat-nm">月間リーチ</div><div class="stat-v pk">573K</div><div class="bw"><div class="bf" data-w="85"></div></div></div>
+        <div class="stat-row"><div class="stat-nm">UGC本数</div><div class="stat-v">101</div><div class="bw"><div class="bf" data-w="72"></div></div></div>
+        <div class="stat-row"><div class="stat-nm">IMP占有率</div><div class="stat-v pk">59%</div><div class="bw"><div class="bf" data-w="59"></div></div></div>
+        <div class="stat-row"><div class="stat-nm">購買転換（広告比）</div><div class="stat-v pk">2.7x</div><div class="bw"><div class="bf" data-w="100"></div></div></div>
+        <div class="stat-row"><div class="stat-nm">フォロワー比リーチ率</div><div class="stat-v">2.7x</div><div class="bw"><div class="bf" data-w="67"></div></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── VOICES ── -->
-<section class="section">
+<section class="sec">
   <div class="wrap">
     <div class="sec-ey">お客様の声</div>
     <h2 class="sec-h2">Voices</h2>
     <div class="voc-grid">
-      <div class="voc-card reveal">
-        <div class="voc-qi">"</div>
+      <div class="voc-card rv">
+        <div class="voc-q">"</div>
         <p class="voc-text">ROIが毎月数字で出るので、上司への予算申請が格段に楽になりました。感覚ではなく証拠で話せる。これが一番の変化です。</p>
         <div class="voc-meta">
           <div class="voc-av">A</div>
-          <div>
-            <div class="voc-name">アパレルブランド マーケター</div>
-            <div class="voc-co">導入6ヶ月目</div>
-          </div>
+          <div><div class="voc-nm">アパレルブランド マーケター</div><div class="voc-co">導入6ヶ月目</div></div>
         </div>
       </div>
-      <div class="voc-card reveal d1">
-        <div class="voc-qi">"</div>
+      <div class="voc-card rv d1">
+        <div class="voc-q">"</div>
         <p class="voc-text">AIプリテストで「当たる前提」が作れるのが一番の驚き。クリエイターに渡す前に勝ち筋が見えている。発注の仕方が変わりました。</p>
         <div class="voc-meta">
           <div class="voc-av">C</div>
-          <div>
-            <div class="voc-name">コスメブランド 事業責任者</div>
-            <div class="voc-co">導入3ヶ月目</div>
-          </div>
+          <div><div class="voc-nm">コスメブランド 事業責任者</div><div class="voc-co">導入3ヶ月目</div></div>
         </div>
       </div>
-      <div class="voc-card reveal d2">
-        <div class="voc-qi">"</div>
+      <div class="voc-card rv d2">
+        <div class="voc-q">"</div>
         <p class="voc-text">始めた月から動く、というのは本当でした。初月のレポートで「これが続くと思うと楽しみ」と感じた初めてのUGC施策です。</p>
         <div class="voc-meta">
           <div class="voc-av">F</div>
-          <div>
-            <div class="voc-name">ファッションブランド 代表</div>
-            <div class="voc-co">導入2ヶ月目</div>
-          </div>
+          <div><div class="voc-nm">ファッションブランド 代表</div><div class="voc-co">導入2ヶ月目</div></div>
         </div>
       </div>
     </div>
@@ -619,22 +675,22 @@ footer{
 </section>
 
 <!-- ── PRICING ── -->
-<section class="section pricing-sec">
+<section class="sec pricing-bg">
   <div class="wrap">
     <div class="sec-ey">料金プラン</div>
     <h2 class="sec-h2">Pricing</h2>
-    <div class="pricing-grid reveal">
+    <div class="pricing-grid rv">
       <div class="plan-card">
         <div class="plan-tier">✦ Starter</div>
         <div class="plan-price">¥350,000<sub>/月</sub></div>
         <div class="plan-reach">50名 / 500K購買層リーチ保証</div>
         <div class="plan-div"></div>
         <div class="plan-feats">
-          <div class="plan-feat">50名クリエイターアサイン</div>
-          <div class="plan-feat">AIプリテスト（5パターン）</div>
-          <div class="plan-feat">景表法チェック完全自動化</div>
-          <div class="plan-feat">GA4 ROIダッシュボード</div>
-          <div class="plan-feat">月次レポーティング</div>
+          <div class="pfl">50名クリエイターアサイン</div>
+          <div class="pfl">AIプリテスト（5パターン）</div>
+          <div class="pfl">景表法チェック完全自動化</div>
+          <div class="pfl">GA4 ROIダッシュボード</div>
+          <div class="pfl">月次レポーティング</div>
         </div>
         <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-btn">無料診断を予約する →</a>
         <div class="plan-note">6ヶ月〜 ｜ 年額12%OFF ｜ 未達は翌月補填</div>
@@ -646,12 +702,12 @@ footer{
         <div class="plan-reach">100名 / 1.2M購買層リーチ保証</div>
         <div class="plan-div"></div>
         <div class="plan-feats">
-          <div class="plan-feat">100名クリエイターアサイン</div>
-          <div class="plan-feat">AIプリテスト（10パターン）</div>
-          <div class="plan-feat">景表法チェック完全自動化</div>
-          <div class="plan-feat">GA4 ROIダッシュボード</div>
-          <div class="plan-feat">媒体比率の月次調整</div>
-          <div class="plan-feat">クリエイターランキング管理</div>
+          <div class="pfl">100名クリエイターアサイン</div>
+          <div class="pfl">AIプリテスト（10パターン）</div>
+          <div class="pfl">景表法チェック完全自動化</div>
+          <div class="pfl">GA4 ROIダッシュボード</div>
+          <div class="pfl">媒体比率の月次調整</div>
+          <div class="pfl">クリエイターランキング管理</div>
         </div>
         <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-btn">無料診断を予約する →</a>
         <div class="plan-note">6ヶ月〜 ｜ 年額12%OFF ｜ 未達は翌月補填</div>
@@ -662,25 +718,25 @@ footer{
         <div class="plan-reach">150名 / 2.5M購買層リーチ保証</div>
         <div class="plan-div"></div>
         <div class="plan-feats">
-          <div class="plan-feat">150名クリエイターアサイン</div>
-          <div class="plan-feat">AIプリテスト（無制限）</div>
-          <div class="plan-feat">景表法チェック完全自動化</div>
-          <div class="plan-feat">GA4 ROIダッシュボード</div>
-          <div class="plan-feat">専任ディレクター担当</div>
-          <div class="plan-feat">クリエイターランキング+AI改善</div>
+          <div class="pfl">150名クリエイターアサイン</div>
+          <div class="pfl">AIプリテスト（無制限）</div>
+          <div class="pfl">景表法チェック完全自動化</div>
+          <div class="pfl">GA4 ROIダッシュボード</div>
+          <div class="pfl">専任ディレクター担当</div>
+          <div class="pfl">クリエイターランキング+AI改善</div>
         </div>
         <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-btn">無料診断を予約する →</a>
         <div class="plan-note">6ヶ月〜 ｜ 年額12%OFF ｜ 未達は翌月補填</div>
       </div>
     </div>
-    <p style="text-align:center;font-size:.75rem;color:var(--tx3);margin-top:20px;">※ 表示価格は税抜です。初期費用なし。景表法に準拠した運用を行っています。</p>
+    <p style="text-align:center;font-size:.72rem;color:var(--tx3);margin-top:20px;letter-spacing:.06em;">※ 表示価格は税抜です。初期費用なし。景表法に準拠した運用を行っています。</p>
   </div>
 </section>
 
-<!-- ── FINAL CTA ── -->
+<!-- ── CTA ── -->
 <section class="cta-sec">
   <div class="cta-glow"></div>
-  <div class="cta-inner reveal">
+  <div class="cta-inner rv">
     <div class="cta-badge">📅 今月の診断枠：残り4社</div>
     <h2 class="cta-h2">まず、30分だけ<br>話しましょう。</h2>
     <p class="cta-p">費用・クリエイター選定・景表法対応まで、何でも聞いてください。<br>合わないと思ったら、正直にお伝えします。</p>
@@ -704,27 +760,48 @@ footer{
 
 <script>
 // Scroll reveal
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      // Animate progress bars inside panel
+      e.target.querySelectorAll('.bf[data-w]').forEach(b=>{
+        b.style.width=b.dataset.w+'%';
+        b.classList.add('on');
+      });
+      io.unobserve(e.target);
+    }
   });
-},{ threshold:0.1, rootMargin:'0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// Also watch res-panel separately for bars
+const bio = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bf').forEach(b=>{
+        b.style.width=b.dataset.w+'%';
+        b.classList.add('on');
+      });
+      bio.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.res-panel').forEach(el=>bio.observe(el));
 
 // Countup
-function countup(el, target, duration){
-  let start=0, step=target/duration*16;
+function countup(el,target,dur){
+  let s=0,step=target/dur*16;
   const t=setInterval(()=>{
-    start+=step;
-    if(start>=target){ el.textContent=target+(el.dataset.suffix||''); clearInterval(t); }
-    else el.textContent=Math.floor(start)+(el.dataset.suffix||'');
+    s+=step;
+    if(s>=target){el.textContent=target;clearInterval(t);}
+    else el.textContent=Math.floor(s);
   },16);
 }
-const cio = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
     if(e.isIntersecting){
-      const n=parseInt(e.target.dataset.count);
-      countup(e.target,n,1200);
+      countup(e.target,parseInt(e.target.dataset.count),1400);
       cio.unobserve(e.target);
     }
   });
