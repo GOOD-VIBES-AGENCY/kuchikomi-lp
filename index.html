@@ -7,22 +7,23 @@
   <meta name="description" content="AIプリテスト × 500名実績クリエイター × GA4で実売上証明。アパレル・コスメ系D2Cブランド向け月額UGC口コミ施策。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Noto+Sans+JP:wght@400;500;700&family=DM+Sans:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      --pink:    #E8347A;
+      --pink2:   #FF6BA8;
+      --pink-bg: #FFF4F8;
+      --pink-light: #FFE8F2;
+      --gold:    #FFB830;
+      --gold2:   #FFC94D;
+      --ink:     #1A1A1A;
+      --ink2:    #3D3D3D;
+      --muted:   #888;
       --white:   #FFFFFF;
-      --cream:   #FAF8F5;
-      --sand:    #F0EAE1;
-      --ink:     #1A1818;
-      --ink2:    #3A3735;
-      --muted:   #837F7A;
-      --terra:   #B07050;
-      --terra2:  #C88860;
-      --sage:    #6E8C7A;
-      --border:  rgba(26,24,24,0.1);
-      --border2: rgba(26,24,24,0.06);
+      --border:  rgba(232,52,122,0.15);
+      --border-gray: rgba(0,0,0,0.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -30,7 +31,7 @@
     body {
       background: var(--white);
       color: var(--ink);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
       font-weight: 400;
       font-size: 16px;
       line-height: 1.75;
@@ -40,333 +41,408 @@
 
     /* PROGRESS */
     #progress {
-      position: fixed; top: 0; left: 0; height: 1.5px;
-      background: var(--terra); width: 0%; z-index: 200;
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--gold));
+      width: 0%; z-index: 200;
     }
 
     /* NAV */
     nav {
-      position: fixed; top: 1.5px; left: 0; right: 0; z-index: 100;
+      position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 56px; height: 68px;
+      padding: 0 48px; height: 64px;
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .logo {
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 600; font-size: 1.15rem; letter-spacing: 0.1em;
-      color: var(--ink); text-transform: uppercase;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-weight: 900; font-size: 1.3rem; letter-spacing: 0.06em;
+      background: linear-gradient(135deg, var(--pink), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    .logo em { font-style: normal; color: var(--terra); }
-    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
     .nav-links a {
-      font-size: 0.8rem; font-weight: 400; color: var(--muted);
-      text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em;
+      font-size: 0.82rem; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover { color: var(--pink); }
     .nav-cta {
-      background: var(--ink); color: var(--white);
-      padding: 9px 20px; font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.05em; text-decoration: none;
-      border-radius: 100px;
-      transition: background 0.2s;
+      background: var(--pink); color: #fff;
+      padding: 9px 22px; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.04em; text-decoration: none;
+      border-radius: 100px; transition: background 0.2s;
+      box-shadow: 0 2px 12px rgba(232,52,122,0.3);
     }
-    .nav-cta:hover { background: var(--ink2); }
+    .nav-cta:hover { background: var(--pink2); }
 
     /* HERO */
     #hero-section {
       min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding: 130px 56px 72px;
+      padding: 120px 48px 72px;
       background: var(--white);
-      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
-    .hero-content { display: flex; flex-direction: column; justify-content: center; }
-    .hero-eyebrow {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
-      color: var(--terra); text-transform: uppercase; margin-bottom: 28px;
-      font-family: 'DM Sans', sans-serif;
+    /* 背景デコ */
+    #hero-section::before {
+      content: '';
+      position: absolute; top: -120px; right: -120px;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,52,122,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--terra); }
+    #hero-section::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,184,48,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pink-light); color: var(--pink);
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+      border: 1px solid var(--border);
+    }
+    .hero-tag::before { content: '✦'; }
     .hero h1 {
-      font-family: 'Noto Serif JP', serif;
-      font-weight: 600;
-      font-size: clamp(2.6rem, 5.5vw, 5rem);
-      line-height: 1.22;
-      letter-spacing: 0.01em;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 1.18;
       color: var(--ink);
-      margin-bottom: 28px;
-      max-width: 760px;
+      margin-bottom: 24px;
+      max-width: 780px;
     }
-    .hero h1 em { font-style: italic; color: var(--terra); font-weight: 400; }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .hero-sub {
       font-size: 1.05rem; font-weight: 400; color: var(--ink2);
       max-width: 520px; line-height: 1.9; margin-bottom: 40px;
     }
-    .hero-sub strong { font-weight: 700; color: var(--ink); }
-    .hero-ctas { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 72px; }
-    .btn-dark {
-      background: var(--ink); color: var(--white);
-      padding: 15px 32px; font-size: 0.88rem; font-weight: 500;
-      letter-spacing: 0.04em; text-decoration: none;
-      border-radius: 100px; transition: background 0.2s; display: inline-block;
+    .hero-sub strong { color: var(--pink); font-weight: 700; }
+    .hero-ctas { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 72px; }
+    .btn-pink {
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      color: #fff; padding: 16px 36px;
+      font-size: 0.92rem; font-weight: 700;
+      text-decoration: none; border-radius: 100px;
+      box-shadow: 0 4px 20px rgba(232,52,122,0.35);
+      transition: transform 0.2s, box-shadow 0.2s; display: inline-block;
+      letter-spacing: 0.03em;
     }
-    .btn-dark:hover { background: var(--ink2); }
-    .btn-line {
-      color: var(--muted); font-size: 0.88rem; font-weight: 400;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-      transition: color 0.2s; padding: 15px 4px;
-      border-bottom: 1px solid var(--border);
+    .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,52,122,0.45); }
+    .btn-ghost {
+      border: 2px solid var(--pink); color: var(--pink);
+      padding: 14px 28px; font-size: 0.92rem; font-weight: 700;
+      text-decoration: none; border-radius: 100px;
+      transition: background 0.2s, color 0.2s; display: inline-block;
     }
-    .btn-line:hover { color: var(--ink); border-color: var(--ink); }
-    .cta-note { font-size: 0.72rem; color: var(--muted); width: 100%; margin-top: 6px; letter-spacing: 0.02em; }
-
-    /* Hero stats */
+    .btn-ghost:hover { background: var(--pink-light); }
+    .cta-note { font-size: 0.72rem; color: var(--muted); width: 100%; margin-top: 8px; }
     .hero-stats {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--border); padding-top: 40px;
+      gap: 0; border-top: 1px solid var(--border-gray);
+      padding-top: 44px;
     }
-    .h-stat { padding: 0 40px 0 0; }
-    .h-stat + .h-stat { padding-left: 40px; border-left: 1px solid var(--border); }
+    .h-stat { padding: 0 32px 0 0; }
+    .h-stat + .h-stat { padding-left: 32px; border-left: 1px solid var(--border-gray); }
     .h-num {
-      font-family: 'Noto Serif JP', serif; font-weight: 600;
-      font-size: 2.4rem; color: var(--terra); line-height: 1;
+      font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900;
+      font-size: 2.6rem; line-height: 1;
+      background: linear-gradient(135deg, var(--pink), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .h-label { font-size: 0.74rem; color: var(--muted); margin-top: 6px; line-height: 1.55; }
 
-    /* SECTION */
-    section { padding: 100px 56px; }
-    .eyebrow {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.2em;
-      color: var(--terra); text-transform: uppercase; margin-bottom: 20px;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--terra); }
-    h2 {
-      font-family: 'Noto Serif JP', serif; font-weight: 600;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      line-height: 1.3; letter-spacing: 0.01em;
-      color: var(--ink); margin-bottom: 20px;
-    }
-    h2 em { font-style: italic; color: var(--terra); font-weight: 400; }
-
     /* TRUSTED */
-    .trusted { padding: 36px 56px; background: var(--cream); border-bottom: 1px solid var(--border); }
-    .trusted-label { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; text-align: center; margin-bottom: 20px; font-family: 'DM Sans', sans-serif; }
-    .trusted-logos { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .trusted { padding: 32px 48px; background: var(--pink-bg); border-bottom: 1px solid var(--border); }
+    .trusted-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; color: var(--pink); text-transform: uppercase; text-align: center; margin-bottom: 18px; }
+    .trusted-logos { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
     .brand-tag {
-      font-size: 0.76rem; font-weight: 400; color: var(--muted);
-      padding: 7px 16px; border: 1px solid var(--border); border-radius: 100px;
-      letter-spacing: 0.04em; transition: color 0.2s, border-color 0.2s;
+      font-size: 0.76rem; font-weight: 700; color: var(--pink);
+      padding: 6px 16px; border: 1.5px solid var(--border); border-radius: 100px;
+      background: var(--white); transition: background 0.2s, border-color 0.2s;
     }
-    .brand-tag:hover { color: var(--ink); border-color: rgba(26,24,24,0.25); }
+    .brand-tag:hover { background: var(--pink-light); }
+
+    /* SECTION */
+    section { padding: 96px 48px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.22em;
+      color: var(--pink); text-transform: uppercase; margin-bottom: 16px;
+    }
+    .eyebrow::before { content: '✦'; font-size: 0.6rem; }
+    h2 {
+      font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900;
+      font-size: clamp(1.9rem, 3.8vw, 3rem);
+      line-height: 1.25; color: var(--ink); margin-bottom: 20px;
+    }
+    h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--pink), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
     /* PROBLEM */
-    .problem { background: var(--white); border-bottom: 1px solid var(--border); }
-    .prob-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: start; }
-    .prob-intro p { font-size: 1.02rem; color: var(--ink2); line-height: 1.9; margin-top: 16px; }
-    .prob-intro strong { color: var(--ink); font-weight: 700; }
-    .prob-list { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
-    .prob-item { padding: 28px 0; border-bottom: 1px solid var(--border); display: flex; gap: 20px; }
-    .prob-item:first-child { border-top: 1px solid var(--border); }
-    .prob-n {
-      font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 500;
-      color: var(--terra); letter-spacing: 0.1em; min-width: 24px; margin-top: 3px;
+    .problem { background: var(--white); }
+    .prob-wrap { display: grid; grid-template-columns: 5fr 7fr; gap: 72px; align-items: start; margin-top: 20px; }
+    .prob-lead { font-size: 1rem; color: var(--ink2); line-height: 1.9; }
+    .prob-lead strong { color: var(--pink); font-weight: 700; }
+    .prob-items { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+    .prob-card {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 22px 24px; background: var(--pink-bg);
+      border: 1px solid var(--border); border-radius: 16px;
+      transition: background 0.2s;
     }
-    .prob-item h3 { font-size: 0.96rem; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
-    .prob-item p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; }
-    .cta-area { margin-top: 44px; }
-    .link-arrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.86rem; color: var(--ink); text-decoration: none;
-      border-bottom: 1px solid var(--border); padding-bottom: 3px;
-      transition: border-color 0.2s, color 0.2s;
+    .prob-card:hover { background: var(--pink-light); }
+    .prob-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 0.7rem; font-weight: 900; flex-shrink: 0; margin-top: 2px;
     }
-    .link-arrow:hover { color: var(--terra); border-color: var(--terra); }
+    .prob-card h3 { font-weight: 800; font-size: 0.96rem; margin-bottom: 5px; color: var(--ink); }
+    .prob-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+    .sec-cta { margin-top: 40px; }
+    .link-pink {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.88rem; font-weight: 700; color: var(--pink);
+      text-decoration: none; transition: gap 0.2s;
+    }
+    .link-pink:hover { gap: 10px; }
 
     /* HOW */
-    .how { background: var(--cream); border-bottom: 1px solid var(--border); }
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); margin-top: 44px; }
-    .how-card { padding: 44px 36px; background: var(--white); border-right: 1px solid var(--border); }
-    .how-card:last-child { border-right: none; }
-    .how-n { font-family: 'DM Sans', sans-serif; font-size: 0.64rem; font-weight: 500; color: var(--terra); letter-spacing: 0.16em; margin-bottom: 20px; }
-    .how-tag { font-size: 0.64rem; font-weight: 500; letter-spacing: 0.14em; color: var(--sage); text-transform: uppercase; margin-bottom: 14px; font-family: 'DM Sans', sans-serif; }
-    .how-card h3 { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 1.05rem; margin-bottom: 12px; color: var(--ink); line-height: 1.5; }
-    .how-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.8; }
+    .how { background: var(--pink-bg); }
+    .how-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .how-card {
+      padding: 36px 28px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 20px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .how-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(232,52,122,0.12); }
+    .how-step-n {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--gold));
+      color: #fff; font-size: 0.78rem; font-weight: 900; margin-bottom: 16px;
+    }
+    .how-tag { font-size: 0.63rem; font-weight: 800; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .how-card h3 { font-weight: 800; font-size: 1.02rem; margin-bottom: 10px; color: var(--ink); }
+    .how-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.78; }
 
     /* FEATURES */
-    .features { background: var(--white); border-bottom: 1px solid var(--border); }
-    .feat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 44px; }
-    .feat-item { padding: 36px; background: var(--cream); border: 1px solid var(--border); transition: background 0.2s; }
-    .feat-item:hover { background: var(--sand); }
-    .feat-badge {
-      display: inline-block; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.14em;
-      color: var(--terra); border: 1px solid rgba(176,112,80,0.3);
-      padding: 3px 10px; border-radius: 100px; margin-bottom: 14px;
-      text-transform: uppercase; font-family: 'DM Sans', sans-serif;
+    .features { background: var(--white); }
+    .feat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 40px; }
+    .feat-card {
+      padding: 32px; border-radius: 20px;
+      background: var(--pink-bg); border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .feat-item h3 { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 1.02rem; margin-bottom: 10px; color: var(--ink); }
-    .feat-item p { font-size: 0.87rem; color: var(--muted); line-height: 1.8; }
+    .feat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(232,52,122,0.1); }
+    .feat-badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em;
+      color: #fff; background: linear-gradient(135deg, var(--pink), var(--pink2));
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .feat-card h3 { font-weight: 800; font-size: 1rem; margin-bottom: 8px; color: var(--ink); }
+    .feat-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.78; }
 
     /* COMPARE */
-    .compare { background: var(--cream); border-bottom: 1px solid var(--border); }
-    .cmp-wrap { overflow-x: auto; margin-top: 44px; }
-    .cmp-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
-    .cmp-table th, .cmp-table td { padding: 15px 20px; border-bottom: 1px solid var(--border); text-align: center; }
-    .cmp-table th:first-child, .cmp-table td:first-child { text-align: left; color: var(--ink2); font-weight: 400; }
-    .cmp-table thead th { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.76rem; letter-spacing: 0.06em; color: var(--muted); padding-bottom: 12px; }
-    .cmp-table thead th.hl { color: var(--terra); }
-    .col-hl { background: rgba(176,112,80,0.04); }
-    .ic-yes { color: var(--sage); }
-    .ic-no { color: #ccc; }
-    .ic-half { color: #bbb; font-size: 0.75rem; }
+    .compare { background: var(--pink-bg); }
+    .cmp-wrap { overflow-x: auto; margin-top: 40px; }
+    .cmp-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.88rem; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .cmp-table th, .cmp-table td { padding: 15px 20px; border-bottom: 1px solid var(--border); text-align: center; background: var(--white); }
+    .cmp-table th:first-child, .cmp-table td:first-child { text-align: left; color: var(--ink2); }
+    .cmp-table thead tr { background: var(--pink-bg); }
+    .cmp-table thead th { background: var(--pink-bg); font-weight: 800; font-size: 0.76rem; letter-spacing: 0.06em; color: var(--muted); }
+    .cmp-table thead th.hl { color: var(--pink); }
+    .col-hl { background: rgba(232,52,122,0.04) !important; }
+    .ic-yes { color: var(--pink); font-size: 1rem; }
+    .ic-no { color: #ddd; }
+    .ic-half { color: #ccc; font-size: 0.78rem; }
 
     /* RESULTS */
-    .results { background: var(--white); border-bottom: 1px solid var(--border); }
-    .res-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-    .res-rows { display: flex; flex-direction: column; }
-    .res-row { display: flex; gap: 24px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid var(--border); }
-    .res-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .res-num { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 2.8rem; color: var(--terra); line-height: 1; white-space: nowrap; }
-    .res-info h4 { font-weight: 700; font-size: 0.94rem; margin-bottom: 5px; color: var(--ink); }
-    .res-info p { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
-    .res-case { background: var(--sand); border: 1px solid var(--border); border-top: 3px solid var(--terra); padding: 40px; }
-    .res-case-tag { font-size: 0.63rem; font-weight: 500; letter-spacing: 0.18em; color: var(--terra); text-transform: uppercase; margin-bottom: 20px; font-family: 'DM Sans', sans-serif; }
-    .res-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
-    .res-metric { background: var(--white); padding: 14px 16px; border: 1px solid var(--border); }
-    .res-metric-num { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 1.5rem; color: var(--terra); line-height: 1; margin-bottom: 4px; }
-    .res-metric-lbl { font-size: 0.68rem; color: var(--muted); }
-    .res-quote { font-size: 0.9rem; color: var(--ink2); line-height: 1.88; font-style: italic; margin-bottom: 16px; }
-    .res-source { font-size: 0.72rem; color: var(--muted); }
+    .results { background: var(--white); }
+    .res-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 20px; }
+    .res-list { display: flex; flex-direction: column; gap: 0; }
+    .res-row { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--border-gray); }
+    .res-row:last-child { border-bottom: none; }
+    .res-num {
+      font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900;
+      font-size: 2.8rem; line-height: 1; white-space: nowrap;
+      background: linear-gradient(135deg, var(--pink), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .res-info h4 { font-weight: 800; font-size: 0.94rem; margin-bottom: 4px; }
+    .res-info p { font-size: 0.83rem; color: var(--muted); line-height: 1.68; }
+    .res-case {
+      background: linear-gradient(160deg, var(--pink) 0%, #C0206A 100%);
+      border-radius: 24px; padding: 36px; color: #fff;
+    }
+    .case-tag { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 20px; }
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .case-item { background: rgba(255,255,255,0.15); border-radius: 12px; padding: 14px 16px; }
+    .case-n { font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900; font-size: 1.7rem; line-height: 1; margin-bottom: 4px; }
+    .case-l { font-size: 0.68rem; color: rgba(255,255,255,0.65); }
+    .case-q { font-size: 0.9rem; color: rgba(255,255,255,0.88); line-height: 1.85; font-style: italic; margin-bottom: 16px; }
+    .case-s { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
 
     /* VOICES */
-    .voices { background: var(--cream); border-bottom: 1px solid var(--border); }
-    .voice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
-    .voice-card { padding: 32px; background: var(--white); border: 1px solid var(--border); }
-    .voice-mark { font-family: 'Noto Serif JP', serif; font-size: 2.8rem; color: var(--terra); opacity: 0.25; line-height: 0.8; margin-bottom: 14px; display: block; }
-    .voice-body { font-size: 0.9rem; color: var(--ink2); line-height: 1.85; margin-bottom: 18px; }
+    .voices { background: var(--pink-bg); }
+    .voice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+    .voice-card {
+      padding: 28px; background: var(--white); border-radius: 20px;
+      border: 1px solid var(--border); transition: transform 0.2s;
+    }
+    .voice-card:hover { transform: translateY(-3px); }
+    .voice-mark { font-size: 2.6rem; color: var(--pink); opacity: 0.2; line-height: 0.8; margin-bottom: 12px; display: block; font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900; }
+    .voice-body { font-size: 0.88rem; color: var(--ink2); line-height: 1.85; margin-bottom: 16px; }
     .voice-role { font-size: 0.72rem; color: var(--muted); }
-    .voice-role strong { color: var(--terra); font-weight: 500; }
+    .voice-role strong { color: var(--pink); font-weight: 700; }
 
     /* FAQ */
-    .faq { background: var(--white); border-bottom: 1px solid var(--border); }
-    .faq-inner { max-width: 680px; margin-top: 44px; }
-    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq { background: var(--white); }
+    .faq-wrap { max-width: 660px; margin-top: 40px; }
+    .faq-item { border-bottom: 1px solid var(--border-gray); }
     .faq-q {
       width: 100%; background: none; border: none; cursor: pointer;
-      padding: 22px 0; display: flex; justify-content: space-between;
-      align-items: center; gap: 20px;
-      font-size: 0.94rem; font-weight: 500; color: var(--ink);
-      font-family: 'Noto Sans JP', sans-serif; text-align: left;
-      transition: color 0.2s;
+      padding: 20px 0; display: flex; justify-content: space-between;
+      align-items: center; gap: 20px; text-align: left;
+      font-size: 0.93rem; font-weight: 700; color: var(--ink);
+      font-family: 'M PLUS Rounded 1c', sans-serif; transition: color 0.2s;
     }
-    .faq-q:hover { color: var(--terra); }
-    .faq-ic { width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.8rem; color: var(--terra); transition: transform 0.3s; }
+    .faq-q:hover { color: var(--pink); }
+    .faq-ic {
+      width: 24px; height: 24px; border-radius: 50; flex-shrink: 0;
+      background: var(--pink-light); color: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; border-radius: 50%; transition: transform 0.3s;
+    }
     .faq-item.open .faq-ic { transform: rotate(45deg); }
     .faq-a { font-size: 0.88rem; color: var(--muted); line-height: 1.85; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
-    .faq-item.open .faq-a { max-height: 320px; padding-bottom: 22px; }
+    .faq-item.open .faq-a { max-height: 320px; padding-bottom: 20px; }
 
     /* COST */
-    .cost { background: var(--cream); border-bottom: 1px solid var(--border); }
-    .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
-    .cost-card { background: var(--white); border: 1px solid var(--border); padding: 36px; }
-    .cost-card.featured { border-color: var(--terra); border-top: 3px solid var(--terra); }
-    .cost-head { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; font-family: 'DM Sans', sans-serif; }
-    .cost-head.featured { color: var(--terra); }
-    .cost-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border2); font-size: 0.87rem; }
+    .cost { background: var(--pink-bg); }
+    .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .cost-box { background: var(--white); border-radius: 20px; border: 1px solid var(--border); padding: 32px; }
+    .cost-box.pop { border: 2px solid var(--pink); position: relative; }
+    .cost-box.pop::before { content: 'おすすめ ✦'; position: absolute; top: -13px; left: 24px; background: linear-gradient(135deg, var(--pink), var(--gold)); color: #fff; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; padding: 3px 14px; border-radius: 100px; }
+    .cost-lbl-head { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .cost-lbl-head.pk { color: var(--pink); }
+    .cost-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.86rem; }
     .cost-row:last-of-type { border-bottom: none; }
-    .cost-lbl { color: var(--muted); }
-    .cost-val { font-weight: 600; color: var(--ink); }
-    .cost-val.terra { color: var(--terra); }
-    .cost-total { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; }
-    .cost-total-lbl { font-size: 0.82rem; color: var(--muted); }
-    .cost-total-num { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 1.8rem; color: var(--ink); }
-    .cost-total-num.terra { color: var(--terra); }
+    .cost-k { color: var(--muted); }
+    .cost-v { font-weight: 700; color: var(--ink); }
+    .cost-v.pk { color: var(--pink); }
+    .cost-total { margin-top: 18px; padding-top: 16px; border-top: 1.5px solid var(--border-gray); display: flex; justify-content: space-between; align-items: baseline; }
+    .cost-tl { font-size: 0.82rem; color: var(--muted); }
+    .cost-tn { font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900; font-size: 1.9rem; color: var(--ink); }
+    .cost-tn.pk { background: linear-gradient(135deg,var(--pink),var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
     /* PRICING */
-    .pricing { background: var(--white); border-bottom: 1px solid var(--border); }
-    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
-    .price-card { padding: 36px 28px; border: 1px solid var(--border); background: var(--white); position: relative; transition: box-shadow 0.25s; }
-    .price-card:hover { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-    .price-card.featured { border-color: var(--terra); border-top: 3px solid var(--terra); }
-    .feat-mark { position: absolute; top: -11px; left: 24px; background: var(--terra); color: #fff; font-size: 0.58rem; font-weight: 500; letter-spacing: 0.12em; padding: 3px 12px; border-radius: 100px; font-family: 'DM Sans', sans-serif; text-transform: uppercase; }
-    .price-tier { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.2em; color: var(--terra); text-transform: uppercase; margin-bottom: 14px; font-family: 'DM Sans', sans-serif; }
-    .price-num { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
-    .price-num span { font-size: 0.85rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 400; color: var(--muted); }
-    .price-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 24px; }
-    .price-hr { height: 1px; background: var(--border); margin-bottom: 20px; }
-    .price-items { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-    .price-items li { font-size: 0.85rem; color: var(--ink2); display: flex; gap: 9px; align-items: flex-start; }
-    .price-items li::before { content: '✓'; color: var(--sage); flex-shrink: 0; margin-top: 1px; font-size: 0.82rem; }
-    .price-cta {
+    .pricing { background: var(--white); }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
+    .price-card { padding: 32px 26px; border-radius: 24px; border: 1.5px solid var(--border); background: var(--white); position: relative; transition: transform 0.25s, box-shadow 0.25s; }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(232,52,122,0.12); }
+    .price-card.pop { border: 2px solid var(--pink); background: var(--pink-bg); }
+    .pop-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--pink), var(--gold)); color: #fff; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.1em; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+    .price-tier { font-size: 0.66rem; font-weight: 800; letter-spacing: 0.22em; color: var(--pink); text-transform: uppercase; margin-bottom: 12px; }
+    .price-num { font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900; font-size: 2.2rem; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+    .price-num span { font-size: 0.84rem; font-weight: 500; color: var(--muted); }
+    .price-desc { font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; }
+    .price-hr { height: 1px; background: var(--border); margin-bottom: 18px; }
+    .price-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 26px; }
+    .price-list li { font-size: 0.84rem; color: var(--ink2); display: flex; gap: 8px; align-items: flex-start; }
+    .price-list li::before { content: '✓'; color: var(--pink); font-weight: 900; flex-shrink: 0; font-size: 0.8rem; }
+    .price-btn {
       display: block; text-align: center; padding: 13px;
-      border: 1px solid var(--border); color: var(--ink);
-      font-size: 0.84rem; font-weight: 500; text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-      letter-spacing: 0.02em;
+      border-radius: 100px; font-size: 0.86rem; font-weight: 800;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; letter-spacing: 0.03em;
+      border: 2px solid var(--pink); color: var(--pink);
     }
-    .price-cta:hover, .price-card.featured .price-cta { background: var(--ink); color: var(--white); border-color: var(--ink); }
+    .price-btn:hover { background: var(--pink-light); transform: translateY(-1px); }
+    .price-card.pop .price-btn { background: linear-gradient(135deg, var(--pink), var(--pink2)); color: #fff; border: none; box-shadow: 0 4px 16px rgba(232,52,122,0.35); }
+    .price-card.pop .price-btn:hover { box-shadow: 0 6px 20px rgba(232,52,122,0.5); }
     .price-foot { text-align: center; font-size: 0.74rem; color: var(--muted); margin-top: 24px; line-height: 1.85; }
 
     /* FLOW */
-    .flow { background: var(--cream); border-bottom: 1px solid var(--border); }
-    .flow-list { display: flex; flex-direction: column; max-width: 620px; margin-top: 44px; }
-    .flow-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
-    .flow-item:last-child { border-bottom: none; }
-    .flow-circle { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--terra); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.72rem; color: var(--terra); font-family: 'DM Sans', sans-serif; font-weight: 500; margin-top: 3px; }
-    .flow-time { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.16em; color: var(--terra); text-transform: uppercase; margin-bottom: 6px; font-family: 'DM Sans', sans-serif; display: block; }
-    .flow-body h4 { font-weight: 700; font-size: 0.94rem; margin-bottom: 5px; color: var(--ink); }
-    .flow-body p { font-size: 0.86rem; color: var(--muted); line-height: 1.75; }
+    .flow { background: var(--pink-bg); }
+    .flow-list { display: flex; flex-direction: column; max-width: 600px; margin-top: 40px; }
+    .flow-row { display: flex; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--border); }
+    .flow-row:last-child { border-bottom: none; }
+    .flow-dot { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--pink), var(--gold)); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.78rem; font-weight: 900; flex-shrink: 0; margin-top: 2px; }
+    .flow-t { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; margin-bottom: 5px; display: block; }
+    .flow-body h4 { font-weight: 800; font-size: 0.94rem; margin-bottom: 4px; }
+    .flow-body p { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
 
-    /* CTA SECTION */
-    .cta-section { background: var(--sand); padding: 100px 56px; text-align: center; border-top: 1px solid var(--border); }
-    .cta-section h2 { color: var(--ink); }
-    .cta-section p { color: var(--muted); font-size: 1.02rem; max-width: 440px; margin: 14px auto 40px; line-height: 1.85; }
-    .cta-row { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
-    .cta-assure { margin-top: 16px; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.03em; }
+    /* CTA FINAL */
+    .cta-final {
+      background: linear-gradient(160deg, var(--pink) 0%, #B01D5E 100%);
+      padding: 100px 48px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,184,48,0.15); pointer-events: none;
+    }
+    .cta-final h2 { color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); }
+    .cta-final p { color: rgba(255,255,255,0.75); font-size: 1.02rem; max-width: 420px; margin: 14px auto 40px; line-height: 1.85; }
+    .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: #fff; color: var(--pink); padding: 16px 40px; font-size: 0.92rem; font-weight: 800; letter-spacing: 0.03em; text-decoration: none; border-radius: 100px; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+    .btn-outline-w { border: 2px solid rgba(255,255,255,0.6); color: #fff; padding: 14px 32px; font-size: 0.92rem; font-weight: 700; text-decoration: none; border-radius: 100px; transition: border-color 0.2s; display: inline-block; }
+    .btn-outline-w:hover { border-color: #fff; }
+    .cta-assure { margin-top: 18px; font-size: 0.72rem; color: rgba(255,255,255,0.45); }
 
     /* FOOTER */
-    footer { background: var(--ink); padding: 40px 56px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-logo { font-family: 'Noto Serif JP', serif; font-weight: 600; font-size: 1.05rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.85); text-transform: uppercase; }
-    .footer-logo em { font-style: normal; color: rgba(176,112,80,0.9); }
+    footer { background: var(--ink); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'M PLUS Rounded 1c', sans-serif; font-weight: 900; font-size: 1.1rem; background: linear-gradient(135deg, var(--pink), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.06em; }
     footer p { font-size: 0.76rem; color: rgba(255,255,255,0.35); font-family: 'DM Sans', sans-serif; }
 
     /* STICKY */
     #sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-top: 1px solid var(--border); padding: 12px 20px env(safe-area-inset-bottom, 12px); align-items: center; justify-content: space-between; gap: 10px; }
-    .s-text { font-size: 0.8rem; color: var(--muted); }
-    .s-cta { background: var(--ink); color: #fff; padding: 10px 20px; font-size: 0.8rem; font-weight: 500; text-decoration: none; border-radius: 100px; white-space: nowrap; }
+    .s-text { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+    .s-cta { background: linear-gradient(135deg, var(--pink), var(--pink2)); color: #fff; padding: 10px 20px; font-size: 0.8rem; font-weight: 800; text-decoration: none; border-radius: 100px; white-space: nowrap; }
     #s-close { background: none; border: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; flex-shrink: 0; }
 
     /* FADE */
-    .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade.in { opacity: 1; transform: none; }
 
     /* RESPONSIVE */
     @media (max-width: 960px) {
-      nav { padding: 0 22px; }
+      nav { padding: 0 18px; }
       .nav-links { display: none; }
-      section, .cta-section { padding: 72px 22px; }
-      #hero-section { padding: 112px 22px 60px; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      section, .cta-final { padding: 68px 20px; }
+      #hero-section { padding: 110px 20px 56px; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 18px; }
       .h-stat + .h-stat { padding-left: 0; border-left: none; }
       .h-stat { padding-right: 0; }
-      .prob-layout, .res-layout, .cost-grid { grid-template-columns: 1fr; gap: 32px; }
-      .how-grid, .feat-grid, .price-grid, .voice-grid { grid-template-columns: 1fr; }
-      .how-card { border-right: none; border-bottom: 1px solid var(--border); }
-      .how-card:last-child { border-bottom: none; }
-      .cmp-table { font-size: 0.78rem; }
-      .cmp-table th, .cmp-table td { padding: 10px 8px; }
+      .prob-wrap, .res-wrap, .cost-grid { grid-template-columns: 1fr; gap: 28px; }
+      .how-cards, .feat-grid, .price-grid, .voice-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
-      .trusted, .cta-section { padding: 36px 22px; }
+      .trusted { padding: 28px 20px; }
       #sticky-bar { display: flex; }
     }
     @media (max-width: 480px) {
-      .hero-ctas { flex-direction: column; align-items: stretch; }
-      .btn-dark, .btn-line { text-align: center; justify-content: center; }
+      .hero-ctas { flex-direction: column; }
       .cta-row { flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) { .fade { transition: none; opacity: 1; transform: none; } }
@@ -378,49 +454,47 @@
 
 <!-- STICKY MOBILE -->
 <div id="sticky-bar">
-  <span class="s-text">KUCHIKOMI — 無料相談受付中</span>
+  <span class="s-text">💗 KUCHIKOMI — 無料相談受付中</span>
   <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="s-cta">無料相談 →</a>
   <button id="s-close">✕</button>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="logo">KUCHI<em>KOMI</em></div>
+  <div class="logo">✦ KUCHIKOMI</div>
   <div class="nav-links">
     <a href="#how">仕組み</a>
     <a href="#results">実績</a>
     <a href="#pricing">料金</a>
     <a href="#contact">相談する</a>
   </div>
-  <a href="#contact" class="nav-cta">30分・無料相談</a>
+  <a href="#contact" class="nav-cta">無料相談 →</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero-section">
-  <div class="hero-content">
-    <div class="hero-eyebrow">アパレル・コスメ D2C ブランドのための UGC口コミ施策</div>
-    <h1>バズらせるより、<br><em>売れる口コミ</em>を<br>設計する。</h1>
-    <p class="hero-sub">
-      月額で、573K imp 分の「買いたくなる文脈」を、<br>
-      <strong>設計・運用・改善まで一手に引き受けます。</strong>
-    </p>
-    <div class="hero-ctas">
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-dark">自社の口コミ現状を30分で診断する →</a>
-      <a href="#" class="btn-line" onclick="alert('準備中です。上のボタンからご相談ください。'); return false;">資料を受け取る（PDF）</a>
-      <div class="cta-note">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</div>
-    </div>
-    <div class="hero-stats">
-      <div class="h-stat"><div class="h-num" data-count="573623">0</div><div class="h-label">月次UGCインプレッション<br>（実績）</div></div>
-      <div class="h-stat"><div class="h-num" data-count="2.7" data-suffix="倍">0</div><div class="h-label">フォロワー比<br>インプレッション倍率</div></div>
-      <div class="h-stat"><div class="h-num" data-count="500">0</div><div class="h-label">実績付き<br>クリエイター数</div></div>
-      <div class="h-stat"><div class="h-num" data-count="59" data-suffix="%">0</div><div class="h-label">全施策中の<br>UGC imp 占有率</div></div>
-    </div>
+  <div class="hero-tag">アパレル・コスメ D2C ブランドのための UGC口コミ施策</div>
+  <h1>バズらせるより、<br><em>売れる口コミ</em>を<br>設計する。</h1>
+  <p class="hero-sub">
+    月額で、573K imp 分の「買いたくなる文脈」を、<br>
+    <strong>設計・運用・改善まで全部おまかせ。</strong>
+  </p>
+  <div class="hero-ctas">
+    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pink">自社の口コミ現状を30分で診断する ✦</a>
+    <a href="#" class="btn-ghost" onclick="alert('準備中です。上のボタンからご相談ください。'); return false;">資料を受け取る（PDF）</a>
+    <div class="cta-note">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</div>
+  </div>
+  <div class="hero-stats">
+    <div class="h-stat"><div class="h-num" data-count="573623">0</div><div class="h-label">月次UGCインプレッション<br>（実績）</div></div>
+    <div class="h-stat"><div class="h-num" data-count="2.7" data-suffix="倍">0</div><div class="h-label">フォロワー比<br>インプレッション倍率</div></div>
+    <div class="h-stat"><div class="h-num" data-count="500">0</div><div class="h-label">実績付き<br>クリエイター数</div></div>
+    <div class="h-stat"><div class="h-num" data-count="59" data-suffix="%">0</div><div class="h-label">全施策中の<br>UGC imp 占有率</div></div>
   </div>
 </section>
 
 <!-- TRUSTED -->
 <div class="trusted">
-  <div class="trusted-label">導入ブランドカテゴリ</div>
+  <div class="trusted-label">✦ 導入ブランドカテゴリ ✦</div>
   <div class="trusted-logos">
     <span class="brand-tag">コスメ</span>
     <span class="brand-tag">スキンケア</span>
@@ -434,31 +508,31 @@
 <section class="problem" id="problem">
   <div class="fade">
     <div class="eyebrow">Problem</div>
-    <div class="prob-layout">
-      <div class="prob-intro">
-        <h2>UGC施策が<br><em>続かない</em>理由</h2>
-        <p>「インフルエンサーより口コミが売れる」と分かっていながら、多くのブランドが<strong>単発・勘頼み・効果不明</strong>の壁で止まっている。</p>
-        <div class="cta-area">
-          <a href="#how" class="link-arrow">解決策を見る →</a>
+    <div class="prob-wrap">
+      <div>
+        <h2>UGC施策が<em>続かない</em>理由</h2>
+        <p class="prob-lead">「インフルエンサーより口コミが売れる」と分かっていながら、多くのブランドが<strong>単発・勘頼み・効果不明</strong>の壁で止まっている。</p>
+        <div class="sec-cta" style="margin-top:32px;">
+          <a href="#how" class="link-pink">解決策を見る →</a>
         </div>
       </div>
-      <div class="prob-list">
-        <div class="prob-item">
-          <div class="prob-n">01</div>
+      <div class="prob-items">
+        <div class="prob-card">
+          <div class="prob-icon">01</div>
           <div>
             <h3>費用対効果が説明できない</h3>
             <p>投稿数・再生数は分かる。でも「それで売れたか」が証明できず、次の予算が取れない。</p>
           </div>
         </div>
-        <div class="prob-item">
-          <div class="prob-n">02</div>
+        <div class="prob-card">
+          <div class="prob-icon">02</div>
           <div>
             <h3>何がバズるか、公開まで分からない</h3>
             <p>経験と勘でクリエイターを選ぶ。結果は出してみないと分からない。再現性がない。</p>
           </div>
         </div>
-        <div class="prob-item">
-          <div class="prob-n">03</div>
+        <div class="prob-card">
+          <div class="prob-icon">03</div>
           <div>
             <h3>単発で口コミが途切れる</h3>
             <p>キャンペーンが終わると認知がリセットされる。口コミが「資産」にならない。</p>
@@ -475,28 +549,28 @@
     <div class="eyebrow">How It Works</div>
     <h2><em>データ</em>が選ぶ、勝ちパターン。</h2>
   </div>
-  <div class="how-grid fade">
+  <div class="how-cards fade">
     <div class="how-card">
-      <div class="how-n">Step 01</div>
-      <div class="how-tag">AI Pre-Test</div>
-      <h3>AIプリテストで<br>コンセプトを検証</h3>
+      <div class="how-step-n">01</div>
+      <div class="how-tag">✦ AI PRE-TEST</div>
+      <h3>AIプリテストでコンセプトを検証</h3>
       <p>Creatify で5パターンのコンテンツを自動生成。GVA 専用テストアカウントで7日間配信し、視聴完了率・保存率・プロフィール訪問率を計測。勘ではなくデータで「当たる前提」を作る。</p>
     </div>
     <div class="how-card">
-      <div class="how-n">Step 02</div>
-      <div class="how-tag">Creator Match</div>
-      <h3>勝ちコンセプトで<br>最適クリエイターを選定</h3>
-      <p>テスト結果をもとに500名の実績 DB から最適なクリエイターをアサイン。景表法チェック（#PR表記・プラットフォーム別開示）もシステムが自動確認。</p>
+      <div class="how-step-n">02</div>
+      <div class="how-tag">✦ CREATOR MATCH</div>
+      <h3>勝ちコンセプトで最適クリエイターを選定</h3>
+      <p>テスト結果をもとに500名の実績 DB から最適なクリエイターをアサイン。景表法チェックもシステムが自動確認。</p>
     </div>
     <div class="how-card">
-      <div class="how-n">Step 03</div>
-      <div class="how-tag">ROI Proof</div>
-      <h3>GA4 直結で<br>実売上を毎月証明</h3>
-      <p>ユニーク UTM リンクで UGC 経由の流入・CV・売上を GA4 で自動集計。「この口コミで売上が◯%上がった」という数字を毎月レポートで提出。</p>
+      <div class="how-step-n">03</div>
+      <div class="how-tag">✦ ROI PROOF</div>
+      <h3>GA4 直結で実売上を毎月証明</h3>
+      <p>ユニーク UTM リンクで UGC 経由の流入・CV・売上を GA4 で自動集計。「この口コミで売上が◯%上がった」を毎月レポートで提出。</p>
     </div>
   </div>
-  <div style="margin-top:40px;" class="fade">
-    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="link-arrow">自社ブランドでこの仕組みを試す →</a>
+  <div style="margin-top:36px;" class="fade">
+    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="link-pink">自社ブランドでこの仕組みを試す →</a>
   </div>
 </section>
 
@@ -507,23 +581,23 @@
     <h2>他の代理店に<em>ないもの</em>、全部入り。</h2>
   </div>
   <div class="feat-grid fade">
-    <div class="feat-item">
-      <div class="feat-badge">業界初</div>
+    <div class="feat-card">
+      <div class="feat-badge">✦ 業界初</div>
       <h3>AIプリテスト標準搭載</h3>
       <p>クリエイターに依頼する前に AI でコンセプトをテスト。「勝ちパターンを特定してから依頼する」ため、ROI のブレが大幅に減少。全プランに標準装備。</p>
     </div>
-    <div class="feat-item">
-      <div class="feat-badge">法務対応</div>
+    <div class="feat-card">
+      <div class="feat-badge">✦ 法務対応</div>
       <h3>景表法チェック自動化</h3>
       <p>#PR 表記・Instagram ブランドコンテンツツール ON・TikTok 広告トグル ON をシステムが自動確認。2023年ステマ規制を完全対応。</p>
     </div>
-    <div class="feat-item">
-      <div class="feat-badge">ROI 証明</div>
+    <div class="feat-card">
+      <div class="feat-badge">✦ ROI 証明</div>
       <h3>GA4 直結 ROI ダッシュボード</h3>
       <p>EMV（広告換算値）ではなく、GA4 で計測した UGC 経由の実売上を表示。「広告費の何倍の効果があったか」を毎月リアルな数字で証明する。</p>
     </div>
-    <div class="feat-item">
-      <div class="feat-badge">品質向上</div>
+    <div class="feat-card">
+      <div class="feat-badge">✦ 品質向上</div>
       <h3>クリエイターランキング自動更新</h3>
       <p>売上貢献率・エンゲ率・完遂率で Gold/Silver/Bronze を自動判定。上位クリエイターは報酬+30%。品質が自律的に上がり続ける仕組み。</p>
     </div>
@@ -543,7 +617,7 @@
           <th>比較項目</th>
           <th>インフルエンサー<br>マーケ会社</th>
           <th>UGCマッチング<br>プラットフォーム</th>
-          <th class="hl">KUCHIKOMI</th>
+          <th class="hl">KUCHIKOMI ✦</th>
         </tr>
       </thead>
       <tbody>
@@ -564,8 +638,8 @@
     <div class="eyebrow">Results</div>
     <h2>数字が証明する、<em>実績</em>。</h2>
   </div>
-  <div class="res-layout fade">
-    <div class="res-rows">
+  <div class="res-wrap fade">
+    <div class="res-list">
       <div class="res-row">
         <div class="res-num">573K</div>
         <div class="res-info"><h4>月次UGCインプレッション</h4><p>コスメ系ブランド。全施策インプレッションの59%をUGCが占め、公式TikTok・公式Instagramを超えた。</p></div>
@@ -580,19 +654,19 @@
       </div>
     </div>
     <div class="res-case">
-      <div class="res-case-tag">Case Study — コスメ系ブランド</div>
-      <div class="res-metrics">
-        <div class="res-metric"><div class="res-metric-num">573K</div><div class="res-metric-lbl">月次UGC imp</div></div>
-        <div class="res-metric"><div class="res-metric-num">59%</div><div class="res-metric-lbl">施策全体 imp 占有率</div></div>
-        <div class="res-metric"><div class="res-metric-num">101本</div><div class="res-metric-lbl">1ヶ月のUGC投稿数</div></div>
-        <div class="res-metric"><div class="res-metric-num">2.7x</div><div class="res-metric-lbl">フォロワー比 imp 倍率</div></div>
+      <div class="case-tag">✦ CASE STUDY — コスメ系ブランド</div>
+      <div class="case-grid">
+        <div class="case-item"><div class="case-n">573K</div><div class="case-l">月次UGC imp</div></div>
+        <div class="case-item"><div class="case-n">59%</div><div class="case-l">施策全体 imp 占有率</div></div>
+        <div class="case-item"><div class="case-n">101本</div><div class="case-l">1ヶ月のUGC投稿数</div></div>
+        <div class="case-item"><div class="case-n">2.7x</div><div class="case-l">フォロワー比 imp 倍率</div></div>
       </div>
-      <p class="res-quote">「他社製品も含めた自然なルーティーン形式で商品を取り入れており、過度な広告感を抑えた構成。視聴維持率やエンゲージメントの向上につながり、再生数の伸長に寄与した。」</p>
-      <div class="res-source">— GVA 施策レポートより（2026年3月）</div>
+      <p class="case-q">「他社製品も含めた自然なルーティーン形式で商品を取り入れており、過度な広告感を抑えた構成。視聴維持率やエンゲージメントの向上につながり、再生数の伸長に寄与した。」</p>
+      <div class="case-s">— GVA 施策レポートより（2026年3月）</div>
     </div>
   </div>
   <div style="margin-top:44px;" class="fade">
-    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="link-arrow">この効果を自社で出せるか30分で確認する →</a>
+    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="link-pink">この効果を自社で出せるか30分で確認する →</a>
   </div>
 </section>
 
@@ -627,7 +701,7 @@
     <div class="eyebrow">FAQ</div>
     <h2>よくある<em>質問</em></h2>
   </div>
-  <div class="faq-inner fade">
+  <div class="faq-wrap fade">
     <div class="faq-item">
       <button class="faq-q">AIプリテストとは何ですか？<span class="faq-ic">+</span></button>
       <div class="faq-a">AI で5〜10パターンのコンテンツを自動生成し、GVA が管理する専用テストアカウントで7日間配信します。視聴完了率・保存率・プロフィール訪問率を計測し、最も成果の出やすいコンセプトを特定してからリアルクリエイターに依頼します。</div>
@@ -662,23 +736,23 @@
     <h2>社内でやると、<em>いくらかかるか</em>。</h2>
   </div>
   <div class="cost-grid">
-    <div class="cost-card fade">
-      <div class="cost-head">社内運用コスト（月額換算）</div>
-      <div class="cost-row"><span class="cost-lbl">クリエイター選定・交渉</span><span class="cost-val">¥80,000〜</span></div>
-      <div class="cost-row"><span class="cost-lbl">投稿ディレクション・確認</span><span class="cost-val">¥120,000〜</span></div>
-      <div class="cost-row"><span class="cost-lbl">景表法確認・法務対応</span><span class="cost-val">¥30,000〜</span></div>
-      <div class="cost-row"><span class="cost-lbl">効果測定・レポート作成</span><span class="cost-val">¥50,000〜</span></div>
-      <div class="cost-row"><span class="cost-lbl">ツール・システム費用</span><span class="cost-val">¥20,000〜</span></div>
-      <div class="cost-total"><span class="cost-total-lbl">合計（人件費含む）</span><span class="cost-total-num">¥300,000〜</span></div>
+    <div class="cost-box fade">
+      <div class="cost-lbl-head">社内運用コスト（月額換算）</div>
+      <div class="cost-row"><span class="cost-k">クリエイター選定・交渉</span><span class="cost-v">¥80,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">投稿ディレクション・確認</span><span class="cost-v">¥120,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">景表法確認・法務対応</span><span class="cost-v">¥30,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">効果測定・レポート作成</span><span class="cost-v">¥50,000〜</span></div>
+      <div class="cost-row"><span class="cost-k">ツール・システム費用</span><span class="cost-v">¥20,000〜</span></div>
+      <div class="cost-total"><span class="cost-tl">合計（人件費含む）</span><span class="cost-tn">¥300,000〜</span></div>
     </div>
-    <div class="cost-card featured fade">
-      <div class="cost-head featured">KUCHIKOMI Starter プラン</div>
-      <div class="cost-row"><span class="cost-lbl">全工程（選定〜レポートまで）</span><span class="cost-val terra">丸投げ</span></div>
-      <div class="cost-row"><span class="cost-lbl">AIプリテスト</span><span class="cost-val terra">標準搭載</span></div>
-      <div class="cost-row"><span class="cost-lbl">景表法チェック</span><span class="cost-val terra">完全自動化</span></div>
-      <div class="cost-row"><span class="cost-lbl">GA4連携ROIダッシュボード</span><span class="cost-val terra">毎月提出</span></div>
-      <div class="cost-row"><span class="cost-lbl">インプレッション保証</span><span class="cost-val terra">50万imp/月</span></div>
-      <div class="cost-total"><span class="cost-total-lbl">月額</span><span class="cost-total-num terra">¥350,000</span></div>
+    <div class="cost-box pop fade">
+      <div class="cost-lbl-head pk">KUCHIKOMI Starter プラン</div>
+      <div class="cost-row"><span class="cost-k">全工程（選定〜レポートまで）</span><span class="cost-v pk">丸投げ ✓</span></div>
+      <div class="cost-row"><span class="cost-k">AIプリテスト</span><span class="cost-v pk">標準搭載 ✓</span></div>
+      <div class="cost-row"><span class="cost-k">景表法チェック</span><span class="cost-v pk">完全自動化 ✓</span></div>
+      <div class="cost-row"><span class="cost-k">GA4連携ROIダッシュボード</span><span class="cost-v pk">毎月提出 ✓</span></div>
+      <div class="cost-row"><span class="cost-k">インプレッション保証</span><span class="cost-v pk">50万imp/月 ✓</span></div>
+      <div class="cost-total"><span class="cost-tl">月額</span><span class="cost-tn pk">¥350,000</span></div>
     </div>
   </div>
 </section>
@@ -691,11 +765,11 @@
   </div>
   <div class="price-grid fade">
     <div class="price-card">
-      <div class="price-tier">Starter</div>
+      <div class="price-tier">✦ Starter</div>
       <div class="price-num">¥350,000<span>/月</span></div>
       <div class="price-desc">クリエイター50名 / 50万imp保証</div>
       <div class="price-hr"></div>
-      <ul class="price-items">
+      <ul class="price-list">
         <li>50名クリエイターアサイン</li>
         <li>Instagram / X / TikTok 対応</li>
         <li>AIプリテスト（5パターン）</li>
@@ -703,15 +777,15 @@
         <li>ROIダッシュボード（GA4）</li>
         <li>月次レポーティング</li>
       </ul>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="price-cta">まず30分、話を聞いてみる</a>
+      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="price-btn">まず30分、話を聞いてみる</a>
     </div>
-    <div class="price-card featured">
-      <div class="feat-mark">人気プラン</div>
-      <div class="price-tier">Growth</div>
+    <div class="price-card pop">
+      <div class="pop-badge">✦ 人気No.1</div>
+      <div class="price-tier">✦ Growth</div>
       <div class="price-num">¥550,000<span>/月</span></div>
       <div class="price-desc">クリエイター100名 / 120万imp保証</div>
       <div class="price-hr"></div>
-      <ul class="price-items">
+      <ul class="price-list">
         <li>100名クリエイターアサイン</li>
         <li>Instagram / X / TikTok 対応</li>
         <li>AIプリテスト（10パターン）</li>
@@ -720,14 +794,14 @@
         <li>媒体比率の月次調整</li>
         <li>クリエイターランキング管理</li>
       </ul>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="price-cta">KUCHIKOMIが合うか確認する</a>
+      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="price-btn">KUCHIKOMIが合うか確認する</a>
     </div>
     <div class="price-card">
-      <div class="price-tier">Scale</div>
+      <div class="price-tier">✦ Scale</div>
       <div class="price-num">¥850,000<span>/月</span></div>
       <div class="price-desc">クリエイター150名 / 250万imp保証</div>
       <div class="price-hr"></div>
-      <ul class="price-items">
+      <ul class="price-list">
         <li>150名クリエイターアサイン</li>
         <li>Instagram / X / TikTok 対応</li>
         <li>AIプリテスト（無制限）</li>
@@ -737,7 +811,7 @@
         <li>クリエイターランキング + AI改善</li>
         <li>競合クリエイター独占オプション</li>
       </ul>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="price-cta">専任担当に相談する</a>
+      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="price-btn">専任担当に相談する</a>
     </div>
   </div>
   <p class="price-foot">
@@ -753,42 +827,42 @@
     <h2>相談から<em>投稿開始</em>まで。</h2>
   </div>
   <div class="flow-list fade">
-    <div class="flow-item">
-      <div class="flow-circle">1</div>
+    <div class="flow-row">
+      <div class="flow-dot">1</div>
       <div class="flow-body">
-        <span class="flow-time">Day 1</span>
+        <span class="flow-t">Day 1</span>
         <h4>30分・無料オンライン診断</h4>
         <p>現在の施策・課題・目標をヒアリング。最適なプランをその場でご提案。合わないと判断した場合は正直にお伝えします。</p>
       </div>
     </div>
-    <div class="flow-item">
-      <div class="flow-circle">2</div>
+    <div class="flow-row">
+      <div class="flow-dot">2</div>
       <div class="flow-body">
-        <span class="flow-time">Week 1</span>
+        <span class="flow-t">Week 1</span>
         <h4>契約 &amp; クリエイター選定</h4>
         <p>ブランドブリーフを共有いただき、500名 DB から最適なクリエイターを選定。ギフティング用の住所リストをまとめてお渡しします。</p>
       </div>
     </div>
-    <div class="flow-item">
-      <div class="flow-circle">3</div>
+    <div class="flow-row">
+      <div class="flow-dot">3</div>
       <div class="flow-body">
-        <span class="flow-time">Week 2</span>
+        <span class="flow-t">Week 2</span>
         <h4>AIプリテスト（7日間）</h4>
         <p>AI で5パターン生成 → 専用テストアカウントで7日間計測 → 勝ちコンセプト確定 → クリエイターへ依頼。</p>
       </div>
     </div>
-    <div class="flow-item">
-      <div class="flow-circle">4</div>
+    <div class="flow-row">
+      <div class="flow-dot">4</div>
       <div class="flow-body">
-        <span class="flow-time">Week 3〜4</span>
+        <span class="flow-t">Week 3〜4</span>
         <h4>投稿開始 &amp; 景表法チェック</h4>
         <p>クリエイターが投稿前にスクリーンショットを提出。景表法チェック通過後に公開。ROI ダッシュボードでリアルタイム計測を開始。</p>
       </div>
     </div>
-    <div class="flow-item">
-      <div class="flow-circle">5</div>
+    <div class="flow-row">
+      <div class="flow-dot">5</div>
       <div class="flow-body">
-        <span class="flow-time">Month 1〜</span>
+        <span class="flow-t">Month 1〜</span>
         <h4>毎月のROIレポート &amp; 継続改善</h4>
         <p>UGC 経由の実売上を GA4 で集計し毎月レポート提出。口コミが月を追うごとに精度が上がります。</p>
       </div>
@@ -797,20 +871,19 @@
 </section>
 
 <!-- CTA FINAL -->
-<section class="cta-section" id="contact">
-  <div class="eyebrow" style="justify-content:center;">Contact</div>
-  <h2>まず、30分だけ<br><em>話しましょう</em>。</h2>
+<section class="cta-final" id="contact">
+  <h2>まず、30分だけ<br>話しましょう ✦</h2>
   <p>費用・クリエイター選定・景表法対応まで、何でも聞いてください。合わないと思ったら、正直にお伝えします。</p>
   <div class="cta-row">
-    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-dark">30分・無料診断を予約する →</a>
-    <a href="#" class="btn-line" onclick="alert('準備中です。'); return false;">資料を受け取る（PDF）</a>
+    <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-white">30分・無料診断を予約する →</a>
+    <a href="#" class="btn-outline-w" onclick="alert('準備中です。上のボタンからご相談ください。'); return false;">資料を受け取る（PDF）</a>
   </div>
   <div class="cta-assure">✓ 費用なし　✓ 翌月からキャンセル可　✓ 強引な営業一切なし</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">KUCHI<em>KOMI</em><span style="font-family:'DM Sans',sans-serif; font-size:0.7rem; font-weight:400; color:rgba(255,255,255,0.3); margin-left:10px; letter-spacing:0.04em;">by GOOD VIBES AGENCY</span></div>
+  <div class="footer-logo">✦ KUCHIKOMI<span style="font-family:'DM Sans',sans-serif; font-size:0.7rem; font-weight:500; color:rgba(255,255,255,0.3); margin-left:10px; -webkit-text-fill-color:rgba(255,255,255,0.3);">by GOOD VIBES AGENCY</span></div>
   <p>© 2026 GOOD VIBES AGENCY. All rights reserved.</p>
 </footer>
 
@@ -819,7 +892,6 @@
     const h = document.documentElement;
     document.getElementById('progress').style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
   });
-
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item'), open = item.classList.contains('open');
@@ -827,10 +899,8 @@
       if (!open) item.classList.add('open');
     });
   });
-
   const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
   document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-
   function countUp(el) {
     const t = parseFloat(el.dataset.count), s = el.dataset.suffix || '', f = t % 1 !== 0;
     const dur = 1800, st = performance.now();
@@ -841,11 +911,8 @@
     };
     requestAnimationFrame(tick);
   }
-  const sObs = new IntersectionObserver(e => e.forEach(x => {
-    if (x.isIntersecting && x.target.dataset.count) { countUp(x.target); sObs.unobserve(x.target); }
-  }), { threshold: 0.5 });
+  const sObs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting && x.target.dataset.count) { countUp(x.target); sObs.unobserve(x.target); } }), { threshold: 0.5 });
   document.querySelectorAll('[data-count]').forEach(el => sObs.observe(el));
-
   const hero = document.getElementById('hero-section'), bar = document.getElementById('sticky-bar');
   let closed = false;
   document.getElementById('s-close').addEventListener('click', () => { closed = true; bar.style.display = 'none'; });
