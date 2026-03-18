@@ -551,30 +551,35 @@ body{
 
 /* ── FEAT CAROUSEL ── */
 .fcar-wrap{
-  display:flex;gap:14px;
+  display:flex;gap:0;
   overflow-x:scroll;overflow-y:hidden;
   scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
   scrollbar-width:none;
-  padding:4px 20px 16px;
+  padding:0;
   -webkit-overflow-scrolling:touch;
   margin:0 -24px;
   flex:1;
 }
 .fcar-wrap::-webkit-scrollbar{display:none}
-.fcar{
-  flex-shrink:0;width:78vw;
+.fcar-page{
+  flex-shrink:0;
+  width:calc(100vw - 48px);
   scroll-snap-align:start;scroll-snap-stop:always;
-  background:rgba(255,255,255,.06);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:0 24px;
+}
+.fcar{
+  background:rgba(255,255,255,.07);
   border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;padding:20px 18px;
+  border-radius:16px;padding:16px 14px;
   backdrop-filter:blur(8px);
-  min-height:100%;
   display:flex;flex-direction:column;
 }
-.fcar-badge{display:inline-block;font-size:.62rem;font-weight:700;color:var(--pk2);background:rgba(255,31,106,.12);border:1px solid rgba(255,31,106,.25);border-radius:100px;padding:4px 12px;font-family:'DM Sans',sans-serif;margin-bottom:10px}
-.fcar-title{font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:10px}
-.fcar-desc{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.6;font-family:'DM Sans',sans-serif}
+.fcar-badge{display:inline-block;font-size:.58rem;font-weight:700;color:var(--pk2);background:rgba(255,31,106,.12);border:1px solid rgba(255,31,106,.25);border-radius:100px;padding:3px 10px;font-family:'DM Sans',sans-serif;margin-bottom:8px}
+.fcar-title{font-size:.96rem;font-weight:800;color:#fff;margin-bottom:8px}
+.fcar-desc{font-size:.74rem;color:rgba(255,255,255,.6);line-height:1.5;font-family:'DM Sans',sans-serif;flex:1}
 
 /* ── HOW / FEAT スライド: 余白ゼロ対策 ── */
 .s-how-all .sc,
@@ -760,25 +765,31 @@ body{
     <div class="feat-ey" data-a data-d="1">Features</div>
     <h2 class="feat-h2" data-a data-d="2">他の代理店に<em>ないもの</em>、全部入り。</h2>
     <div class="fcar-wrap">
-      <div class="fcar">
-        <div class="fcar-badge">✦ 業界初</div>
-        <div class="fcar-title">AIプリテスト</div>
-        <div class="fcar-desc">クリエイターに依頼する前に、AIで5パターンのコンテンツを自動生成。GVA専用アカウントで7日間配信して視聴完了率・保存率を計測。公開前に「当たる前提」を作る業界初のアプローチ。</div>
+      <!-- Page 1: AIプリテスト + 景表法 -->
+      <div class="fcar-page">
+        <div class="fcar">
+          <div class="fcar-badge">✦ 業界初</div>
+          <div class="fcar-title">AIプリテスト</div>
+          <div class="fcar-desc">公開前にAIで5パターンをテスト。データで「当たる前提」を作る業界初のアプローチ。</div>
+        </div>
+        <div class="fcar">
+          <div class="fcar-badge">✦ 法務</div>
+          <div class="fcar-title">景表法自動化</div>
+          <div class="fcar-desc">#PR表記・ブランドコンテンツをシステムが自動確認。法的リスクをゼロに。</div>
+        </div>
       </div>
-      <div class="fcar">
-        <div class="fcar-badge">✦ 法務</div>
-        <div class="fcar-title">景表法自動化</div>
-        <div class="fcar-desc">#PR表記・ブランドコンテンツツール・広告トグルをシステムが自動確認。担当者の手動チェックをゼロにし、法的リスクを完全排除。</div>
-      </div>
-      <div class="fcar">
-        <div class="fcar-badge">✦ ROI</div>
-        <div class="fcar-title">実売上証明</div>
-        <div class="fcar-desc">GA4直結でUGC経由のセッション・CV・売上を自動集計。EMVではなく実購買データで毎月レポートを提出。社内稟議に使える数字を継続的に提供。</div>
-      </div>
-      <div class="fcar">
-        <div class="fcar-badge">✦ 品質</div>
-        <div class="fcar-title">ランキング管理</div>
-        <div class="fcar-desc">クリエイターをGold/Silver/Bronzeで自動ランキング。パフォーマンスが高いクリエイターが自動的に優先アサインされ、品質が自律的に上昇し続ける。</div>
+      <!-- Page 2: 実売上 + ランキング -->
+      <div class="fcar-page">
+        <div class="fcar">
+          <div class="fcar-badge">✦ ROI</div>
+          <div class="fcar-title">実売上証明</div>
+          <div class="fcar-desc">GA4直結でUGC経由の実購買データを毎月レポート。社内稟議に使える数字を提供。</div>
+        </div>
+        <div class="fcar">
+          <div class="fcar-badge">✦ 品質</div>
+          <div class="fcar-title">ランキング管理</div>
+          <div class="fcar-desc">Gold/Silver/Bronzeで自動判定。成果の高いクリエイターが優先アサインされ続ける。</div>
+        </div>
       </div>
     </div>
   </div>
