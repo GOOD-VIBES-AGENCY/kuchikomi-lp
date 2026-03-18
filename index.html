@@ -454,6 +454,8 @@ body{
   padding:20px 18px;
   backdrop-filter:blur(10px);
   position:relative;
+  display:flex;
+  flex-direction:column;
 }
 .pcar-hot{
   background:linear-gradient(160deg,rgba(255,31,106,.18) 0%,rgba(155,18,69,.12) 100%);
@@ -473,7 +475,7 @@ body{
 .pcar-price span{font-size:.3em;color:rgba(255,255,255,.45);font-family:'DM Sans',sans-serif;font-weight:400;vertical-align:top;margin-top:.6em;display:inline-block;margin-left:3px}
 .pcar-sub{font-size:.68rem;color:rgba(255,255,255,.4);font-family:'DM Sans',sans-serif;margin-bottom:12px}
 .pcar-hr{border:none;border-top:1px solid rgba(255,255,255,.1);margin-bottom:12px}
-.pcar-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.pcar-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px;flex:1}
 .pcar-list li{font-size:.82rem;color:rgba(255,255,255,.8);font-family:'DM Sans',sans-serif;padding-left:18px;position:relative}
 .pcar-list li::before{content:'✓';position:absolute;left:0;color:var(--pk2);font-weight:900;font-size:.7rem}
 .pcar-hot .pcar-list li::before{color:var(--pk)}
