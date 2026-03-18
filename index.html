@@ -140,17 +140,13 @@ body{
 
 /* ── ANIMATIONS ── */
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-/* transition方式アニメ — 確実で滑らか */
-[data-a]{
-  opacity:0;transform:translateY(16px);
-  transition:opacity .5s ease, transform .5s ease;
-}
-.slide.active [data-a]{opacity:1;transform:none}
-.slide.active [data-a][data-d="1"]{transition-delay:.06s}
-.slide.active [data-a][data-d="2"]{transition-delay:.15s}
-.slide.active [data-a][data-d="3"]{transition-delay:.26s}
-.slide.active [data-a][data-d="4"]{transition-delay:.38s}
-.slide.active [data-a][data-d="5"]{transition-delay:.52s}
+/* フェードのみ — 横スワイプLPに自然 */
+[data-a]{opacity:0;transition:opacity .28s ease}
+.slide.active [data-a]{opacity:1}
+.slide.active [data-a][data-d="2"]{transition-delay:.06s}
+.slide.active [data-a][data-d="3"]{transition-delay:.12s}
+.slide.active [data-a][data-d="4"]{transition-delay:.18s}
+.slide.active [data-a][data-d="5"]{transition-delay:.24s}
 
 /* ━━━━━━━━━━━━━━━━━━━━
    S1 — COVER (DARK)
@@ -652,24 +648,30 @@ function setActive(idx){
   curIdx=idx;
 }
 
-// IntersectionObserver — スライドが75%以上見えたらactive
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting&&e.intersectionRatio>=0.75){
-      const idx=slides.indexOf(e.target);
-      // アニメーション：未activeのみ付与
-      if(!e.target.classList.contains('active')){
-        e.target.classList.add('active');
-      }
-      setActive(idx);
-      // count up (stats slide)
-      if(idx===1){
-        document.querySelectorAll('[data-count]').forEach(el=>{if(!el._done){el._done=true;countUp(el);}});
-      }
-    }
-  });
-},{threshold:0.75,root:swiper});
-slides.forEach(s=>obs.observe(s));
+// アクティブスライドを確定して反映
+function activateSlide(idx){
+  if(idx===curIdx)return;
+  slides[idx].classList.add('active');
+  setActive(idx);
+  if(idx===1){
+    document.querySelectorAll('[data-count]').forEach(el=>{if(!el._done){el._done=true;countUp(el);}});
+  }
+}
+
+// scrollend (Chrome114+/Safari17.4+) + debounceフォールバック
+let scrollT;
+function onScrollDone(){
+  const idx=Math.round(swiper.scrollLeft/window.innerWidth);
+  activateSlide(idx);
+}
+if('onscrollend' in swiper){
+  swiper.addEventListener('scrollend',onScrollDone,{passive:true});
+}
+// フォールバック（常時使用、scrollend非対応環境も含む）
+swiper.addEventListener('scroll',()=>{
+  clearTimeout(scrollT);
+  scrollT=setTimeout(onScrollDone,80);
+},{passive:true});
 
 // GO FUNCTION
 window.go=function(dir){
@@ -693,7 +695,7 @@ swiper.addEventListener('wheel',e=>{
   setTimeout(()=>wheeling=false,600);
 },{passive:false});
 
-// INIT — hero is already active in HTML
+// INIT
 setActive(0);
 
 // ── COUNT UP ──
