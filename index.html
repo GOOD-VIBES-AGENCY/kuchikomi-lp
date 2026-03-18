@@ -139,15 +139,18 @@ body{
 }
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-.slide.active [data-a]{animation:fadeUp .6s ease both}
-.slide.active [data-a][data-d="1"]{animation-delay:.1s}
-.slide.active [data-a][data-d="2"]{animation-delay:.22s}
-.slide.active [data-a][data-d="3"]{animation-delay:.36s}
-.slide.active [data-a][data-d="4"]{animation-delay:.52s}
-.slide.active [data-a][data-d="5"]{animation-delay:.68s}
+/* transition方式アニメ — 確実で滑らか */
+[data-a]{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .5s ease, transform .5s ease;
+}
+.slide.active [data-a]{opacity:1;transform:none}
+.slide.active [data-a][data-d="1"]{transition-delay:.06s}
+.slide.active [data-a][data-d="2"]{transition-delay:.15s}
+.slide.active [data-a][data-d="3"]{transition-delay:.26s}
+.slide.active [data-a][data-d="4"]{transition-delay:.38s}
+.slide.active [data-a][data-d="5"]{transition-delay:.52s}
 
 /* ━━━━━━━━━━━━━━━━━━━━
    S1 — COVER (DARK)
@@ -625,7 +628,7 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur2.style.t
 const swiper=document.getElementById('swiper');
 const slides=[...document.querySelectorAll('.slide')];
 const TOTAL=slides.length;
-let curIdx=0;let _raf=null;
+let curIdx=0;
 
 // BUILD PROGRESS BARS
 const pw=document.getElementById('prog-wrap');
@@ -635,40 +638,43 @@ slides.forEach((_,i)=>{
   seg.appendChild(fill);pw.appendChild(seg);
 });
 
-function updateUI(idx){
-  // progress
+function setActive(idx){
+  // progress bars
   document.querySelectorAll('.pb-seg').forEach((s,i)=>{
     s.className='pb-seg'+(i<idx?' done':i===idx?' active':'');
   });
   // counter
   document.getElementById('cur-n').textContent=String(idx+1).padStart(2,'0');
   document.getElementById('tot-n').textContent=String(TOTAL).padStart(2,'0');
-  // activate slide
-  slides.forEach((s,i)=>{
-    if(i===idx)s.classList.add('active');
-  });
-  // count up
-  if(idx===1){
-    document.querySelectorAll('[data-count]').forEach(el=>{if(!el._done){el._done=true;countUp(el);}});
-  }
+  // arrows visibility
+  document.getElementById('btn-prev').style.opacity=idx===0?'0':'1';
+  document.getElementById('btn-next').style.opacity=idx===TOTAL-1?'0':'1';
   curIdx=idx;
 }
 
-// SCROLL LISTENER
-let scrollTimer;
-swiper.addEventListener('scroll',()=>{
-  clearTimeout(scrollTimer);
-  scrollTimer=setTimeout(()=>{
-    const idx=Math.round(swiper.scrollLeft/window.innerWidth);
-    if(idx!==curIdx)updateUI(idx);
-  },60);
-},{passive:true});
+// IntersectionObserver — スライドが75%以上見えたらactive
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>=0.75){
+      const idx=slides.indexOf(e.target);
+      // アニメーション：未activeのみ付与
+      if(!e.target.classList.contains('active')){
+        e.target.classList.add('active');
+      }
+      setActive(idx);
+      // count up (stats slide)
+      if(idx===1){
+        document.querySelectorAll('[data-count]').forEach(el=>{if(!el._done){el._done=true;countUp(el);}});
+      }
+    }
+  });
+},{threshold:0.75,root:swiper});
+slides.forEach(s=>obs.observe(s));
 
 // GO FUNCTION
 window.go=function(dir){
   const next=Math.max(0,Math.min(TOTAL-1,curIdx+dir));
   swiper.scrollTo({left:next*window.innerWidth,behavior:'smooth'});
-  updateUI(next);
 };
 
 // KEYBOARD
@@ -677,15 +683,18 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
 });
 
-// MOUSE WHEEL → HORIZONTAL SCROLL
+// MOUSE WHEEL → 1スライドずつ移動
+let wheeling=false;
 swiper.addEventListener('wheel',e=>{
   e.preventDefault();
-  const dir=Math.sign(e.deltaY||e.deltaX);
-  go(dir);
+  if(wheeling)return;
+  wheeling=true;
+  go(Math.sign(e.deltaY||e.deltaX));
+  setTimeout(()=>wheeling=false,600);
 },{passive:false});
 
-// INIT
-updateUI(0);
+// INIT — hero is already active in HTML
+setActive(0);
 
 // ── COUNT UP ──
 function countUp(el){
