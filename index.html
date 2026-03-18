@@ -131,11 +131,12 @@ body{
 }
 /* PC: スライド幅を最大480pxに制限して中央寄せ */
 @media(min-width:769px){
-  .sc{max-width:560px;}
+  .sc{max-width:540px;}
   .cover-h1{font-size:clamp(2.2rem,5.5vw,3.2rem);}
+  body{background:#000;}
 }
 .sc{
-  width:100%;
+  width:100%;max-width:540px;margin:0 auto;
   padding:calc(52px + env(safe-area-inset-top,0px)) 24px calc(80px + env(safe-area-inset-bottom,0px));
   position:relative;z-index:2;
 }
@@ -590,6 +591,23 @@ body{
   flex-direction:column;
 }
 .s-feat{align-items:stretch}
+
+/* ── PC: スマホUIとして中央表示 ── */
+@media(min-width:769px){
+  #swiper{justify-content:center}
+  .slide{max-width:480px;margin:0 auto}
+  body::before,body::after{
+    content:'';position:fixed;top:0;bottom:0;
+    background:#000;z-index:100;pointer-events:none;
+  }
+  body::before{left:0;right:calc(50% + 240px)}
+  body::after{left:calc(50% + 240px);right:0}
+  #prog-wrap,#logo,#slide-count,#bottom-cta{
+    max-width:480px;left:50%;transform:translateX(-50%);
+  }
+  #btn-prev{left:calc(50% - 280px)}
+  #btn-next{right:calc(50% - 280px)}
+}
 </style>
 </head>
 <body>
@@ -625,7 +643,6 @@ body{
 <!-- ■ S1: COVER -->
 <section class="slide s-cover active" id="s0">
   <div class="glow-pk"></div>
-  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5632399/pexels-photo-5632399.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.18"></div>
   <div class="bgt" style="bottom:-8vw;left:-2vw">KUCHIKOMI</div>
   <div class="sc">
     <div class="cover-tag">UGC口コミ施策 × AI × 月額定額</div>
@@ -633,11 +650,11 @@ body{
       <span class="cover-small">バズらせるより、</span>
       <span class="cover-em">売れる口コミ</span><br>を設計する。
     </h1>
-    <p class="cover-sub">月額で、573K imp分の「買いたくなる文脈」を、<br><strong>設計・運用・改善まで全部おまかせ。</strong></p>
+    <p class="cover-sub">月額で、口コミから<strong>実購買につながる仕組み</strong>を、<br>設計・運用・改善まで全部おまかせ。</p>
     <div class="cover-nums">
-      <div class="cnum"><span class="cn-v">573K</span><span class="cn-l">口コミ接触数/月</span></div>
+      <div class="cnum"><span class="cn-v">573K</span><span class="cn-l">購買層への月間リーチ</span></div>
       <div class="cnum"><span class="cn-v">500名</span><span class="cn-l">実績DB</span></div>
-      <div class="cnum"><span class="cn-v">2.7倍</span><span class="cn-l">広告比購買率</span></div>
+      <div class="cnum"><span class="cn-v">2.7倍</span><span class="cn-l">広告比 実購買転換</span></div>
     </div>
     <div class="cover-ctas">
       <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pk">30分・無料診断 ✦</a>
@@ -653,9 +670,9 @@ body{
   <div class="sc">
     <div class="stats-ey" data-a data-d="1">口コミが購買を動かす — 実績データ</div>
     <div class="stats-grid">
-      <div class="st-item" data-a data-d="2"><div class="st-num gd" data-count="573623">0</div><div class="st-lbl">口コミ接触数<br>（購買検討層へのリーチ）</div></div>
+      <div class="st-item" data-a data-d="2"><div class="st-num gd" data-count="573623">0</div><div class="st-lbl">購買層への<br>月間リーチ数</div></div>
       <div class="st-item" data-a data-d="3"><div class="st-num pk" data-count="101" data-suffix="本">0</div><div class="st-lbl">1ヶ月の<br>UGC投稿数</div></div>
-      <div class="st-item" data-a data-d="3"><div class="st-num gd" data-count="2.7" data-suffix="倍">0</div><div class="st-lbl">広告比<br>口コミ購買転換率</div></div>
+      <div class="st-item" data-a data-d="3"><div class="st-num gd" data-count="2.7" data-suffix="倍">0</div><div class="st-lbl">広告比<br>実購買転換率</div></div>
       <div class="st-item" data-a data-d="4"><div class="st-num pk" data-count="500" data-suffix="名">0</div><div class="st-lbl">実購買データ付き<br>クリエイター</div></div>
     </div>
     <div class="ugc-box" data-a data-d="5">
@@ -683,7 +700,7 @@ body{
 
 <!-- ■ S4: COST -->
 <section class="slide s-cost" id="s3">
-  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/5632398/pexels-photo-5632398.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.12"></div>
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3184299/pexels-photo-3184299.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.12"></div>
   <div class="bgt" style="bottom:-4vw;right:-3vw">¥600K</div>
   <div class="sc">
     <div class="cost-ey" data-a data-d="1">Cost Breakdown</div>
@@ -891,7 +908,7 @@ body{
 
 <!-- ■ S12: CTA -->
 <section class="slide s-cta" id="s11">
-  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.18"></div>
+  <div class="slide-bg" style="background-image:url('https://images.pexels.com/photos/3762875/pexels-photo-3762875.jpeg?auto=compress&cs=tinysrgb&w=800');opacity:.18"></div>
   <div class="cta-bgt">KUCHIKOMI</div>
   <div class="cta-in sc" style="text-align:center">
     <div style="font-size:.62rem;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:16px;font-family:'DM Sans',sans-serif" data-a data-d="1">✦ Contact</div>
