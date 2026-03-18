@@ -130,11 +130,7 @@ body{
   display:flex;align-items:center;justify-content:center;
 }
 /* PC: スライド幅を最大480pxに制限して中央寄せ */
-@media(min-width:769px){
-  .sc{max-width:540px;}
-  .cover-h1{font-size:clamp(2.2rem,5.5vw,3.2rem);}
-  body{background:#000;}
-}
+
 .sc{
   width:100%;max-width:540px;margin:0 auto;
   padding:calc(52px + env(safe-area-inset-top,0px)) 24px calc(80px + env(safe-area-inset-bottom,0px));
@@ -592,21 +588,11 @@ body{
 }
 .s-feat{align-items:stretch}
 
-/* ── PC: スマホUIとして中央表示 ── */
+/* ── PC: コンテンツ中央寄せ（スライドは100vw維持） ── */
 @media(min-width:769px){
-  #swiper{justify-content:center}
-  .slide{max-width:480px;margin:0 auto}
-  body::before,body::after{
-    content:'';position:fixed;top:0;bottom:0;
-    background:#000;z-index:100;pointer-events:none;
-  }
-  body::before{left:0;right:calc(50% + 240px)}
-  body::after{left:calc(50% + 240px);right:0}
-  #prog-wrap,#logo,#slide-count,#bottom-cta{
-    max-width:480px;left:50%;transform:translateX(-50%);
-  }
-  #btn-prev{left:calc(50% - 280px)}
-  #btn-next{right:calc(50% - 280px)}
+  .sc{max-width:480px;margin:0 auto}
+  body{background:#111}
+  .cover-h1{font-size:clamp(2.2rem,4vw,3rem)}
 }
 </style>
 </head>
