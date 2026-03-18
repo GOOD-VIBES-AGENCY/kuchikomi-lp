@@ -73,20 +73,20 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;
 }
-/* コンテンツエリア: ヘッダー下から始まり、フッターまで */
+/* コンテンツエリア: ヘッダー直下からスタート */
 .sc{
   flex:1;
   display:flex;flex-direction:column;
   justify-content:flex-start;
-  padding:calc(var(--head-h) + env(safe-area-inset-top,0px)) 20px calc(var(--foot-h) + env(safe-area-inset-bottom,0px));
+  padding:calc(var(--head-h) + env(safe-area-inset-top,0px) + 6px) 20px calc(var(--foot-h) + env(safe-area-inset-bottom,0px));
   overflow:hidden;
   position:relative;z-index:2;
 }
-/* コンテンツを垂直中央に近づけるためのスペーサー */
+/* コンテンツ内部: flex-start（上から詰める） */
 .sc-inner{
   flex:1;
   display:flex;flex-direction:column;
-  justify-content:center;
+  justify-content:flex-start;
 }
 
 /* 共通 */
