@@ -85,9 +85,11 @@ nav.dark .nav-links a{color:rgba(255,255,255,.5)}
 
 /* ── MAIN SCROLLER ── */
 #scroller{
-  position:fixed;inset:0;overflow-y:scroll;
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  overflow-y:scroll;
   scroll-snap-type:y mandatory;
   scrollbar-width:none;
+  z-index:5;
 }
 #scroller::-webkit-scrollbar{display:none}
 
@@ -527,9 +529,9 @@ nav.dark .nav-links a{color:rgba(255,255,255,.5)}
 .cta-down{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.35);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-family:'DM Sans',sans-serif;cursor:pointer;z-index:3}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FAQ (outside scroller)
+   FAQ (inside scroller, last)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#faq-section{background:var(--pk-bg);padding:72px 48px;position:relative;z-index:1}
+#faq-section{background:var(--pk-bg);padding:80px 48px 48px;position:relative;scroll-snap-align:start;min-height:100dvh}
 #faq-section .ey{color:var(--pk)}
 .faq-h2{font-size:clamp(1.9rem,3.5vw,2.6rem);color:var(--ink);font-weight:900;margin-bottom:28px}
 .faq-h2 em{font-style:normal;color:var(--pk)}
@@ -543,7 +545,7 @@ nav.dark .nav-links a{color:rgba(255,255,255,.5)}
 .fi.open .fa{max-height:280px;padding-bottom:16px}
 
 /* FOOTER */
-footer{background:var(--ink);padding:32px 48px;display:flex;justify-content:space-between;align-items:center}
+footer{background:var(--ink);padding:32px 48px;display:flex;justify-content:space-between;align-items:center;margin-top:auto}
 .fl{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.12em;background:linear-gradient(135deg,var(--pk),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 footer p{font-size:.7rem;color:rgba(255,255,255,.25);font-family:'DM Sans',sans-serif}
 
@@ -620,13 +622,14 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.25);font-family:'DM Sans',sans-
   <div class="idot" data-i="6" onclick="goSlide(6)"></div>
   <div class="idot" data-i="7" onclick="goSlide(7)"></div>
   <div class="idot" data-i="8" onclick="goSlide(8)"></div>
+  <div class="idot" data-i="9" onclick="goSlide(9)"></div>
 </div>
 
 <!-- SLIDE COUNTER -->
 <div id="counter" class="dark-text">
   <span id="cur-num">01</span>
   <span style="color:rgba(255,255,255,.2);margin:0 3px">/</span>
-  <span>09</span>
+  <span>10</span>
 </div>
 
 <!-- STICKY MOBILE -->
@@ -898,28 +901,29 @@ footer p{font-size:.7rem;color:rgba(255,255,255,.25);font-family:'DM Sans',sans-
     </div>
     <div class="cta-assure" data-anim="up" data-delay="5">✓ 費用なし　✓ 翌月からキャンセル可　✓ 強引な営業一切なし</div>
   </div>
-  <div class="cta-down" onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'})">↓ FAQ を読む</div>
+  <div class="cta-down" onclick="goSlide(9)">↓ FAQ を読む</div>
+</section>
+
+<!-- ■■■ SLIDE 9: FAQ + FOOTER ■■■ -->
+<section id="faq-section" style="display:flex;flex-direction:column">
+  <div style="flex:1;padding:80px 48px 40px">
+    <div class="ey">FAQ</div>
+    <h2 class="faq-h2">よくある<em>質問</em></h2>
+    <div class="fw">
+      <div class="fi"><button class="fq">AIプリテストとは何ですか？<span class="fic">+</span></button><div class="fa">AIで5〜10パターンのコンテンツを自動生成し、GVAが管理する専用テストアカウントで7日間配信します。視聴完了率・保存率・プロフィール訪問率を計測し、最も成果の出やすいコンセプトを特定してからリアルクリエイターに依頼します。</div></div>
+      <div class="fi"><button class="fq">まず1〜2ヶ月だけ試すことはできますか？<span class="fic">+</span></button><div class="fa">残念ながら、1〜2ヶ月では口コミの定着効果が数値として現れる前に終了してしまいます。無料相談では過去の月別成果推移データをお見せしています。</div></div>
+      <div class="fi"><button class="fq">景表法（ステマ規制）への対応は？<span class="fic">+</span></button><div class="fa">#PR表記の確認はもちろん、InstagramのブランドコンテンツツールON確認、TikTokの広告コンテンツトグルON確認もシステムに組み込んでいます。投稿前スクショをOCRで自動チェックするため、法的リスクをゼロにします。</div></div>
+      <div class="fi"><button class="fq">ROIはどうやって証明しますか？<span class="fic">+</span></button><div class="fa">クリエイターの投稿にユニークUTMリンクを付与し、GA4でUGC経由のセッション・CV・売上を自動集計します。EMVではなく実際の購買データで証明するため、毎月の社内稟議・レポートに使える数字を提供できます。</div></div>
+      <div class="fi"><button class="fq">ギフティング費用はどう計算すれば？<span class="fic">+</span></button><div class="fa">月額費用にギフティング商品代は含まれません。商品提供分は実費・明細付きで別途ご請求します。平均的には月¥30,000〜¥80,000（商品単価・PR人数による）を目安にお考えください。</div></div>
+    </div>
+  </div>
+  <footer>
+    <div class="fl">✦ KUCHIKOMI</div>
+    <p>© 2026 GOOD VIBES AGENCY. All rights reserved.</p>
+  </footer>
 </section>
 
 </div><!-- /scroller -->
-
-<!-- FAQ (outside scroller) -->
-<section id="faq-section">
-  <div class="ey fd">FAQ</div>
-  <h2 class="faq-h2 fd">よくある<em>質問</em></h2>
-  <div class="fw fd">
-    <div class="fi"><button class="fq">AIプリテストとは何ですか？<span class="fic">+</span></button><div class="fa">AIで5〜10パターンのコンテンツを自動生成し、GVAが管理する専用テストアカウントで7日間配信します。視聴完了率・保存率・プロフィール訪問率を計測し、最も成果の出やすいコンセプトを特定してからリアルクリエイターに依頼します。</div></div>
-    <div class="fi"><button class="fq">まず1〜2ヶ月だけ試すことはできますか？<span class="fic">+</span></button><div class="fa">残念ながら、1〜2ヶ月では口コミの定着効果が数値として現れる前に終了してしまいます。無料相談では過去の月別成果推移データをお見せしています。</div></div>
-    <div class="fi"><button class="fq">景表法（ステマ規制）への対応は？<span class="fic">+</span></button><div class="fa">#PR表記の確認はもちろん、InstagramのブランドコンテンツツールON確認、TikTokの広告コンテンツトグルON確認もシステムに組み込んでいます。投稿前スクショをOCRで自動チェックするため、法的リスクをゼロにします。</div></div>
-    <div class="fi"><button class="fq">ROIはどうやって証明しますか？<span class="fic">+</span></button><div class="fa">クリエイターの投稿にユニークUTMリンクを付与し、GA4でUGC経由のセッション・CV・売上を自動集計します。EMVではなく実際の購買データで証明するため、毎月の社内稟議・レポートに使える数字を提供できます。</div></div>
-    <div class="fi"><button class="fq">ギフティング費用はどう計算すれば？<span class="fic">+</span></button><div class="fa">月額費用にギフティング商品代は含まれません。商品提供分は実費・明細付きで別途ご請求します。平均的には月¥30,000〜¥80,000（商品単価・PR人数による）を目安にお考えください。</div></div>
-  </div>
-</section>
-
-<footer>
-  <div class="fl">✦ KUCHIKOMI</div>
-  <p>© 2026 GOOD VIBES AGENCY. All rights reserved.</p>
-</footer>
 
 <script>
 // ── CUSTOM CURSOR ──
@@ -931,7 +935,7 @@ curLoop();
 
 // ── SCROLLER SETUP ──
 const scroller=document.getElementById('scroller');
-const slides=[...document.querySelectorAll('.slide')];
+const slides=[...document.querySelectorAll('.slide, #faq-section')];
 const dots=[...document.querySelectorAll('.idot')];
 const TOTAL=slides.length;
 let curIdx=0;
