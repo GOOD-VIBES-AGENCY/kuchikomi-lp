@@ -82,14 +82,14 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   overflow:hidden;
   position:relative;z-index:2;
 }
-/* コンテンツ内部: flex-start、auto marginでグループ分割 */
+/* コンテンツ内部 */
 .sc-inner{
   flex:1;
   display:flex;flex-direction:column;
-  justify-content:flex-start;
+  justify-content:space-between;
+  gap:0;
 }
-/* 上グループの最後の要素にauto margin → 下グループが自動的に下へ */
-.sc-push{margin-top:auto}
+.sc-push{margin-top:0}
 
 /* 共通 */
 .eyebrow{font-size:var(--fs-xs);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;font-family:'DM Sans',sans-serif}
@@ -295,20 +295,26 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="grain-layer"></div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="urgency-tag">📅 今月の診断枠：残り4社</div>
-      <div class="service-tag">UGC口コミ施策 × AI × 月額定額</div>
-      <h1 class="cover-h1">
-        <span class="cover-h1-sub">バズらせるより、</span>
-        <em>売れる口コミ</em><br>を設計する。
-      </h1>
-      <p class="cover-sub">口コミから<strong>実購買につながる仕組み</strong>を、<br>設計・運用・ROI証明まで月額一括でおまかせ。</p>
-      <div class="nums-grid sc-push">
-        <div class="num-card"><span class="num-v">573K</span><span class="num-l">購買層リーチ/月</span></div>
-        <div class="num-card"><span class="num-v">500名</span><span class="num-l">実績クリエイターDB</span></div>
-        <div class="num-card"><span class="num-v">2.7倍</span><span class="num-l">広告比<br>実購買転換</span></div>
+      <!-- 上グループ: ブランディング -->
+      <div>
+        <div class="urgency-tag">📅 今月の診断枠：残り4社</div>
+        <div class="service-tag">UGC口コミ施策 × AI × 月額定額</div>
+        <h1 class="cover-h1">
+          <span class="cover-h1-sub">バズらせるより、</span>
+          <em>売れる口コミ</em><br>を設計する。
+        </h1>
+        <p class="cover-sub">口コミから<strong>実購買につながる仕組み</strong>を、<br>設計・運用・ROI証明まで月額一括でおまかせ。</p>
       </div>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pk">30分・無料診断を予約する →</a>
-      <p class="cover-footnote">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</p>
+      <!-- 下グループ: CTA -->
+      <div>
+        <div class="nums-grid">
+          <div class="num-card"><span class="num-v">573K</span><span class="num-l">購買層リーチ/月</span></div>
+          <div class="num-card"><span class="num-v">500名</span><span class="num-l">実績クリエイターDB</span></div>
+          <div class="num-card"><span class="num-v">2.7倍</span><span class="num-l">広告比<br>実購買転換</span></div>
+        </div>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-pk" style="margin-top:12px">30分・無料診断を予約する →</a>
+        <p class="cover-footnote" style="margin-top:8px">✓ 費用なし　✓ 強引な営業なし　✓ 翌月からキャンセル可</p>
+      </div>
     </div>
   </div>
   <div class="swipe-hint">次のスライドへ <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
@@ -319,9 +325,11 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="bgt" style="font-size:clamp(6rem,22vw,15rem);bottom:-2vw;right:-3vw;color:rgba(255,31,106,.07)">PAIN</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="eyebrow" style="color:var(--pk)">✦ よくある課題</div>
-      <h2 class="h2" style="color:var(--ink)">UGC施策が<br><em>続かない</em>理由</h2>
-      <div class="prob-cards sc-push">
+      <div>
+        <div class="eyebrow" style="color:var(--pk)">✦ よくある課題</div>
+        <h2 class="h2" style="color:var(--ink)">UGC施策が<br><em>続かない</em>理由</h2>
+      </div>
+      <div class="prob-cards">
         <div class="pc"><div class="pc-n">01</div><div><h3>費用対効果が説明できない</h3><p>投稿数はわかる。でも「それで売れたか」が証明できず、次の予算が取れない。</p></div></div>
         <div class="pc"><div class="pc-n">02</div><div><h3>何が売れる投稿になるか誰もわからない</h3><p>経験と勘でクリエイターを選ぶ。再現性がない。</p></div></div>
         <div class="pc"><div class="pc-n">03</div><div><h3>競合の口コミが365日積み上がる</h3><p>自社は月1回の単発投稿で戦っている。認知がリセットされ続ける。</p></div></div>
@@ -335,17 +343,21 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="bgt" style="font-size:clamp(5rem,18vw,13rem);bottom:-2vw;right:-2vw;color:rgba(255,255,255,.045)">¥600K</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="eyebrow" style="color:rgba(255,255,255,.45)">✦ Cost Breakdown</div>
-      <h2 class="cost-h">社内でやると<br>毎月<em>¥600,000</em>かかっています</h2>
-      <div class="cost-row"><span class="ck">担当者人件費（月30h想定）</span><span class="cv">¥300,000〜</span></div>
-      <div class="cost-row"><span class="ck">クリエイター選定・ディレクション</span><span class="cv">¥150,000〜</span></div>
-      <div class="cost-row"><span class="ck">景表法確認・効果測定・レポート</span><span class="cv">¥110,000〜</span></div>
-      <div class="cost-row"><span class="ck">分析ツール・システム費</span><span class="cv">¥40,000〜</span></div>
-      <div class="cost-total"><span class="ctl">合計（担当者1名含む想定）</span><span class="ctn">¥600,000〜</span></div>
-      <div class="vs-bar sc-push"><div class="vs-line"></div>VS KUCHIKOMI<div class="vs-line"></div></div>
-      <div class="cost-kk"><span class="ck-lbl">Starterプラン（全工程込み）</span><span class="ck-price">¥350,000</span></div>
-      <div class="ck-save">💗 社内比 ¥250,000/月 削減</div>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="cost-micro-btn">¥250,000 削減できるか確認する →</a>
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,.45)">✦ Cost Breakdown</div>
+        <h2 class="cost-h">社内でやると<br>毎月<em>¥600,000</em>かかっています</h2>
+        <div class="cost-row"><span class="ck">担当者人件費（月30h想定）</span><span class="cv">¥300,000〜</span></div>
+        <div class="cost-row"><span class="ck">クリエイター選定・ディレクション</span><span class="cv">¥150,000〜</span></div>
+        <div class="cost-row"><span class="ck">景表法確認・効果測定・レポート</span><span class="cv">¥110,000〜</span></div>
+        <div class="cost-row"><span class="ck">分析ツール・システム費</span><span class="cv">¥40,000〜</span></div>
+        <div class="cost-total"><span class="ctl">合計（担当者1名含む想定）</span><span class="ctn">¥600,000〜</span></div>
+      </div>
+      <div>
+        <div class="vs-bar"><div class="vs-line"></div>VS KUCHIKOMI<div class="vs-line"></div></div>
+        <div class="cost-kk"><span class="ck-lbl">Starterプラン（全工程込み）</span><span class="ck-price">¥350,000</span></div>
+        <div class="ck-save">💗 社内比 ¥250,000/月 削減</div>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="cost-micro-btn">¥250,000 削減できるか確認する →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -355,19 +367,23 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="how-bnum">01</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="how-step-tag">STEP 01</div>
-      <div class="how-ey">AI PRE-TEST</div>
-      <h2 class="how-h2">AIプリテストで<br><em>勝ちコンセプト</em>を特定</h2>
-      <div class="how-card">
-        <div class="test-label">7日間テスト結果 — 視聴完了率</div>
-        <div class="test-row"><span class="tl">Pattern A</span><div class="tw"><div class="tb" style="width:58%"></div></div><span class="tp">58%</span></div>
-        <div class="test-row"><span class="tl">Pattern B</span><div class="tw"><div class="tb win" style="width:87%"></div></div><span class="tp win">87%<span class="tw-badge">採用</span></span></div>
-        <div class="test-row"><span class="tl">Pattern C</span><div class="tw"><div class="tb" style="width:44%"></div></div><span class="tp">44%</span></div>
-        <div class="test-row"><span class="tl">Pattern D</span><div class="tw"><div class="tb" style="width:72%"></div></div><span class="tp">72%</span></div>
-        <div class="test-row"><span class="tl">Pattern E</span><div class="tw"><div class="tb" style="width:51%"></div></div><span class="tp">51%</span></div>
+      <div>
+        <div class="how-step-tag">STEP 01</div>
+        <div class="how-ey">AI PRE-TEST</div>
+        <h2 class="how-h2">AIプリテストで<br><em>勝ちコンセプト</em>を特定</h2>
       </div>
-      <p class="how-body">クリエイターに依頼する前に、<strong>AIが5パターン自動生成 → 7日間配信テスト</strong>。勘ではなくデータで「当たる前提」を作ります。</p>
-      <span class="how-tag">✦ 全プランに標準搭載 — 業界初</span>
+      <div>
+        <div class="how-card">
+          <div class="test-label">7日間テスト結果 — 視聴完了率</div>
+          <div class="test-row"><span class="tl">Pattern A</span><div class="tw"><div class="tb" style="width:58%"></div></div><span class="tp">58%</span></div>
+          <div class="test-row"><span class="tl">Pattern B</span><div class="tw"><div class="tb win" style="width:87%"></div></div><span class="tp win">87%<span class="tw-badge">採用</span></span></div>
+          <div class="test-row"><span class="tl">Pattern C</span><div class="tw"><div class="tb" style="width:44%"></div></div><span class="tp">44%</span></div>
+          <div class="test-row"><span class="tl">Pattern D</span><div class="tw"><div class="tb" style="width:72%"></div></div><span class="tp">72%</span></div>
+          <div class="test-row"><span class="tl">Pattern E</span><div class="tw"><div class="tb" style="width:51%"></div></div><span class="tp">51%</span></div>
+        </div>
+        <p class="how-body">クリエイターに依頼する前に、<strong>AIが5パターン自動生成 → 7日間配信テスト</strong>。勘ではなくデータで「当たる前提」を作ります。</p>
+        <span class="how-tag">✦ 全プランに標準搭載 — 業界初</span>
+      </div>
     </div>
   </div>
 </section>
@@ -377,22 +393,26 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="how-bnum">02</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="how-step-tag">STEP 02</div>
-      <div class="how-ey">CREATOR MATCH</div>
-      <h2 class="how-h2">勝ちコンセプトで<br><em>最適クリエイター</em>を選定</h2>
-      <div class="how-card">
-        <div class="test-label" style="margin-bottom:9px">500名DB — 実績スコア順アサイン例</div>
-        <div class="cr-grid">
-          <div class="cr-item"><div class="cr-av g">A</div><div class="cr-lbl">Gold</div></div>
-          <div class="cr-item"><div class="cr-av g">B</div><div class="cr-lbl">Gold</div></div>
-          <div class="cr-item"><div class="cr-av s">C</div><div class="cr-lbl">Silver</div></div>
-          <div class="cr-item"><div class="cr-av s">D</div><div class="cr-lbl">Silver</div></div>
-          <div class="cr-item"><div class="cr-av">E</div><div class="cr-lbl">Bronze</div></div>
-        </div>
-        <div class="cr-note" style="margin-top:6px">購買データ × フォロワー一致率 × 過去CVRでスコアリング</div>
+      <div>
+        <div class="how-step-tag">STEP 02</div>
+        <div class="how-ey">CREATOR MATCH</div>
+        <h2 class="how-h2">勝ちコンセプトで<br><em>最適クリエイター</em>を選定</h2>
       </div>
-      <p class="how-body"><strong>テスト結果をもとに500名DBから最適クリエイターをアサイン。</strong>景表法チェック（#PR確認）も自動処理。</p>
-      <span class="how-tag">✦ 景表法チェック 完全自動化</span>
+      <div>
+        <div class="how-card">
+          <div class="test-label" style="margin-bottom:9px">500名DB — 実績スコア順アサイン例</div>
+          <div class="cr-grid">
+            <div class="cr-item"><div class="cr-av g">A</div><div class="cr-lbl">Gold</div></div>
+            <div class="cr-item"><div class="cr-av g">B</div><div class="cr-lbl">Gold</div></div>
+            <div class="cr-item"><div class="cr-av s">C</div><div class="cr-lbl">Silver</div></div>
+            <div class="cr-item"><div class="cr-av s">D</div><div class="cr-lbl">Silver</div></div>
+            <div class="cr-item"><div class="cr-av">E</div><div class="cr-lbl">Bronze</div></div>
+          </div>
+          <div class="cr-note" style="margin-top:6px">購買データ × フォロワー一致率 × 過去CVRでスコアリング</div>
+        </div>
+        <p class="how-body"><strong>テスト結果をもとに500名DBから最適クリエイターをアサイン。</strong>景表法チェック（#PR確認）も自動処理。</p>
+        <span class="how-tag">✦ 景表法チェック 完全自動化</span>
+      </div>
     </div>
   </div>
 </section>
@@ -402,27 +422,31 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="how-bnum">03</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="how-step-tag">STEP 03</div>
-      <div class="how-ey">ROI PROOF</div>
-      <h2 class="how-h2">GA4直結で<br><em>実売上</em>を毎月証明</h2>
-      <div class="how-card">
-        <div class="ga4-head">📊 UGC経由 月次レポート（イメージ）</div>
-        <div class="ga4-metrics">
-          <div class="ga4-m"><span class="ga4-mv">573K</span><span class="ga4-ml">月間リーチ</span></div>
-          <div class="ga4-m"><span class="ga4-mv" style="color:var(--pk)">¥2.8M</span><span class="ga4-ml">UGC経由売上</span></div>
-          <div class="ga4-m"><span class="ga4-mv" style="color:var(--gold)">2.7x</span><span class="ga4-ml">広告比CVR</span></div>
-        </div>
-        <div class="ga4-bars">
-          <div class="ga4-b" style="height:30%"></div>
-          <div class="ga4-b" style="height:42%"></div>
-          <div class="ga4-b mid" style="height:55%"></div>
-          <div class="ga4-b hi" style="height:73%"></div>
-          <div class="ga4-b hi" style="height:88%"></div>
-          <div class="ga4-b hi" style="height:100%"></div>
-        </div>
+      <div>
+        <div class="how-step-tag">STEP 03</div>
+        <div class="how-ey">ROI PROOF</div>
+        <h2 class="how-h2">GA4直結で<br><em>実売上</em>を毎月証明</h2>
       </div>
-      <p class="how-body" style="margin-top:10px"><strong>UTMリンクでUGC経由の購買を完全追跡。</strong>インプレッション数ではなく、<strong>実売上で毎月証明します。</strong></p>
-      <span class="how-tag">✦ 毎月ROIレポート提出 — 稟議に使える数字</span>
+      <div>
+        <div class="how-card">
+          <div class="ga4-head">📊 UGC経由 月次レポート（イメージ）</div>
+          <div class="ga4-metrics">
+            <div class="ga4-m"><span class="ga4-mv">573K</span><span class="ga4-ml">月間リーチ</span></div>
+            <div class="ga4-m"><span class="ga4-mv" style="color:var(--pk)">¥2.8M</span><span class="ga4-ml">UGC経由売上</span></div>
+            <div class="ga4-m"><span class="ga4-mv" style="color:var(--gold)">2.7x</span><span class="ga4-ml">広告比CVR</span></div>
+          </div>
+          <div class="ga4-bars">
+            <div class="ga4-b" style="height:30%"></div>
+            <div class="ga4-b" style="height:42%"></div>
+            <div class="ga4-b mid" style="height:55%"></div>
+            <div class="ga4-b hi" style="height:73%"></div>
+            <div class="ga4-b hi" style="height:88%"></div>
+            <div class="ga4-b hi" style="height:100%"></div>
+          </div>
+        </div>
+        <p class="how-body" style="margin-top:10px"><strong>UTMリンクでUGC経由の購買を完全追跡。</strong>インプレッション数ではなく、<strong>実売上で毎月証明します。</strong></p>
+        <span class="how-tag">✦ 毎月ROIレポート提出 — 稟議に使える数字</span>
+      </div>
     </div>
   </div>
 </section>
@@ -432,8 +456,10 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="bgt" style="font-size:clamp(5rem,20vw,14rem);bottom:-2vw;right:-2vw;color:rgba(255,31,106,.07)">2.7x</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="eyebrow" style="color:var(--pk)">✦ Case Study</div>
-      <h2 class="h2" style="color:var(--ink)">口コミが<em>実売上</em>を動かした実績</h2>
+      <div>
+        <div class="eyebrow" style="color:var(--pk)">✦ Case Study</div>
+        <h2 class="h2" style="color:var(--ink)">口コミが<em>実売上</em>を動かした実績</h2>
+      </div>
       <div class="res-case">
         <div class="rc-tag">✦ コスメ系D2Cブランド — 2026年Q1</div>
         <div class="rc-grid">
@@ -456,8 +482,10 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
 <section class="slide s-voices" id="s7">
   <div class="sc">
     <div class="sc-inner">
-      <div class="eyebrow" style="color:var(--pk)">✦ Voices</div>
-      <h2 class="h2" style="color:var(--ink)">担当者の<em>リアルな声</em></h2>
+      <div>
+        <div class="eyebrow" style="color:var(--pk)">✦ Voices</div>
+        <h2 class="h2" style="color:var(--ink)">担当者の<em>リアルな声</em></h2>
+      </div>
       <div class="v-cards">
         <div class="vc">
           <div class="vc-head">
@@ -496,20 +524,24 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="plan-bgt">01</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="plan-nav-lbl">PLAN 01 / 03</div>
-      <div class="plan-tier">✦ Starter</div>
-      <span class="plan-amount">¥350,000<span>/月</span></span>
-      <span class="plan-period">50名 / 500K購買層リーチ保証 / 6ヶ月〜</span>
-      <div class="plan-feats">
-        <div class="pf">50名クリエイターアサイン</div>
-        <div class="pf">AIプリテスト（5パターン）</div>
-        <div class="pf">景表法チェック完全自動化</div>
-        <div class="pf">GA4 ROIダッシュボード</div>
-        <div class="pf">月次レポーティング</div>
+      <div>
+        <div class="plan-nav-lbl">PLAN 01 / 03</div>
+        <div class="plan-tier">✦ Starter</div>
+        <span class="plan-amount">¥350,000<span>/月</span></span>
+        <span class="plan-period">50名 / 500K購買層リーチ保証 / 6ヶ月〜</span>
+        <div class="plan-feats">
+          <div class="pf">50名クリエイターアサイン</div>
+          <div class="pf">AIプリテスト（5パターン）</div>
+          <div class="pf">景表法チェック完全自動化</div>
+          <div class="pf">GA4 ROIダッシュボード</div>
+          <div class="pf">月次レポーティング</div>
+        </div>
       </div>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-cta-btn">30分・無料診断を予約する →</a>
-      <div class="plan-footnote">✓ 6ヶ月〜　✓ 年額12%OFF　✓ 未達は翌月補填</div>
-      <div class="plan-dots"><div class="pd on"></div><div class="pd"></div><div class="pd"></div></div>
+      <div>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-cta-btn">30分・無料診断を予約する →</a>
+        <div class="plan-footnote">✓ 6ヶ月〜　✓ 年額12%OFF　✓ 未達は翌月補填</div>
+        <div class="plan-dots"><div class="pd on"></div><div class="pd"></div><div class="pd"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -519,22 +551,26 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="plan-bgt">02</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="plan-nav-lbl">PLAN 02 / 03</div>
-      <div class="plan-pop">✦ 人気 No.1</div>
-      <div class="plan-tier">✦ Growth</div>
-      <span class="plan-amount">¥550,000<span>/月</span></span>
-      <span class="plan-period">100名 / 1.2M購買層リーチ保証 / 6ヶ月〜</span>
-      <div class="plan-feats">
-        <div class="pf">100名クリエイターアサイン</div>
-        <div class="pf">AIプリテスト（10パターン）</div>
-        <div class="pf">景表法チェック完全自動化</div>
-        <div class="pf">GA4 ROIダッシュボード</div>
-        <div class="pf">媒体比率の月次調整</div>
-        <div class="pf">クリエイターランキング管理</div>
+      <div>
+        <div class="plan-nav-lbl">PLAN 02 / 03</div>
+        <div class="plan-pop">✦ 人気 No.1</div>
+        <div class="plan-tier">✦ Growth</div>
+        <span class="plan-amount">¥550,000<span>/月</span></span>
+        <span class="plan-period">100名 / 1.2M購買層リーチ保証 / 6ヶ月〜</span>
+        <div class="plan-feats">
+          <div class="pf">100名クリエイターアサイン</div>
+          <div class="pf">AIプリテスト（10パターン）</div>
+          <div class="pf">景表法チェック完全自動化</div>
+          <div class="pf">GA4 ROIダッシュボード</div>
+          <div class="pf">媒体比率の月次調整</div>
+          <div class="pf">クリエイターランキング管理</div>
+        </div>
       </div>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-cta-btn">30分・無料診断を予約する →</a>
-      <div class="plan-footnote">✓ 6ヶ月〜　✓ 年額12%OFF　✓ 未達は翌月補填</div>
-      <div class="plan-dots"><div class="pd"></div><div class="pd on"></div><div class="pd"></div></div>
+      <div>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-cta-btn">30分・無料診断を予約する →</a>
+        <div class="plan-footnote">✓ 6ヶ月〜　✓ 年額12%OFF　✓ 未達は翌月補填</div>
+        <div class="plan-dots"><div class="pd"></div><div class="pd on"></div><div class="pd"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -544,21 +580,25 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="plan-bgt">03</div>
   <div class="sc">
     <div class="sc-inner">
-      <div class="plan-nav-lbl">PLAN 03 / 03</div>
-      <div class="plan-tier">✦ Scale</div>
-      <span class="plan-amount">¥850,000<span>/月</span></span>
-      <span class="plan-period">150名 / 2.5M購買層リーチ保証 / 6ヶ月〜</span>
-      <div class="plan-feats">
-        <div class="pf">150名クリエイターアサイン</div>
-        <div class="pf">AIプリテスト（無制限）</div>
-        <div class="pf">景表法チェック完全自動化</div>
-        <div class="pf">GA4 ROIダッシュボード</div>
-        <div class="pf">専任ディレクター担当</div>
-        <div class="pf">クリエイターランキング+AI改善</div>
+      <div>
+        <div class="plan-nav-lbl">PLAN 03 / 03</div>
+        <div class="plan-tier">✦ Scale</div>
+        <span class="plan-amount">¥850,000<span>/月</span></span>
+        <span class="plan-period">150名 / 2.5M購買層リーチ保証 / 6ヶ月〜</span>
+        <div class="plan-feats">
+          <div class="pf">150名クリエイターアサイン</div>
+          <div class="pf">AIプリテスト（無制限）</div>
+          <div class="pf">景表法チェック完全自動化</div>
+          <div class="pf">GA4 ROIダッシュボード</div>
+          <div class="pf">専任ディレクター担当</div>
+          <div class="pf">クリエイターランキング+AI改善</div>
+        </div>
       </div>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-cta-btn">30分・無料診断を予約する →</a>
-      <div class="plan-footnote">✓ 6ヶ月〜　✓ 年額12%OFF　✓ 未達は翌月補填</div>
-      <div class="plan-dots"><div class="pd"></div><div class="pd"></div><div class="pd on"></div></div>
+      <div>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="plan-cta-btn">30分・無料診断を予約する →</a>
+        <div class="plan-footnote">✓ 6ヶ月〜　✓ 年額12%OFF　✓ 未達は翌月補填</div>
+        <div class="plan-dots"><div class="pd"></div><div class="pd"></div><div class="pd on"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -569,12 +609,16 @@ body{background:#111;color:var(--white);font-family:'M PLUS Rounded 1c','DM Sans
   <div class="cta-bgt">KUCHIKOMI</div>
   <div class="sc">
     <div class="sc-inner cta-inner">
-      <div class="cta-ey">✦ Contact</div>
-      <h2 class="cta-h2">まず、30分だけ<br>話しましょう。</h2>
-      <div class="cta-urgency">📅 今月の診断枠：残り4社</div>
-      <p class="cta-p">費用・クリエイター選定・景表法対応まで、何でも聞いてください。合わないと思ったら、正直にお伝えします。</p>
-      <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-white">30分・無料診断を予約する →</a>
-      <div class="cta-assure">✓ 費用なし　✓ 翌月からキャンセル可　✓ 強引な営業一切なし</div>
+      <div>
+        <div class="cta-ey">✦ Contact</div>
+        <h2 class="cta-h2">まず、30分だけ<br>話しましょう。</h2>
+        <div class="cta-urgency">📅 今月の診断枠：残り4社</div>
+        <p class="cta-p">費用・クリエイター選定・景表法対応まで、何でも聞いてください。合わないと思ったら、正直にお伝えします。</p>
+      </div>
+      <div>
+        <a href="https://calendly.com/goodvibesagency/30min" target="_blank" class="btn-white">30分・無料診断を予約する →</a>
+        <div class="cta-assure">✓ 費用なし　✓ 翌月からキャンセル可　✓ 強引な営業一切なし</div>
+      </div>
     </div>
   </div>
 </section>
